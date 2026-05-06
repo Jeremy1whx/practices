@@ -7,12 +7,6 @@
 #include <sstream>
 #include <stack>
 #include <cmath>
-#include <optional>
-#include <memory>
-#include <array>
-#include <concepts>
-#include <functional>
-
 
 
 // Type aliases for better readability
