@@ -1,8 +1,9 @@
-#include <catch2/catch_all.hpp>
+#define CATCH_CONFIG_MAIN
 #include <thread>
 #include <chrono>
 #include <iostream>
 
+#include "catch.hpp"
 #include "Ringbuffer.h"
 
 TEST_CASE("Basic push and pop") {
