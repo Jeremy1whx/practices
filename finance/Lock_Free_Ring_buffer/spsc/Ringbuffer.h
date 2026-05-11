@@ -25,13 +25,13 @@ class RingBuffer {
         }
 
         bool pop(T& item) {
-            size_t tail = tail_.load(std::memotry_order_relaxed);
+            size_t tail = tail_.load(std::memory_order_relaxed);
 
             if (tail == head_.load(std::memory_order_acquire)) {
                 return false;
             }
             item = buffer_[tail];
-            tail_.store((tail + 1) & (capacity - 1), std::memory_order_release);
+            tail_.store((tail + 1) & (capacity_ - 1), std::memory_order_release);
             return true;
         }
     private:
