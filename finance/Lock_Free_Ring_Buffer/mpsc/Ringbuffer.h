@@ -36,9 +36,9 @@ public:
     }
 
     bool pop(T& item) {
-        size_t tail = tail_.load(std::memory_order_relaxed);
-        size_t index = tail & (capacity_ - 1);
+        size_t tail = tail_.load(std::memory_order_relaxed);        
         if (tail == head_.load(std::memory_order_acquire)) return false; //empty
+        size_t index = tail & (capacity_ - 1);
         Cell& cell = buffer_[index];
         size_t seq = cell.sequence.load(std::memory_order_acquire);
         if (seq == tail + 1) {
