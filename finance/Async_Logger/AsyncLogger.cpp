@@ -38,7 +38,7 @@ void AsyncLogger::log(const char* msg) {
 void AsyncLogger::process() {
     LogMessage msg;
 
-    while (running_) {
+    while (running_ || !queue_.empty()) {
 
         while (queue_.pop(msg)) {
 
