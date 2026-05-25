@@ -1,3 +1,5 @@
+#pragma once 
+
 #include <atomic>
 #include <vector>
 #include <cstddef>
@@ -49,6 +51,11 @@ public:
         }
         return false;
         
+    }
+
+    bool empty() const {
+        return head_.load(std::memory_order_acquire)
+            == tail_.load(std::memory_order_acquire);
     }
     
 private:
