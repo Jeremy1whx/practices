@@ -14,7 +14,7 @@ public:
         }
     }
 
-    T* allocate() {
+    virtual T* allocate() {
         if (free_list_.empty()) return nullptr;
 
         T* ptr = free_list_.top();
@@ -28,7 +28,7 @@ public:
 
     size_t available() const {return free_list_.size();}
 
-private:
+protected:
     std::vector<T> storage_;
     std::stack<T*> free_list_;
 };

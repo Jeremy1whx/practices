@@ -1,5 +1,5 @@
 #include "MatchingEngine.h"
-#include <iostream>
+
 
 void MatchingEngine::submit_order(const Order& order) {
 
@@ -117,7 +117,9 @@ void MatchingEngine::match_buy(Order order) {
         if (logger_) {
             auto msg = format_trade(*trade);
             logger_->log(msg.c_str());
-        }
+        } else {
+            trade_count_.fetch_add(1, std::memory_order_relaxed);
+            trade_pool_.recycle_oldest();}
 
         publish_market_data(*trade);
 

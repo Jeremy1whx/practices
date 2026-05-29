@@ -11,6 +11,8 @@ void MatchingEngineThread::start() {
     running_ = true;
 
     thread_ = std::thread(&MatchingEngineThread::run, this);
+
+    pin_thread_to_core(thread_, 2);
 }
 
 void MatchingEngineThread::stop() {
@@ -29,6 +31,12 @@ bool MatchingEngineThread::submit_order(const Order& order) {
 void MatchingEngineThread::run() {
 
     Order order;
+
+    #ifdef __linux__
+
+    std::cout << "Matching thread running on CPU " << sched_getcpu() << "\n";
+
+    #endif
 
     constexpr size_t BATCH_SIZE = 64;
 

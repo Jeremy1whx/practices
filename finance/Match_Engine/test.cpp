@@ -409,7 +409,7 @@ TEST_CASE("Latency benchmark") {
 
     system.start();
 
-    constexpr int N = 100000;
+    constexpr int N = 5000000;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -436,7 +436,7 @@ TEST_CASE("Latency benchmark") {
         while (!system.submit_order(buy)) {}
     }
 
-    while (system.engine().trades().size()< static_cast<size_t>(N)) {
+    while (system.engine().trade_count() < static_cast<size_t>(N)) {
         std::this_thread::yield();
     }
 
@@ -469,7 +469,7 @@ TEST_CASE("Batch processing benchmark") {
 
     system.start();
 
-    constexpr int N = 500000;
+    constexpr int N = 5000000;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -501,7 +501,7 @@ TEST_CASE("Batch processing benchmark") {
 
     producer.join();
 
-    while (system.engine().trades().size() < static_cast<size_t>(N)) {
+    while (system.engine().trade_count() < static_cast<size_t>(N)) {
         std::this_thread::yield();
     }
 

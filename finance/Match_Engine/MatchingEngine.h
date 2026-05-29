@@ -7,12 +7,15 @@
 #include "Clock.h"
 #include "LatencyCollector.h"
 #include "../Memory_Pool/MemoryPool.h"
+#include "../Memory_Pool/LRU.h"
 #include "../Async_Logger/AsyncLogger.h"
+#include "../CPU_Affinity/Affinity.h"
 
 #include <map>
 #include <deque>
 #include <vector>
 #include <unordered_map>
+#include <iostream>
 
 class MatchingEngine {
 public:
@@ -30,6 +33,8 @@ public:
     const auto& market_data_events() const {return market_data_events_;}
 
     const auto& latency_collector() const {return latency_collector_;}
+
+    const auto& trade_count() const {return trade_count_;}
 
     void set_logger(AsyncLogger* logger) {logger_ = logger;}
 
@@ -51,11 +56,13 @@ private:
 
     LatencyCollector latency_collector_;
 
-    MemoryPool<Trade> trade_pool_{1024 * 1024};
+    LRUPool<Trade> trade_pool_{1024 * 1024};
 
     MemoryPool<Order> order_pool_{1024 * 1024};
 
     std::unordered_map<uint64_t, Order*> order_lookup_;
+
+    std::atomic<uint64_t> trade_count_{0};
 
     void match_buy(Order order);
 
