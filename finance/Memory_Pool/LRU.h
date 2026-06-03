@@ -1,3 +1,5 @@
+#pragma once
+
 #include "MemoryPool.h"
 
 template <typename T>

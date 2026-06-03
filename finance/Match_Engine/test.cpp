@@ -7,6 +7,8 @@
 
 TEST_CASE("Simple full match") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     Order sell{1, Side::Sell, 100.0, 10, 1};
     Order buy{2, Side::Buy, 100.0, 10, 2};
@@ -16,7 +18,7 @@ TEST_CASE("Simple full match") {
     
     REQUIRE(engine.asks().empty());
     REQUIRE(engine.bids().empty());
-    REQUIRE(engine.trades().size() == 1);
+    REQUIRE(engine.trade_count() == 1);
     
     const auto& trade = engine.trades()[0];
     REQUIRE(trade.price == 100.0);
@@ -25,6 +27,8 @@ TEST_CASE("Simple full match") {
 
 TEST_CASE("Partial fill - buy less than sell") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 100.0, 100, 1});
     engine.submit_order({2, Side::Buy, 100.0, 30, 2});
@@ -40,6 +44,8 @@ TEST_CASE("Partial fill - buy less than sell") {
 
 TEST_CASE("Partial fill - sell less than buy") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 100.0, 100, 1});
     engine.submit_order({2, Side::Sell, 100.0, 30, 2});
@@ -54,6 +60,8 @@ TEST_CASE("Partial fill - sell less than buy") {
 
 TEST_CASE("Price priority - higher bid wins") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 99.0, 50, 1});  
     engine.submit_order({2, Side::Buy, 100.0, 50, 2}); 
@@ -69,6 +77,8 @@ TEST_CASE("Price priority - higher bid wins") {
 
 TEST_CASE("Price priority - lower ask wins") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 101.0, 50, 1}); 
     engine.submit_order({2, Side::Sell, 99.0, 50, 2}); 
@@ -83,6 +93,8 @@ TEST_CASE("Price priority - lower ask wins") {
 
 TEST_CASE("Time priority - same price") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 100.0, 50, 1});
     engine.submit_order({2, Side::Sell, 100.0, 30, 2});
@@ -101,6 +113,8 @@ TEST_CASE("Time priority - same price") {
 
 TEST_CASE("No match - price too low") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 100.0, 50, 1});
     engine.submit_order({2, Side::Buy, 99.0, 30, 2});  
@@ -112,6 +126,8 @@ TEST_CASE("No match - price too low") {
 
 TEST_CASE("No match - price too high") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 100.0, 50, 1});
     engine.submit_order({2, Side::Sell, 101.0, 30, 2}); 
@@ -123,6 +139,8 @@ TEST_CASE("No match - price too high") {
 
 TEST_CASE("Multiple price levels - buy") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 99.0, 30, 1});
     engine.submit_order({2, Side::Sell, 99.5, 40, 2});
@@ -141,6 +159,8 @@ TEST_CASE("Multiple price levels - buy") {
 
 TEST_CASE("Multiple price levels - sell") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 100.0, 30, 1});
     engine.submit_order({2, Side::Buy, 99.5, 40, 2});
@@ -155,6 +175,8 @@ TEST_CASE("Multiple price levels - sell") {
 
 TEST_CASE("Zero quantity order") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 100.0, 0, 1});
     
@@ -164,6 +186,8 @@ TEST_CASE("Zero quantity order") {
 
 TEST_CASE("Large quantities - no overflow") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     uint32_t max_uint32 = std::numeric_limits<uint32_t>::max();
     
@@ -178,6 +202,8 @@ TEST_CASE("Large quantities - no overflow") {
 
 TEST_CASE("Multiple orders same side") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 100.0, 30, 1});
     engine.submit_order({2, Side::Buy, 99.0, 40, 2});
@@ -195,6 +221,8 @@ TEST_CASE("Multiple orders same side") {
 
 TEST_CASE("Complex scenario - interleaved orders") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 100.0, 50, 1});
     engine.submit_order({2, Side::Buy, 99.0, 30, 2});
@@ -210,6 +238,8 @@ TEST_CASE("Complex scenario - interleaved orders") {
 
 TEST_CASE("Trade recording - buy order") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Sell, 100.0, 50, 1});
     engine.submit_order({2, Side::Buy, 100.0, 30, 2});
@@ -225,6 +255,8 @@ TEST_CASE("Trade recording - buy order") {
 
 TEST_CASE("Trade recording - sell order") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     engine.submit_order({1, Side::Buy, 100.0, 50, 1});
     engine.submit_order({2, Side::Sell, 100.0, 30, 2});
@@ -240,6 +272,8 @@ TEST_CASE("Trade recording - sell order") {
 
 TEST_CASE("Multiple trades from one order") {
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
     
     for (int i = 1; i <= 5; ++i) {
         engine.submit_order({uint64_t(i), Side::Sell, 100.0, 10, uint64_t(i)});
@@ -259,7 +293,9 @@ TEST_CASE("Trade logger integration") {
 
     logger.start();
 
-    MatchingEngine engine;
+    MatchingEngine engine;    
+    TradeLogger tlogger;
+    engine.set_listener(&tlogger);
 
     engine.set_logger(&logger);
 
@@ -287,6 +323,8 @@ TEST_CASE("Trade logger integration") {
 TEST_CASE("Market data event generation") {
 
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
 
     engine.submit_order({
         1,
@@ -327,7 +365,8 @@ TEST_CASE("Market data event generation") {
 
 TEST_CASE("MPSC order ingress") {
 
-    MatchingEngineThread system;
+    TradeDataPublisher publisher; 
+    MatchingEngineThread system(1024 * 1024, &publisher);
 
     system.start();
 
@@ -339,7 +378,6 @@ TEST_CASE("MPSC order ingress") {
     for (int i = 0; i < threads; ++i) {
 
         workers.emplace_back([&, i]() {
-
             for (int j = 0; j < N; ++j) {
 
                 Order order {
@@ -368,7 +406,8 @@ TEST_CASE("MPSC order ingress") {
 
 TEST_CASE("Trade latency measurement") {
 
-    MatchingEngineThread system;
+    TradeDataPublisher publisher; 
+    MatchingEngineThread system(1024 * 1024, &publisher);
 
     system.start();
 
@@ -405,7 +444,8 @@ TEST_CASE("Trade latency measurement") {
 
 TEST_CASE("Latency benchmark") {
 
-    MatchingEngineThread system;
+    TradeDataPublisher publisher; 
+    MatchingEngineThread system(1024 * 1024, &publisher);
 
     system.start();
 
@@ -465,7 +505,8 @@ TEST_CASE("Latency benchmark") {
 
 TEST_CASE("Batch processing benchmark") {
 
-    MatchingEngineThread system;
+    TradeDataPublisher publisher; 
+    MatchingEngineThread system(1024 * 1024, &publisher);
 
     system.start();
 
@@ -576,6 +617,8 @@ TEST_CASE("False sharing benchmark") {
 TEST_CASE("Cancel existing order") {
 
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
 
     engine.submit_order({
         1,
@@ -595,6 +638,8 @@ TEST_CASE("Cancel existing order") {
 TEST_CASE("Cancel removes order from book") {
 
     MatchingEngine engine;
+    TradeDataPublisher publisher;
+    engine.set_listener(&publisher);
 
     engine.submit_order({
         1,

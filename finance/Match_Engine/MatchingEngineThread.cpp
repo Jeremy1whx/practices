@@ -1,6 +1,8 @@
 #include "MatchingEngineThread.h"
 
-MatchingEngineThread::MatchingEngineThread(size_t queue_size) : ingress_(queue_size){}
+MatchingEngineThread::MatchingEngineThread(size_t queue_size, TradeEventListener* listener) : ingress_(queue_size), listener_(listener) {
+    engine_.set_listener(listener_);
+}
 
 MatchingEngineThread::~MatchingEngineThread() {
     stop();

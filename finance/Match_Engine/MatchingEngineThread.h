@@ -11,7 +11,7 @@ class MatchingEngineThread {
 public:
 
     explicit MatchingEngineThread(
-        size_t queue_size = 1024 * 1024
+        size_t queue_size = 1024 * 1024, TradeEventListener* listener = nullptr
     );
 
     ~MatchingEngineThread();
@@ -35,6 +35,8 @@ private:
     OrderIngress ingress_;
 
     MatchingEngine engine_;
+
+    TradeEventListener* listener_ = nullptr;
 
     std::thread thread_;
 

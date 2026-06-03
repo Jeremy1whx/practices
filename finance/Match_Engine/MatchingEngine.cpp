@@ -10,24 +10,24 @@ void MatchingEngine::submit_order(const Order& order) {
     }
 }
 
-void MatchingEngine::publish_market_data(const Trade& trade) {
+// void MatchingEngine::publish_market_data(const Trade& trade) {
 
-    MarketDataEvent event;
+//     MarketDataEvent event;
 
-    if (!bids_.empty()) {
-        event.best_bid = bids_.begin()->first;
-    }
+//     if (!bids_.empty()) {
+//         event.best_bid = bids_.begin()->first;
+//     }
 
-    if (!asks_.empty()) {
-        event.best_ask = asks_.begin()->first;
-    }
+//     if (!asks_.empty()) {
+//         event.best_ask = asks_.begin()->first;
+//     }
 
-    event.last_trade_price = trade.price;
+//     event.last_trade_price = trade.price;
 
-    event.last_trade_quantity = trade.quantity;
+//     event.last_trade_quantity = trade.quantity;
 
-    market_data_events_.push_back(event);
-}
+//     // market_data_events_.push_back(event);
+// }
 
 bool MatchingEngine::cancel_order(uint64_t order_id) {
 
@@ -41,9 +41,9 @@ bool MatchingEngine::cancel_order(uint64_t order_id) {
     Order* order = it->second;
 
     if (order->side == Side::Buy) {
-        auto level_it = bids_.find(order->price);
+        auto level_it = listener_->bids().find(order->price);
 
-        if (level_it == bids_.end()){
+        if (level_it == listener_->bids().end()){
             std::cerr << "cancel_order: line " << 47 << " - Order not found: " << order_id << std::endl;
             return false; 
         }        
@@ -53,13 +53,13 @@ bool MatchingEngine::cancel_order(uint64_t order_id) {
         remove_order(level, order);
 
         if (level.head == nullptr) {
-            bids_.erase(level_it);
+            listener_->bids().erase(level_it);
         }
 
     } else {
-        auto level_it = asks_.find(order->price);
+        auto level_it = listener_->asks().find(order->price);
 
-        if (level_it == asks_.end()){
+        if (level_it == listener_->asks().end()){
             std::cerr << "cancel_order: line " << 63 << " - Order not found: " << order_id << std::endl;
             return false;
         } 
@@ -69,21 +69,21 @@ bool MatchingEngine::cancel_order(uint64_t order_id) {
         remove_order(level, order);
 
         if (level.head == nullptr) {
-            asks_.erase(level_it);
+            listener_->asks().erase(level_it);
         }
     }
 
     order_lookup_.erase(it);
 
-    order_pool_.deallocate(order);
+    listener_->order_pool().deallocate(order);
 
     return true;
 }
 
 void MatchingEngine::match_buy(Order order) {
 
-    while (order.quantity > 0 && !asks_.empty()) {
-        auto best_ask = asks_.begin(); // asks_.begin() contains the lowest ask
+    while (order.quantity > 0 && !listener_->asks().empty()) {
+        auto best_ask = listener_->asks().begin(); // asks_.begin() contains the lowest ask
 
         if (best_ask->first > order.price) {
             break; //seller's ask should be lower than buyer's bid, then the buyer would buy
@@ -96,7 +96,7 @@ void MatchingEngine::match_buy(Order order) {
         order.match_timestamp_ns = now_ns();
 
         // generate trade
-        Trade* trade = trade_pool_.allocate();
+        Trade* trade = listener_->trade_pool().allocate();
 
         assert(trade != nullptr);
 
@@ -114,14 +114,15 @@ void MatchingEngine::match_buy(Order order) {
 
         trades_.push_back(*trade);
 
-        if (logger_) {
-            auto msg = format_trade(*trade);
-            logger_->log(msg.c_str());
-        } else {
-            trade_count_.fetch_add(1, std::memory_order_relaxed);
-            trade_pool_.recycle_oldest();}
+        trade_count_.fetch_add(1, std::memory_order_relaxed);
+        
+        // if (logger_) {
+        //     auto msg = format_trade(*trade);
+        //     logger_->log(msg.c_str());
+        // } else {
+        //     trade_pool_.recycle_oldest();}
 
-        publish_market_data(*trade);
+        listener_->on_trade(*trade);
 
         order.quantity -= traded;
         resting->quantity -= traded;
@@ -129,10 +130,10 @@ void MatchingEngine::match_buy(Order order) {
         if (resting->quantity == 0) {
             remove_order(queue, resting);
             order_lookup_.erase(resting->order_id);
-            order_pool_.deallocate(resting);
+            listener_->order_pool().deallocate(resting);
 
             if (queue.head == nullptr) {
-                asks_.erase(best_ask);
+                listener_->asks().erase(best_ask);
             }
         }
     }
@@ -143,8 +144,8 @@ void MatchingEngine::match_buy(Order order) {
 }
 
 void MatchingEngine::match_sell(Order order) {
-    while (order.quantity > 0 && !bids_.empty()) {
-        auto best_bid = bids_.begin(); //bids_.begin() contains the highest bid
+    while (order.quantity > 0 && !listener_->bids().empty()) {
+        auto best_bid = listener_->bids().begin(); //bids_.begin() contains the highest bid
 
         if (best_bid->first < order.price) {
             break; //buyer's bid should be higher than seller's ask, then the seller would sell
@@ -156,7 +157,7 @@ void MatchingEngine::match_sell(Order order) {
 
         order.match_timestamp_ns = now_ns();
 
-        Trade* trade = trade_pool_.allocate();
+        Trade* trade = listener_->trade_pool().allocate();
 
         assert(trade != nullptr);
 
@@ -174,14 +175,15 @@ void MatchingEngine::match_sell(Order order) {
 
         trades_.push_back(*trade);
 
-        if (logger_) {
-            auto msg = format_trade(*trade);
-            logger_->log(msg.c_str());
-        } else {
-            trade_count_.fetch_add(1, std::memory_order_relaxed);
-            trade_pool_.recycle_oldest();}
+        trade_count_.fetch_add(1, std::memory_order_relaxed);
+        
+        // if (logger_) {
+        //     auto msg = format_trade(*trade);
+        //     logger_->log(msg.c_str());
+        // } else {
+        //     trade_pool_.recycle_oldest();}
 
-        publish_market_data(*trade);
+        listener_->on_trade(*trade);
 
         order.quantity -= traded;
         resting->quantity -= traded;
@@ -189,10 +191,10 @@ void MatchingEngine::match_sell(Order order) {
         if (resting->quantity == 0) {
             remove_order(queue, resting);
             order_lookup_.erase(resting->order_id);
-            order_pool_.deallocate(resting);
+            listener_->order_pool().deallocate(resting);
 
             if (queue.head == nullptr) {
-                bids_.erase(best_bid);
+                listener_->bids().erase(best_bid);
             }
         }
     }
@@ -203,16 +205,16 @@ void MatchingEngine::match_sell(Order order) {
 
 void MatchingEngine::add_to_book(const Order& order) {
 
-    Order* stored = order_pool_.allocate();    
+    Order* stored = listener_->order_pool().allocate();    
 
     assert(stored != nullptr);
 
     *stored = order;
 
     if (order.side == Side::Buy) {
-        append_order(bids_[order.price], stored);
+        append_order(listener_->bids()[order.price], stored);
     } else {
-        append_order(asks_[order.price], stored);
+        append_order(listener_->asks()[order.price], stored);
     }
     order_lookup_[stored->order_id] = stored;
 }
