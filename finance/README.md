@@ -92,4 +92,4 @@ Results from running on a dedicated CPU core (Linux):
 - CMake 3.10+
 - Linux (for CPU affinity) – other platforms fall back gracefully
 
-Jeremy
+# By Jeremy
