@@ -439,7 +439,11 @@ TEST_CASE("Trade latency measurement") {
 
     REQUIRE(trades.size() == 1);
 
-    REQUIRE(trades[0].latency_ns > 0);
+    REQUIRE(trades[0].total_latency_ns > 0);
+
+    REQUIRE(trades[0].queue_latency_ns > 0);
+
+    REQUIRE(trades[0].match_duration_ns > 0);
 }
 
 TEST_CASE("Latency benchmark") {
@@ -494,11 +498,23 @@ TEST_CASE("Latency benchmark") {
 
     std::cout << "Throughput: " << throughput << " orders/sec\n";
 
-    std::cout << "P50 latency: " << collector.p50() << " ns\n";
+    std::cout << "P50 total latency: " << collector.p50_total() << " ns\n";
 
-    std::cout << "P99 latency: " << collector.p99() << " ns\n";
+    std::cout << "P99 total latency: " << collector.p99_total() << " ns\n";
 
-    std::cout << "Max latency: " << collector.max() << " ns\n";
+    std::cout << "Max total latency: " << collector.max_total() << " ns\n";
+
+    std::cout << "P50 queue latency: " << collector.p50_queue() << " ns\n";
+
+    std::cout << "P99 queue latency: " << collector.p99_queue() << " ns\n";
+
+    std::cout << "Max queue latency: " << collector.max_queue() << " ns\n";
+
+    std::cout << "P50 match duration: " << collector.p50_match() << " ns\n";
+
+    std::cout << "P99 match duration: " << collector.p99_match() << " ns\n";
+
+    std::cout << "Max match duration: " << collector.max_match() << " ns\n";
 
     REQUIRE(collector.size() == N);
 }

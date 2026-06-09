@@ -12,5 +12,9 @@ struct Trade {
 
     uint32_t quantity;
 
-    uint64_t latency_ns = 0;
+    uint64_t total_latency_ns = 0;
+
+    uint64_t queue_latency_ns = 0;
+
+    uint64_t match_duration_ns = 0;
 };

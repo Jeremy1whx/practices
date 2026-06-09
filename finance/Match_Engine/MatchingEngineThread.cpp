@@ -48,6 +48,7 @@ void MatchingEngineThread::run() {
         size_t count = 0;
 
         while (count < BATCH_SIZE &&ingress_.try_get(order)) {
+            order.egress_timestamp_ns = now_ns();
             batch[count++] = order;
         }
 

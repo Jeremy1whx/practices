@@ -93,7 +93,7 @@ void MatchingEngine::match_buy(Order order) {
         Order* resting = queue.head;
         uint32_t traded = std::min(order.quantity, resting->quantity);
 
-        order.match_timestamp_ns = now_ns();
+        uint64_t match_start_ns = now_ns();
 
         // generate trade
         Trade* trade = listener_->trade_pool().allocate();
@@ -108,9 +108,15 @@ void MatchingEngine::match_buy(Order order) {
 
         trade->quantity = traded;
 
-        trade->latency_ns = order.match_timestamp_ns - order.ingress_timestamp_ns;
+        uint64_t current_ns = now_ns();
 
-        latency_collector_.add(trade->latency_ns);
+        trade->total_latency_ns = current_ns - order.ingress_timestamp_ns;
+
+        trade->queue_latency_ns = current_ns - order.egress_timestamp_ns;
+
+        trade->match_duration_ns = current_ns - match_start_ns;
+
+        latency_collector_.add(trade->total_latency_ns, trade->queue_latency_ns, trade->match_duration_ns);
 
         trades_.push_back(*trade);
 
@@ -155,7 +161,7 @@ void MatchingEngine::match_sell(Order order) {
         Order* resting = queue.head;
         uint32_t traded = std::min(order.quantity, resting->quantity);
 
-        order.match_timestamp_ns = now_ns();
+        uint64_t match_start_ns = now_ns();
 
         Trade* trade = listener_->trade_pool().allocate();
 
@@ -169,9 +175,15 @@ void MatchingEngine::match_sell(Order order) {
 
         trade->quantity = traded;
 
-        trade->latency_ns = order.match_timestamp_ns - order.ingress_timestamp_ns;
+        uint64_t current_ns = now_ns();
 
-        latency_collector_.add(trade->latency_ns);
+        trade->total_latency_ns = current_ns - order.ingress_timestamp_ns;
+
+        trade->queue_latency_ns = current_ns - order.egress_timestamp_ns;
+
+        trade->match_duration_ns = current_ns - match_start_ns;
+
+        latency_collector_.add(trade->total_latency_ns, trade->queue_latency_ns, trade->match_duration_ns);
 
         trades_.push_back(*trade);
 
