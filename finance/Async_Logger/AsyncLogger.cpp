@@ -31,7 +31,7 @@ void AsyncLogger::log(const char* msg) {
     logMsg.set(msg);
 
     while (!queue_.push(logMsg)) {
-        std::this_thread::yield; // yield the time slice
+        std::this_thread::yield(); // yield the time slice
     }
 }
 
