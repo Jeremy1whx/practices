@@ -70,16 +70,16 @@ Results from running on a dedicated CPU core (Linux):
 
 | Metric | Value |
 |--------|-------|
-| **Throughput (Standard)** | 2.82 million orders/sec |
-| **Throughput (Batch)** | 3.20 million orders/sec |
-| **P50 Queue Latency** | 6.5 µs |
-| **P99 Queue Latency** | 30.7 µs |
-| **Max Queue Latency** | 571 µs |
+| **Throughput (Standard)** | 3 million orders/sec |
+| **Throughput (Batch)** | 3.45 million orders/sec |
+| **P50 Queue Latency** | 222.23 ms |
+| **P99 Queue Latency** | 1328.18 ms |
+| **Max Queue Latency** | 1329.74 ms |
 | **P50 Match Duration** | 0 ns (below measurement resolution) |
-| **P99 Match Duration** | 109 ns |
-| **Max Match Duration** | 321 µs |
-| **P50 Total Latency** | 320 ms |
-| **P99 Total Latency** | 859 ms |
+| **P99 Match Duration** | 100 ns |
+| **Max Match Duration** | 211.7 µs |
+| **P50 Total Latency (end to end)** | 222.23 ms |
+| **P99 Total Latency (end to end)** | 1328.19 ms |
 
 *Test configuration: 5 million trade pairs (10 million orders)*
 ![alt text](image.png)

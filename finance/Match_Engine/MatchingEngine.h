@@ -22,7 +22,11 @@
 class MatchingEngine {
 public:
 
-    void submit_order(const Order& order);
+    void submit_order(Order& order);
+    void submit_order(const Order& order){
+        Order copy = order;
+        return submit_order(copy);
+    };
 
     const auto& bids() const { return listener_->bids(); }
 
@@ -70,11 +74,15 @@ private:
 
     std::atomic<uint64_t> trade_count_{0};
 
-    void match_buy(Order order);
+    void match_buy(Order& order);
 
-    void match_sell(Order order);
+    void match_sell(Order& order);
 
-    void add_to_book(const Order& order);
+    void add_to_book(Order& order);
+    void add_to_book(const Order& order) {
+        Order copy = order;
+        return add_to_book(order);
+    };
 
     void append_order(PriceLevel& level, Order* order);
 

@@ -22,8 +22,13 @@ public:
 
     bool empty() const;
 
-    bool submit_order(const Order& order);
+    bool submit_order(Order& order);
 
+    bool submit_order(const Order& order) {
+        Order copy = order;
+        return submit_order(copy);
+    };
+    
     MatchingEngine& engine() {
         return engine_;
     }

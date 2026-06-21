@@ -24,10 +24,9 @@ void MatchingEngineThread::stop() {
     if (thread_.joinable()) {thread_.join();}
 }
 
-bool MatchingEngineThread::submit_order(const Order& order) {
-    Order copy = order;
-    copy.ingress_timestamp_ns = now_ns();
-    return ingress_.submit(copy);
+bool MatchingEngineThread::submit_order(Order& order) {
+    order.ingress_timestamp_ns = now_ns();
+    return ingress_.submit(std::move(order));
 }
 
 void MatchingEngineThread::run() {
@@ -49,7 +48,7 @@ void MatchingEngineThread::run() {
 
         while (count < BATCH_SIZE &&ingress_.try_get(order)) {
             order.egress_timestamp_ns = now_ns();
-            batch[count++] = order;
+            batch[count++] = std::move(order);
         }
 
         for (size_t i = 0; i < count; ++i) {

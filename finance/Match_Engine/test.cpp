@@ -29,9 +29,12 @@ TEST_CASE("Partial fill - buy less than sell") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell{1, Side::Sell, 100.0, 100, 1};
+    Order buy{2, Side::Buy, 100.0, 30, 2};
     
-    engine.submit_order({1, Side::Sell, 100.0, 100, 1});
-    engine.submit_order({2, Side::Buy, 100.0, 30, 2});
+    engine.submit_order(sell);
+    engine.submit_order(buy);
     
     REQUIRE(engine.asks().size() == 1);
     auto& ask_queue = engine.asks().begin()->second;
@@ -46,9 +49,12 @@ TEST_CASE("Partial fill - sell less than buy") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order buy{1, Side::Buy, 100.0, 100, 1};
+    Order sell{2, Side::Sell, 100.0, 30, 2};
     
-    engine.submit_order({1, Side::Buy, 100.0, 100, 1});
-    engine.submit_order({2, Side::Sell, 100.0, 30, 2});
+    engine.submit_order(buy);
+    engine.submit_order(sell);
     
     REQUIRE(engine.bids().size() == 1);
     auto& bid_queue = engine.bids().begin()->second;
@@ -62,11 +68,15 @@ TEST_CASE("Price priority - higher bid wins") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order buy1{1, Side::Buy, 99.0, 50, 1};
+    Order buy2{2, Side::Buy, 100.0, 50, 2};
+    Order sell{3, Side::Sell, 99.5, 80, 3};
     
-    engine.submit_order({1, Side::Buy, 99.0, 50, 1});  
-    engine.submit_order({2, Side::Buy, 100.0, 50, 2}); 
+    engine.submit_order(buy1);  
+    engine.submit_order(buy2); 
     
-    engine.submit_order({3, Side::Sell, 99.5, 80, 3});
+    engine.submit_order(sell);
     
     REQUIRE(engine.bids().size() == 1);  
     
@@ -79,11 +89,15 @@ TEST_CASE("Price priority - lower ask wins") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell1{1, Side::Sell, 101.0, 50, 1};
+    Order sell2{2, Side::Sell, 99.0, 50, 2};
+    Order buy{3, Side::Buy, 100.0, 80, 3};
     
-    engine.submit_order({1, Side::Sell, 101.0, 50, 1}); 
-    engine.submit_order({2, Side::Sell, 99.0, 50, 2}); 
+    engine.submit_order(sell1); 
+    engine.submit_order(sell2); 
     
-    engine.submit_order({3, Side::Buy, 100.0, 80, 3});
+    engine.submit_order(buy);
     
     REQUIRE(engine.asks().size() == 1);  
     auto& ask_queue = engine.asks().begin()->second; 
@@ -95,12 +109,17 @@ TEST_CASE("Time priority - same price") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell1{1, Side::Sell, 100.0, 50, 1};
+    Order sell2{2, Side::Sell, 100.0, 30, 2};
+    Order sell3{3, Side::Sell, 100.0, 20, 3};
+    Order buy{4, Side::Buy, 100.0, 80, 4};
     
-    engine.submit_order({1, Side::Sell, 100.0, 50, 1});
-    engine.submit_order({2, Side::Sell, 100.0, 30, 2});
-    engine.submit_order({3, Side::Sell, 100.0, 20, 3});
+    engine.submit_order(sell1);
+    engine.submit_order(sell2);
+    engine.submit_order(sell3);
     
-    engine.submit_order({4, Side::Buy, 100.0, 80, 4});
+    engine.submit_order(buy);
     
     auto& ask_queue = engine.asks().begin()->second;
     REQUIRE(ask_queue.tail->quantity == 20);
@@ -115,9 +134,12 @@ TEST_CASE("No match - price too low") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell{1, Side::Sell, 100.0, 50, 1};
+    Order buy{2, Side::Buy, 99.0, 30, 2};
     
-    engine.submit_order({1, Side::Sell, 100.0, 50, 1});
-    engine.submit_order({2, Side::Buy, 99.0, 30, 2});  
+    engine.submit_order(sell);
+    engine.submit_order(buy);  
     
     REQUIRE(engine.asks().size() == 1);
     REQUIRE(engine.bids().size() == 1);
@@ -128,9 +150,12 @@ TEST_CASE("No match - price too high") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order buy{1, Side::Buy, 100.0, 50, 1};
+    Order sell{2, Side::Sell, 101.0, 30, 2};
     
-    engine.submit_order({1, Side::Buy, 100.0, 50, 1});
-    engine.submit_order({2, Side::Sell, 101.0, 30, 2}); 
+    engine.submit_order(buy);
+    engine.submit_order(sell); 
     
     REQUIRE(engine.bids().size() == 1);
     REQUIRE(engine.asks().size() == 1);
@@ -141,12 +166,17 @@ TEST_CASE("Multiple price levels - buy") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell1{1, Side::Sell, 99.0, 30, 1};
+    Order sell2{2, Side::Sell, 99.5, 40, 2};
+    Order sell3{3, Side::Sell, 100.0, 50, 3};
+    Order buy{4, Side::Buy, 100.0, 100, 4};
     
-    engine.submit_order({1, Side::Sell, 99.0, 30, 1});
-    engine.submit_order({2, Side::Sell, 99.5, 40, 2});
-    engine.submit_order({3, Side::Sell, 100.0, 50, 3});
+    engine.submit_order(sell1);
+    engine.submit_order(sell2);
+    engine.submit_order(sell3);
     
-    engine.submit_order({4, Side::Buy, 100.0, 100, 4});
+    engine.submit_order(buy);
     
     REQUIRE(engine.asks().size() == 1);
     REQUIRE(engine.bids().empty());
@@ -162,11 +192,16 @@ TEST_CASE("Multiple price levels - sell") {
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
     
-    engine.submit_order({1, Side::Buy, 100.0, 30, 1});
-    engine.submit_order({2, Side::Buy, 99.5, 40, 2});
-    engine.submit_order({3, Side::Buy, 99.0, 50, 3});
+    Order buy1{1, Side::Buy, 100.0, 30, 1};
+    Order buy2{2, Side::Buy, 99.5, 40, 2};
+    Order buy3{3, Side::Buy, 99.0, 50, 3};
+    Order sell{4, Side::Sell, 99.0, 100, 4};
+
+    engine.submit_order(buy1);
+    engine.submit_order(buy2);
+    engine.submit_order(buy3);
     
-    engine.submit_order({4, Side::Sell, 99.0, 100, 4});
+    engine.submit_order(sell);
     
     REQUIRE(engine.bids().size() == 1);
     REQUIRE(engine.asks().empty());
@@ -177,8 +212,10 @@ TEST_CASE("Zero quantity order") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order buy{1, Side::Buy, 100.0, 0, 1};
     
-    engine.submit_order({1, Side::Buy, 100.0, 0, 1});
+    engine.submit_order(buy);
     
     REQUIRE(engine.bids().empty());
     REQUIRE(engine.asks().empty());
@@ -190,9 +227,12 @@ TEST_CASE("Large quantities - no overflow") {
     engine.set_listener(&publisher);
     
     uint32_t max_uint32 = std::numeric_limits<uint32_t>::max();
+
+    Order sell{1, Side::Sell, 100.0, max_uint32, 1};
+    Order buy{2, Side::Buy, 100.0, max_uint32, 2};
     
-    engine.submit_order({1, Side::Sell, 100.0, max_uint32, 1});
-    engine.submit_order({2, Side::Buy, 100.0, max_uint32, 2});
+    engine.submit_order(sell);
+    engine.submit_order(buy);
     
     REQUIRE(engine.trades().size() == 1);
     REQUIRE(engine.trades()[0].quantity == max_uint32);
@@ -204,10 +244,14 @@ TEST_CASE("Multiple orders same side") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order buy1{1, Side::Buy, 100.0, 30, 1};
+    Order buy2{2, Side::Buy, 99.0, 40, 2};
+    Order buy3{3, Side::Buy, 101.0, 50, 3};
     
-    engine.submit_order({1, Side::Buy, 100.0, 30, 1});
-    engine.submit_order({2, Side::Buy, 99.0, 40, 2});
-    engine.submit_order({3, Side::Buy, 101.0, 50, 3});
+    engine.submit_order(buy1);
+    engine.submit_order(buy2);
+    engine.submit_order(buy3);
     
     REQUIRE(engine.bids().size() == 3);
     
@@ -223,13 +267,19 @@ TEST_CASE("Complex scenario - interleaved orders") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell1{1, Side::Sell, 100.0, 50, 1};
+    Order sell2{3, Side::Sell, 99.5, 40, 3};
+    Order buy1{2, Side::Buy, 99.0, 30, 2};
+    Order buy2{4, Side::Buy, 101.0, 60, 4};
+    Order buy3{5, Side::Buy, 100.5, 80, 5};
     
-    engine.submit_order({1, Side::Sell, 100.0, 50, 1});
-    engine.submit_order({2, Side::Buy, 99.0, 30, 2});
-    engine.submit_order({3, Side::Sell, 99.5, 40, 3});
-    engine.submit_order({4, Side::Buy, 101.0, 60, 4});    
+    engine.submit_order(sell1);
+    engine.submit_order(buy1);
+    engine.submit_order(sell2);
+    engine.submit_order(buy2);    
    
-    engine.submit_order({5, Side::Buy, 100.5, 80, 5});
+    engine.submit_order(buy3);
     
     REQUIRE(engine.asks().empty());  
     REQUIRE(engine.bids().size() == 2);  
@@ -240,9 +290,12 @@ TEST_CASE("Trade recording - buy order") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order sell{1, Side::Sell, 100.0, 50, 1};
+    Order buy{2, Side::Buy, 100.0, 30, 2};
     
-    engine.submit_order({1, Side::Sell, 100.0, 50, 1});
-    engine.submit_order({2, Side::Buy, 100.0, 30, 2});
+    engine.submit_order(sell);
+    engine.submit_order(buy);
     
     REQUIRE(engine.trades().size() == 1);
     const auto& trade = engine.trades()[0];
@@ -257,9 +310,12 @@ TEST_CASE("Trade recording - sell order") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+
+    Order buy{1, Side::Buy, 100.0, 50, 1};
+    Order sell{2, Side::Sell, 100.0, 30, 2};
     
-    engine.submit_order({1, Side::Buy, 100.0, 50, 1});
-    engine.submit_order({2, Side::Sell, 100.0, 30, 2});
+    engine.submit_order(buy);
+    engine.submit_order(sell);
     
     REQUIRE(engine.trades().size() == 1);
     const auto& trade = engine.trades()[0];
@@ -276,10 +332,13 @@ TEST_CASE("Multiple trades from one order") {
     engine.set_listener(&publisher);
     
     for (int i = 1; i <= 5; ++i) {
-        engine.submit_order({uint64_t(i), Side::Sell, 100.0, 10, uint64_t(i)});
+        Order sell{uint64_t(i), Side::Sell, 100.0, 10, uint64_t(i)};
+        engine.submit_order(sell);
     }
+
+    Order buy{6, Side::Buy, 100.0, 45, 6};
     
-    engine.submit_order({6, Side::Buy, 100.0, 45, 6});
+    engine.submit_order(buy);
     
     REQUIRE(engine.trades().size() == 5);
     REQUIRE(engine.asks().size() == 1);
@@ -299,21 +358,11 @@ TEST_CASE("Trade logger integration") {
 
     engine.set_logger(&logger);
 
-    engine.submit_order({
-        1,
-        Side::Sell,
-        100,
-        10,
-        1
-    });
+    Order sell{1, Side::Sell, 100, 10, 1};
+    Order buy{2, Side::Buy, 100, 10, 2};
 
-    engine.submit_order({
-        2,
-        Side::Buy,
-        100,
-        10,
-        2
-    });
+    engine.submit_order(sell);
+    engine.submit_order(buy);
 
     logger.stop();
 
@@ -326,29 +375,13 @@ TEST_CASE("Market data event generation") {
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
 
-    engine.submit_order({
-        1,
-        Side::Sell,
-        101,
-        10,
-        1
-    });
+    Order sell{1, Side::Sell, 101, 10, 1};
+    Order buy1{2, Side::Buy, 100, 10, 2};
+    Order buy2{3, Side::Buy, 101, 5, 3};
 
-    engine.submit_order({
-        2,
-        Side::Buy,
-        100,
-        10,
-        2
-    });
-
-    engine.submit_order({
-        3,
-        Side::Buy,
-        101,
-        5,
-        3
-    });
+    engine.submit_order(sell);
+    engine.submit_order(buy1);
+    engine.submit_order(buy2);
 
     REQUIRE(engine.market_data_events().size() == 1);
 
@@ -635,14 +668,10 @@ TEST_CASE("Cancel existing order") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+    
+    Order buy{1, Side::Buy, 100, 10, 1};
 
-    engine.submit_order({
-        1,
-        Side::Buy,
-        100,
-        10,
-        1
-    });
+    engine.submit_order(buy);
 
     REQUIRE(engine.order_lookup().size() == 1);
 
@@ -656,14 +685,10 @@ TEST_CASE("Cancel removes order from book") {
     MatchingEngine engine;
     TradeDataPublisher publisher;
     engine.set_listener(&publisher);
+    
+    Order buy{1, Side::Buy, 100, 10, 1};
 
-    engine.submit_order({
-        1,
-        Side::Buy,
-        100,
-        10,
-        1
-    });
+    engine.submit_order(buy);
 
     REQUIRE(engine.cancel_order(1));
 

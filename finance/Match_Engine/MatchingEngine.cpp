@@ -1,7 +1,7 @@
 #include "MatchingEngine.h"
 
 
-void MatchingEngine::submit_order(const Order& order) {
+void MatchingEngine::submit_order(Order& order) {
 
     if (order.side == Side::Buy) {
         match_buy(order);
@@ -80,7 +80,7 @@ bool MatchingEngine::cancel_order(uint64_t order_id) {
     return true;
 }
 
-void MatchingEngine::match_buy(Order order) {
+void MatchingEngine::match_buy(Order& order) {
 
     while (order.quantity > 0 && !listener_->asks().empty()) {
         auto best_ask = listener_->asks().begin(); // asks_.begin() contains the lowest ask
@@ -112,7 +112,7 @@ void MatchingEngine::match_buy(Order order) {
 
         trade->total_latency_ns = current_ns - order.ingress_timestamp_ns;
 
-        trade->queue_latency_ns = current_ns - order.egress_timestamp_ns;
+        trade->queue_latency_ns = order.egress_timestamp_ns - order.ingress_timestamp_ns;
 
         trade->match_duration_ns = current_ns - match_start_ns;
 
@@ -149,7 +149,7 @@ void MatchingEngine::match_buy(Order order) {
     }
 }
 
-void MatchingEngine::match_sell(Order order) {
+void MatchingEngine::match_sell(Order& order) {
     while (order.quantity > 0 && !listener_->bids().empty()) {
         auto best_bid = listener_->bids().begin(); //bids_.begin() contains the highest bid
 
@@ -179,7 +179,7 @@ void MatchingEngine::match_sell(Order order) {
 
         trade->total_latency_ns = current_ns - order.ingress_timestamp_ns;
 
-        trade->queue_latency_ns = current_ns - order.egress_timestamp_ns;
+        trade->queue_latency_ns = order.egress_timestamp_ns - order.ingress_timestamp_ns;
 
         trade->match_duration_ns = current_ns - match_start_ns;
 
@@ -215,18 +215,18 @@ void MatchingEngine::match_sell(Order order) {
     }
 }
 
-void MatchingEngine::add_to_book(const Order& order) {
+void MatchingEngine::add_to_book(Order& order) {
 
     Order* stored = listener_->order_pool().allocate();    
 
     assert(stored != nullptr);
 
-    *stored = order;
+    *stored = std::move(order);
 
-    if (order.side == Side::Buy) {
-        append_order(listener_->bids()[order.price], stored);
+    if (stored->side == Side::Buy) {
+        append_order(listener_->bids()[stored->price], stored);
     } else {
-        append_order(listener_->asks()[order.price], stored);
+        append_order(listener_->asks()[stored->price], stored);
     }
     order_lookup_[stored->order_id] = stored;
 }

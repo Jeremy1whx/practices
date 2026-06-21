@@ -18,25 +18,33 @@ public:
             buffer_[i].sequence.store(i, std::memory_order_relaxed);
         }
     }
-    
-    bool push(const T& item) {
+
+    bool push(T& item) {
         while (true) {
             size_t pos = head_.value.load(std::memory_order_relaxed);
             size_t index = pos & (capacity_ - 1);
             size_t next = (pos + 1) & (capacity_ - 1);
-            if (next == (tail_.value.load(std::memory_order_acquire) & (capacity_ - 1))) return false; // full
+            
+            if (next == (tail_.value.load(std::memory_order_acquire) & (capacity_ - 1))) {
+                return false;
+            }
             
             Cell& cell = buffer_[index];
-            size_t seq = cell.sequence.load(std::memory_order_acquire);        
+            size_t seq = cell.sequence.load(std::memory_order_acquire);
+            
             if (seq == pos) {
                 if (head_.value.compare_exchange_weak(pos, pos + 1, std::memory_order_release)) {
-                    cell.data = item;
+                    cell.data = std::move(item);
                     cell.sequence.store(pos + 1, std::memory_order_relaxed);
                     return true;
-                } else continue;                
-            } else continue;
+                }
+            }
         }
-        
+    }
+
+    bool push(const T& item) {
+        T copy = item;
+        return push(copy);
     }
 
     bool pop(T& item) {

@@ -11,8 +11,12 @@ public:
     {}
 
     bool submit(const Order& order) {
+        Order copy = order;
+        return submit(copy);
+    }
 
-        return queue_.push(order);
+    bool submit(Order& order) {
+        return queue_.push(std::move(order));
     }
 
     bool try_get(Order& order) {
