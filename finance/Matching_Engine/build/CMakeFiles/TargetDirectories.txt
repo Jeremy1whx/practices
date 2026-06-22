@@ -1,0 +1,5 @@
+/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles/AsyncLogger.dir
+/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles/MatchingEngine.dir
+/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles/test.dir
+/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles/edit_cache.dir
+/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles/rebuild_cache.dir
