@@ -1,14 +1,14 @@
 #include "MatchingEngineThread.h"
 
-MatchingEngineThread::MatchingEngineThread(size_t queue_size, TradeEventListener* listener) : ingress_(queue_size), listener_(listener) {
+exchange::MatchingEngineThread::MatchingEngineThread(size_t queue_size, TradeEventListener* listener) : ingress_(queue_size), listener_(listener) {
     engine_.set_listener(listener_);
 }
 
-MatchingEngineThread::~MatchingEngineThread() {
+exchange::MatchingEngineThread::~MatchingEngineThread() {
     stop();
 }
 
-void MatchingEngineThread::start() {
+void exchange::MatchingEngineThread::start() {
 
     running_ = true;
 
@@ -17,19 +17,19 @@ void MatchingEngineThread::start() {
     pin_thread_to_core(thread_, 2);
 }
 
-void MatchingEngineThread::stop() {
+void exchange::MatchingEngineThread::stop() {
 
     running_ = false;
 
     if (thread_.joinable()) {thread_.join();}
 }
 
-bool MatchingEngineThread::submit_order(Order& order) {
+bool exchange::MatchingEngineThread::submit_order(Order& order) {
     order.ingress_timestamp_ns = now_ns();
     return ingress_.submit(std::move(order));
 }
 
-void MatchingEngineThread::run() {
+void exchange::MatchingEngineThread::run() {
 
     Order order;
 

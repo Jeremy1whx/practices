@@ -262,9 +262,7 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngine.cpp.o: ../Match_Engine
   /usr/include/c++/13/bits/stl_map.h \
   /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/erase_if.h \
-  ../Trade_Event/TradeEvent.h \
   ../Trade_Event/Trade.h \
-  ../Trade_Event/MarketDataEvent.h \
   ../Trade_Event/TradeFormatter.h \
   ../Trade_Event/PriceLevel.h \
   ../Match_Engine/Order.h \
@@ -600,9 +598,7 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.o: ../Match_
   /usr/include/c++/13/bits/stl_map.h \
   /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/erase_if.h \
-  ../Trade_Event/TradeEvent.h \
   ../Trade_Event/Trade.h \
-  ../Trade_Event/MarketDataEvent.h \
   ../Trade_Event/TradeFormatter.h \
   ../Trade_Event/PriceLevel.h \
   ../Match_Engine/Order.h \
@@ -784,8 +780,6 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.o: ../Match_
 ../Trade_Event/TradeFormatter.h:
 
 ../Trade_Event/Trade.h:
-
-../Trade_Event/TradeEvent.h:
 
 /usr/include/c++/13/bits/erase_if.h:
 
@@ -1352,8 +1346,6 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.o: ../Match_
 /usr/include/c++/13/algorithm:
 
 ../Trade_Event/TradeEventListener.h:
-
-../Trade_Event/MarketDataEvent.h:
 
 /usr/include/c++/13/bits/codecvt.h:
 

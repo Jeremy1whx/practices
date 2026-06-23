@@ -1,7 +1,7 @@
 #include "MatchingEngine.h"
 
 
-void MatchingEngine::submit_order(Order& order) {
+void exchange::MatchingEngine::submit_order(Order& order) {
 
     if (order.side == Side::Buy) {
         match_buy(order);
@@ -10,7 +10,7 @@ void MatchingEngine::submit_order(Order& order) {
     }
 }
 
-// void MatchingEngine::publish_market_data(const Trade& trade) {
+// void exchange::MatchingEngine::publish_market_data(const Trade& trade) {
 
 //     MarketDataEvent event;
 
@@ -29,7 +29,7 @@ void MatchingEngine::submit_order(Order& order) {
 //     // market_data_events_.push_back(event);
 // }
 
-bool MatchingEngine::cancel_order(uint64_t order_id) {
+bool exchange::MatchingEngine::cancel_order(uint64_t order_id) {
 
     auto it = order_lookup_.find(order_id);
 
@@ -80,7 +80,7 @@ bool MatchingEngine::cancel_order(uint64_t order_id) {
     return true;
 }
 
-void MatchingEngine::match_buy(Order& order) {
+void exchange::MatchingEngine::match_buy(Order& order) {
 
     while (order.quantity > 0 && !listener_->asks().empty()) {
         auto best_ask = listener_->asks().begin(); // asks_.begin() contains the lowest ask
@@ -149,7 +149,7 @@ void MatchingEngine::match_buy(Order& order) {
     }
 }
 
-void MatchingEngine::match_sell(Order& order) {
+void exchange::MatchingEngine::match_sell(Order& order) {
     while (order.quantity > 0 && !listener_->bids().empty()) {
         auto best_bid = listener_->bids().begin(); //bids_.begin() contains the highest bid
 
@@ -215,7 +215,7 @@ void MatchingEngine::match_sell(Order& order) {
     }
 }
 
-void MatchingEngine::add_to_book(Order& order) {
+void exchange::MatchingEngine::add_to_book(Order& order) {
 
     Order* stored = listener_->order_pool().allocate();    
 
@@ -231,7 +231,7 @@ void MatchingEngine::add_to_book(Order& order) {
     order_lookup_[stored->order_id] = stored;
 }
 
-void MatchingEngine::append_order(PriceLevel& level, Order* order) {
+void exchange::MatchingEngine::append_order(PriceLevel& level, Order* order) {
 
     order->next = nullptr;
 
@@ -248,7 +248,7 @@ void MatchingEngine::append_order(PriceLevel& level, Order* order) {
     }
 }
 
-void MatchingEngine::remove_order(PriceLevel& level, Order* order) {
+void exchange::MatchingEngine::remove_order(PriceLevel& level, Order* order) {
 
     if (order->prev) {
         order->prev->next =

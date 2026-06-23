@@ -8,7 +8,7 @@
 #include "LatencyCollector.h"
 #include "../Trade_Event/TradeEventListener.h"
 #include "../Trade_Event/TradeLogger.h"
-#include "../Trade_Event/TradeDataPublisher.h"
+// #include "../Trade_Event/TradeDataPublisher.h"
 #include "../Memory_Pool/LRU.h"
 #include "../Async_Logger/AsyncLogger.h"
 #include "../CPU_Affinity/Affinity.h"
@@ -19,6 +19,7 @@
 #include <unordered_map>
 #include <iostream>
 
+namespace exchange {
 class MatchingEngine {
 public:
 
@@ -36,7 +37,7 @@ public:
 
     const auto& order_lookup() const {return order_lookup_;}
 
-    const auto& market_data_events() const {return listener_->market_data_events();}
+    // const auto& market_data_events() const {return listener_->market_data_events();}
 
     const auto& latency_collector() const {return latency_collector_;}
 
@@ -88,3 +89,4 @@ private:
 
     void remove_order(PriceLevel& level, Order* order);
 };
+}

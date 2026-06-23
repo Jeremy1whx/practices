@@ -2,7 +2,7 @@
 
 #include <map>
 
-#include "TradeEvent.h"
+#include "Trade.h"
 #include "TradeFormatter.h"
 #include "PriceLevel.h"
 #include "../Memory_Pool/LRU.h"
@@ -16,9 +16,9 @@ public:
     
     virtual void set_logger(AsyncLogger* logger) {(void) logger;}
     
-    virtual std::vector<MarketDataEvent>& market_data_events() {return market_data_events_;}
+    // virtual std::vector<MarketDataEvent>& market_data_events() {return market_data_events_;}
 
-    virtual const std::vector<MarketDataEvent>& market_data_events() const {return market_data_events_;}
+    // virtual const std::vector<MarketDataEvent>& market_data_events() const {return market_data_events_;}
 
     auto& bids() { return bids_; }
 
@@ -42,5 +42,5 @@ protected:
     LRUPool<Trade> trade_pool_{1024 * 1024};
     MemoryPool<Order> order_pool_{1024 * 1024};
     AsyncLogger* logger_ = nullptr;    
-    std::vector<MarketDataEvent> market_data_events_;
+    // std::vector<MarketDataEvent> market_data_events_;
 };

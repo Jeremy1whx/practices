@@ -7,6 +7,7 @@
 #include <thread>
 #include <atomic>
 
+namespace exchange {
 class MatchingEngineThread {
 public:
 
@@ -29,7 +30,7 @@ public:
         return submit_order(copy);
     };
     
-    MatchingEngine& engine() {
+    const MatchingEngine& engine() const {
         return engine_;
     }
 
@@ -47,3 +48,4 @@ private:
 
     std::atomic<bool> running_{false};
 };
+}

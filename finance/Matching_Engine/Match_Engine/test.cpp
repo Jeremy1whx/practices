@@ -6,9 +6,9 @@
 #include <chrono>
 
 TEST_CASE("Simple full match") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
     
     Order sell{1, Side::Sell, 100.0, 10, 1};
     Order buy{2, Side::Buy, 100.0, 10, 2};
@@ -26,9 +26,9 @@ TEST_CASE("Simple full match") {
 }
 
 TEST_CASE("Partial fill - buy less than sell") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell{1, Side::Sell, 100.0, 100, 1};
     Order buy{2, Side::Buy, 100.0, 30, 2};
@@ -46,9 +46,9 @@ TEST_CASE("Partial fill - buy less than sell") {
 }
 
 TEST_CASE("Partial fill - sell less than buy") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order buy{1, Side::Buy, 100.0, 100, 1};
     Order sell{2, Side::Sell, 100.0, 30, 2};
@@ -65,9 +65,9 @@ TEST_CASE("Partial fill - sell less than buy") {
 }
 
 TEST_CASE("Price priority - higher bid wins") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order buy1{1, Side::Buy, 99.0, 50, 1};
     Order buy2{2, Side::Buy, 100.0, 50, 2};
@@ -86,9 +86,9 @@ TEST_CASE("Price priority - higher bid wins") {
 }
 
 TEST_CASE("Price priority - lower ask wins") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell1{1, Side::Sell, 101.0, 50, 1};
     Order sell2{2, Side::Sell, 99.0, 50, 2};
@@ -106,9 +106,9 @@ TEST_CASE("Price priority - lower ask wins") {
 }
 
 TEST_CASE("Time priority - same price") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell1{1, Side::Sell, 100.0, 50, 1};
     Order sell2{2, Side::Sell, 100.0, 30, 2};
@@ -131,9 +131,9 @@ TEST_CASE("Time priority - same price") {
 }
 
 TEST_CASE("No match - price too low") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell{1, Side::Sell, 100.0, 50, 1};
     Order buy{2, Side::Buy, 99.0, 30, 2};
@@ -147,9 +147,9 @@ TEST_CASE("No match - price too low") {
 }
 
 TEST_CASE("No match - price too high") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order buy{1, Side::Buy, 100.0, 50, 1};
     Order sell{2, Side::Sell, 101.0, 30, 2};
@@ -163,9 +163,9 @@ TEST_CASE("No match - price too high") {
 }
 
 TEST_CASE("Multiple price levels - buy") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell1{1, Side::Sell, 99.0, 30, 1};
     Order sell2{2, Side::Sell, 99.5, 40, 2};
@@ -188,9 +188,9 @@ TEST_CASE("Multiple price levels - buy") {
 }
 
 TEST_CASE("Multiple price levels - sell") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
     
     Order buy1{1, Side::Buy, 100.0, 30, 1};
     Order buy2{2, Side::Buy, 99.5, 40, 2};
@@ -209,9 +209,9 @@ TEST_CASE("Multiple price levels - sell") {
 }
 
 TEST_CASE("Zero quantity order") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order buy{1, Side::Buy, 100.0, 0, 1};
     
@@ -222,9 +222,9 @@ TEST_CASE("Zero quantity order") {
 }
 
 TEST_CASE("Large quantities - no overflow") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
     
     uint32_t max_uint32 = std::numeric_limits<uint32_t>::max();
 
@@ -241,9 +241,9 @@ TEST_CASE("Large quantities - no overflow") {
 }
 
 TEST_CASE("Multiple orders same side") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order buy1{1, Side::Buy, 100.0, 30, 1};
     Order buy2{2, Side::Buy, 99.0, 40, 2};
@@ -264,9 +264,9 @@ TEST_CASE("Multiple orders same side") {
 }
 
 TEST_CASE("Complex scenario - interleaved orders") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell1{1, Side::Sell, 100.0, 50, 1};
     Order sell2{3, Side::Sell, 99.5, 40, 3};
@@ -287,9 +287,9 @@ TEST_CASE("Complex scenario - interleaved orders") {
 }
 
 TEST_CASE("Trade recording - buy order") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order sell{1, Side::Sell, 100.0, 50, 1};
     Order buy{2, Side::Buy, 100.0, 30, 2};
@@ -307,9 +307,9 @@ TEST_CASE("Trade recording - buy order") {
 }
 
 TEST_CASE("Trade recording - sell order") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
 
     Order buy{1, Side::Buy, 100.0, 50, 1};
     Order sell{2, Side::Sell, 100.0, 30, 2};
@@ -327,9 +327,9 @@ TEST_CASE("Trade recording - sell order") {
 }
 
 TEST_CASE("Multiple trades from one order") {
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
     
     for (int i = 1; i <= 5; ++i) {
         Order sell{uint64_t(i), Side::Sell, 100.0, 10, uint64_t(i)};
@@ -352,7 +352,7 @@ TEST_CASE("Trade logger integration") {
 
     logger.start();
 
-    MatchingEngine engine;    
+    exchange::MatchingEngine engine;    
     TradeLogger tlogger;
     engine.set_listener(&tlogger);
 
@@ -369,37 +369,37 @@ TEST_CASE("Trade logger integration") {
     REQUIRE(engine.trades().size() == 1);
 }
 
-TEST_CASE("Market data event generation") {
+// TEST_CASE("Market data event generation") {
 
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+//     exchange::MatchingEngine engine;
+//     TradeLogger logger;
+//     engine.set_listener(&logger);
 
-    Order sell{1, Side::Sell, 101, 10, 1};
-    Order buy1{2, Side::Buy, 100, 10, 2};
-    Order buy2{3, Side::Buy, 101, 5, 3};
+//     Order sell{1, Side::Sell, 101, 10, 1};
+//     Order buy1{2, Side::Buy, 100, 10, 2};
+//     Order buy2{3, Side::Buy, 101, 5, 3};
 
-    engine.submit_order(sell);
-    engine.submit_order(buy1);
-    engine.submit_order(buy2);
+//     engine.submit_order(sell);
+//     engine.submit_order(buy1);
+//     engine.submit_order(buy2);
 
-    REQUIRE(engine.market_data_events().size() == 1);
+//     REQUIRE(engine.market_data_events().size() == 1);
 
-    const auto& md = engine.market_data_events().front();
+//     const auto& md = engine.market_data_events().front();
 
-    REQUIRE(md.last_trade_price == 101);
+//     REQUIRE(md.last_trade_price == 101);
 
-    REQUIRE(md.last_trade_quantity == 5);
+//     REQUIRE(md.last_trade_quantity == 5);
 
-    REQUIRE(md.best_ask.has_value());
+//     REQUIRE(md.best_ask.has_value());
 
-    REQUIRE(md.best_ask.value() == 101);
-}
+//     REQUIRE(md.best_ask.value() == 101);
+// }
 
 TEST_CASE("MPSC order ingress") {
 
-    TradeDataPublisher publisher; 
-    MatchingEngineThread system(1024 * 1024, &publisher);
+    TradeLogger logger; 
+    exchange::MatchingEngineThread system(1024 * 1024, &logger);
 
     system.start();
 
@@ -439,8 +439,8 @@ TEST_CASE("MPSC order ingress") {
 
 TEST_CASE("Trade latency measurement") {
 
-    TradeDataPublisher publisher; 
-    MatchingEngineThread system(1024 * 1024, &publisher);
+    TradeLogger logger; 
+    exchange::MatchingEngineThread system(1024 * 1024, &logger);
 
     system.start();
 
@@ -481,8 +481,8 @@ TEST_CASE("Trade latency measurement") {
 
 TEST_CASE("Latency benchmark") {
 
-    TradeDataPublisher publisher; 
-    MatchingEngineThread system(1024 * 1024, &publisher);
+    TradeLogger logger; 
+    exchange::MatchingEngineThread system(1024 * 1024, &logger);
 
     system.start();
 
@@ -554,8 +554,8 @@ TEST_CASE("Latency benchmark") {
 
 TEST_CASE("Batch processing benchmark") {
 
-    TradeDataPublisher publisher; 
-    MatchingEngineThread system(1024 * 1024, &publisher);
+    TradeLogger logger; 
+    exchange::MatchingEngineThread system(1024 * 1024, &logger);
 
     system.start();
 
@@ -665,9 +665,9 @@ TEST_CASE("False sharing benchmark") {
 
 TEST_CASE("Cancel existing order") {
 
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
     
     Order buy{1, Side::Buy, 100, 10, 1};
 
@@ -682,9 +682,9 @@ TEST_CASE("Cancel existing order") {
 
 TEST_CASE("Cancel removes order from book") {
 
-    MatchingEngine engine;
-    TradeDataPublisher publisher;
-    engine.set_listener(&publisher);
+    exchange::MatchingEngine engine;
+    TradeLogger logger;
+    engine.set_listener(&logger);
     
     Order buy{1, Side::Buy, 100, 10, 1};
 
