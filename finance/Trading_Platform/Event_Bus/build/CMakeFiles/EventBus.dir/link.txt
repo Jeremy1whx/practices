@@ -1,0 +1,2 @@
+/usr/bin/ar qc libEventBus.a CMakeFiles/EventBus.dir/EventBus.cpp.o
+/usr/bin/ranlib libEventBus.a
