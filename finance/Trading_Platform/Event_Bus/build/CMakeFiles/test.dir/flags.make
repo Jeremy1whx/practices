@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/workspaces/practices/finance/Trading_Platform/Event_Bus../Async_Logger -I/workspaces/practices/finance/Trading_Platform/Event_Bus../Latency -I/workspaces/practices/finance/Trading_Platform/Event_Bus../Lock_Free_Ring_Buffer/mpsc
 
 CXX_FLAGS = -std=gnu++20
 

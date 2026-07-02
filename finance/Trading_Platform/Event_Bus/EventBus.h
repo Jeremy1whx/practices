@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "Subscriber.h"
+#include "TradeLogger.h"
 #include "Event/EventUtils.h"
 #include "EventBusStats.h"
 

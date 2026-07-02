@@ -5,8 +5,6 @@ void EventBus::subscribe(Subscriber* subscriber) {
     if (std::find(subscribers_.begin(), subscribers_.end(), subscriber) != subscribers_.end()) return;
 
     subscribers_.push_back(subscriber);
-
-    subscriber->stats_.events_received++;
 }
 
 void EventBus::publish(const Event& event) {

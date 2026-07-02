@@ -48,27 +48,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/cmake/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus
+CMAKE_SOURCE_DIR = /workspaces/practices/finance/Trading_Platform/Event_Bus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build
+CMAKE_BINARY_DIR = /workspaces/practices/finance/Trading_Platform/Event_Bus/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/opt/cmake/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/cmake/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles /workspaces/practices/finance/Trading_Platform/Event_Bus/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -115,6 +115,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named AsyncLogger
+
+# Build rule for target.
+AsyncLogger: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AsyncLogger
+.PHONY : AsyncLogger
+
+# fast build rule for target.
+AsyncLogger/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsyncLogger.dir/build.make CMakeFiles/AsyncLogger.dir/build
+.PHONY : AsyncLogger/fast
 
 #=============================================================================
 # Target rules for targets named EventBus
@@ -190,6 +203,30 @@ test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.s
 .PHONY : test.cpp.s
 
+workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.o: workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o
+.PHONY : workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.o
+
+# target to build an object file
+workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsyncLogger.dir/build.make CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o
+.PHONY : workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o
+
+workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.i: workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.i
+.PHONY : workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.i
+
+# target to preprocess a source file
+workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsyncLogger.dir/build.make CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.i
+.PHONY : workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.i
+
+workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.s: workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.s
+.PHONY : workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.s
+
+# target to generate assembly for a file
+workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsyncLogger.dir/build.make CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.s
+.PHONY : workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -198,6 +235,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... AsyncLogger"
 	@echo "... EventBus"
 	@echo "... test"
 	@echo "... EventBus.o"
@@ -206,6 +244,9 @@ help:
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
+	@echo "... workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.o"
+	@echo "... workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.i"
+	@echo "... workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.s"
 .PHONY : help
 
 

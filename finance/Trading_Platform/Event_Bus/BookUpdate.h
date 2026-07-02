@@ -3,7 +3,7 @@
 #include <optional>
 #include <cstdint>
 
-
+namespace exchange{
 struct BookUpdate {
 
     std::optional<double> best_bid;
@@ -14,3 +14,4 @@ struct BookUpdate {
 
     std::optional<uint32_t> last_trade_quantity;
 };
+}
