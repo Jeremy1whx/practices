@@ -1,11 +1,13 @@
 #pragma once
 
+#include <optional>
+#include <cstdint>
 #include "EventHeader.h"
-#include "../../Market_Data_Service/MarketDataEvent.h"
+#include "../BookUpdate.h"
 
 namespace exchange {
 struct BookUpdateEvent {
     EventHeader header;
-    MarketDataEvent data;
+    BookUpdate update;
 };
 }

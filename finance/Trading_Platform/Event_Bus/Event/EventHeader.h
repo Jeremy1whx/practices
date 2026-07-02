@@ -4,8 +4,8 @@
 #include "EventType.h"
 
 namespace exchange {
-    struct EventHeader {
-        EventType type;
-        uint64_t timestamp_ns;
-    };
+struct EventHeader {
+    EventType type;
+    uint64_t timestamp_ns;
+};
 }

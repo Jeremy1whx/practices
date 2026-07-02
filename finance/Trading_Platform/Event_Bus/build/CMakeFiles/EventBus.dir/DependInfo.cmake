@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/EventBus.cpp" "CMakeFiles/EventBus.dir/EventBus.cpp.o" "gcc" "CMakeFiles/EventBus.dir/EventBus.cpp.o.d"
+  "/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp" "CMakeFiles/EventBus.dir/EventBus.cpp.o" "gcc" "CMakeFiles/EventBus.dir/EventBus.cpp.o.d"
   )
 
 # Targets to which this target links.

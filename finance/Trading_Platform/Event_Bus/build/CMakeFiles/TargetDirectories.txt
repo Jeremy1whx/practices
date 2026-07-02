@@ -1,4 +1,4 @@
-/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles/EventBus.dir
-/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles/test.dir
-/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles/edit_cache.dir
-/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles/EventBus.dir
+/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles/test.dir
+/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles/edit_cache.dir
+/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles/rebuild_cache.dir

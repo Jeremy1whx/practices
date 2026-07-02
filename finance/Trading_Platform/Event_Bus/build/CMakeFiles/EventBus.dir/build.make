@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Coursework/practices/finance/Exchange_Event_Bus
+CMAKE_SOURCE_DIR = /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build
+CMAKE_BINARY_DIR = /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/EventBus.dir/depend.make
@@ -72,16 +72,16 @@ include CMakeFiles/EventBus.dir/flags.make
 CMakeFiles/EventBus.dir/EventBus.cpp.o: CMakeFiles/EventBus.dir/flags.make
 CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp
 CMakeFiles/EventBus.dir/EventBus.cpp.o: CMakeFiles/EventBus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/EventBus.dir/EventBus.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EventBus.dir/EventBus.cpp.o -MF CMakeFiles/EventBus.dir/EventBus.cpp.o.d -o CMakeFiles/EventBus.dir/EventBus.cpp.o -c /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/EventBus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/EventBus.dir/EventBus.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EventBus.dir/EventBus.cpp.o -MF CMakeFiles/EventBus.dir/EventBus.cpp.o.d -o CMakeFiles/EventBus.dir/EventBus.cpp.o -c /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp
 
 CMakeFiles/EventBus.dir/EventBus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EventBus.dir/EventBus.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/EventBus.cpp > CMakeFiles/EventBus.dir/EventBus.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp > CMakeFiles/EventBus.dir/EventBus.cpp.i
 
 CMakeFiles/EventBus.dir/EventBus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EventBus.dir/EventBus.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/EventBus.cpp -o CMakeFiles/EventBus.dir/EventBus.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp -o CMakeFiles/EventBus.dir/EventBus.cpp.s
 
 # Object files for target EventBus
 EventBus_OBJECTS = \
@@ -93,7 +93,7 @@ EventBus_EXTERNAL_OBJECTS =
 libEventBus.a: CMakeFiles/EventBus.dir/EventBus.cpp.o
 libEventBus.a: CMakeFiles/EventBus.dir/build.make
 libEventBus.a: CMakeFiles/EventBus.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libEventBus.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libEventBus.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/EventBus.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EventBus.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +106,6 @@ CMakeFiles/EventBus.dir/clean:
 .PHONY : CMakeFiles/EventBus.dir/clean
 
 CMakeFiles/EventBus.dir/depend:
-	cd /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Coursework/practices/finance/Exchange_Event_Bus /mnt/d/Coursework/practices/finance/Exchange_Event_Bus /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build /mnt/d/Coursework/practices/finance/Exchange_Event_Bus/build/CMakeFiles/EventBus.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build /mnt/d/Coursework/practices/finance/Trading_Platform/Event_Bus/build/CMakeFiles/EventBus.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/EventBus.dir/depend
 

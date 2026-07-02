@@ -72,10 +72,17 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
   /usr/include/c++/13/bits/ranges_base.h \
   /usr/include/c++/13/bits/max_size_type.h \
   /usr/include/c++/13/numbers \
+  /usr/include/c++/13/unordered_map \
+  /usr/include/c++/13/bits/unordered_map.h \
+  /usr/include/c++/13/bits/hashtable.h \
+  /usr/include/c++/13/bits/hashtable_policy.h \
+  /usr/include/c++/13/ext/aligned_buffer.h \
+  /usr/include/c++/13/bits/enable_special_members.h \
+  /usr/include/c++/13/bits/node_handle.h \
+  /usr/include/c++/13/bits/erase_if.h \
   ../Subscriber.h \
   ../Event/Event.h \
   /usr/include/c++/13/variant \
-  /usr/include/c++/13/bits/enable_special_members.h \
   /usr/include/c++/13/bits/parse_numbers.h \
   ../Event/TradeEvent.h \
   ../Event/EventHeader.h \
@@ -92,14 +99,19 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
   ../Event/EventType.h \
   /mnt/d/Coursework/practices/finance/Trading_Platform/Trade_Event/Trade.h \
   ../Event/BookUpdateEvent.h \
-  /mnt/d/Coursework/practices/finance/Market_Data_Service/MarketDataEvent.h \
+  /mnt/d/Coursework/practices/finance/Trading_Platform/Market_Data_Service/MarketDataEvent.h \
   /usr/include/c++/13/optional \
   /usr/include/c++/13/exception \
   /usr/include/c++/13/bits/exception_ptr.h \
   /usr/include/c++/13/bits/cxxabi_init_exception.h \
   /usr/include/c++/13/typeinfo \
-  /usr/include/c++/13/bits/nested_exception.h
+  /usr/include/c++/13/bits/nested_exception.h \
+  ../Event/EventUtils.h \
+  ../EventBusStats.h \
+  ../SubscriberStats.h
 
+
+../EventBusStats.h:
 
 /usr/include/c++/13/bits/nested_exception.h:
 
@@ -129,9 +141,15 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 ../Event/EventHeader.h:
 
+../Event/Event.h:
+
 /usr/include/c++/13/bits/enable_special_members.h:
 
-../Event/Event.h:
+/usr/include/c++/13/ext/aligned_buffer.h:
+
+/usr/include/c++/13/bits/hashtable.h:
+
+/usr/include/c++/13/unordered_map:
 
 /usr/include/c++/13/bits/max_size_type.h:
 
@@ -151,6 +169,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h:
 
+/usr/include/c++/13/bits/unordered_map.h:
+
 /usr/include/c++/13/bits/stl_uninitialized.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
@@ -158,6 +178,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 /usr/include/c++/13/bits/cpp_type_traits.h:
 
 /usr/include/c++/13/bits/exception_defines.h:
+
+/usr/include/c++/13/bits/node_handle.h:
 
 /usr/include/c++/13/bits/functexcept.h:
 
@@ -183,11 +205,13 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/include/c++/13/bits/predefined_ops.h:
 
+/mnt/d/Coursework/practices/finance/Trading_Platform/Market_Data_Service/MarketDataEvent.h:
+
 /usr/include/stdc-predef.h:
 
-/mnt/d/Coursework/practices/finance/Market_Data_Service/MarketDataEvent.h:
-
 ../EventBus.cpp:
+
+../SubscriberStats.h:
 
 /usr/include/c++/13/backward/binders.h:
 
@@ -213,6 +237,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h:
 
+/usr/include/c++/13/bits/erase_if.h:
+
 /usr/include/c++/13/bits/ranges_util.h:
 
 /usr/include/c++/13/cstddef:
@@ -228,6 +254,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 ../EventBus.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+../Event/EventUtils.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
@@ -266,6 +294,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 /usr/include/c++/13/bits/stl_iterator.h:
 
 /usr/include/c++/13/bits/cxxabi_init_exception.h:
+
+/usr/include/c++/13/bits/hashtable_policy.h:
 
 /usr/include/c++/13/bits/stl_pair.h:
 
