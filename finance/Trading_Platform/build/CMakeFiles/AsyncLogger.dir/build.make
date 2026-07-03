@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/cmake/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Coursework/practices/finance/Matching_Engine
+CMAKE_SOURCE_DIR = /workspaces/practices/finance/Trading_Platform
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Coursework/practices/finance/Matching_Engine/build
+CMAKE_BINARY_DIR = /workspaces/practices/finance/Trading_Platform/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/AsyncLogger.dir/depend.make
@@ -72,16 +72,16 @@ include CMakeFiles/AsyncLogger.dir/flags.make
 CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o: CMakeFiles/AsyncLogger.dir/flags.make
 CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o: ../Async_Logger/AsyncLogger.cpp
 CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o: CMakeFiles/AsyncLogger.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o -MF CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o.d -o CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o -c /mnt/d/Coursework/practices/finance/Matching_Engine/Async_Logger/AsyncLogger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/practices/finance/Trading_Platform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o -MF CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o.d -o CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o -c /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp
 
 CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/Coursework/practices/finance/Matching_Engine/Async_Logger/AsyncLogger.cpp > CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp > CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.i
 
 CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/Coursework/practices/finance/Matching_Engine/Async_Logger/AsyncLogger.cpp -o CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp -o CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.s
 
 # Object files for target AsyncLogger
 AsyncLogger_OBJECTS = \
@@ -93,7 +93,7 @@ AsyncLogger_EXTERNAL_OBJECTS =
 libAsyncLogger.a: CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o
 libAsyncLogger.a: CMakeFiles/AsyncLogger.dir/build.make
 libAsyncLogger.a: CMakeFiles/AsyncLogger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libAsyncLogger.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/practices/finance/Trading_Platform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libAsyncLogger.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/AsyncLogger.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AsyncLogger.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +106,6 @@ CMakeFiles/AsyncLogger.dir/clean:
 .PHONY : CMakeFiles/AsyncLogger.dir/clean
 
 CMakeFiles/AsyncLogger.dir/depend:
-	cd /mnt/d/Coursework/practices/finance/Matching_Engine/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/d/Coursework/practices/finance/Matching_Engine /mnt/d/Coursework/practices/finance/Matching_Engine /mnt/d/Coursework/practices/finance/Matching_Engine/build /mnt/d/Coursework/practices/finance/Matching_Engine/build /mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles/AsyncLogger.dir/DependInfo.cmake --color=$(COLOR)
+	cd /workspaces/practices/finance/Trading_Platform/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/practices/finance/Trading_Platform /workspaces/practices/finance/Trading_Platform /workspaces/practices/finance/Trading_Platform/build /workspaces/practices/finance/Trading_Platform/build /workspaces/practices/finance/Trading_Platform/build/CMakeFiles/AsyncLogger.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/AsyncLogger.dir/depend
 

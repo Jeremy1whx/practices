@@ -48,27 +48,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /opt/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /opt/cmake/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/Coursework/practices/finance/Matching_Engine
+CMAKE_SOURCE_DIR = /workspaces/practices/finance/Trading_Platform
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/Coursework/practices/finance/Matching_Engine/build
+CMAKE_BINARY_DIR = /workspaces/practices/finance/Trading_Platform/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/opt/cmake/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/cmake/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles /mnt/d/Coursework/practices/finance/Matching_Engine/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/build/CMakeFiles /workspaces/practices/finance/Trading_Platform/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Coursework/practices/finance/Matching_Engine/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,19 @@ AsyncLogger: cmake_check_build_system
 AsyncLogger/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsyncLogger.dir/build.make CMakeFiles/AsyncLogger.dir/build
 .PHONY : AsyncLogger/fast
+
+#=============================================================================
+# Target rules for targets named EventBus
+
+# Build rule for target.
+EventBus: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 EventBus
+.PHONY : EventBus
+
+# fast build rule for target.
+EventBus/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EventBus.dir/build.make CMakeFiles/EventBus.dir/build
+.PHONY : EventBus/fast
 
 #=============================================================================
 # Target rules for targets named MatchingEngine
@@ -179,6 +192,30 @@ Async_Logger/AsyncLogger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsyncLogger.dir/build.make CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.s
 .PHONY : Async_Logger/AsyncLogger.cpp.s
 
+Event_Bus/EventBus.o: Event_Bus/EventBus.cpp.o
+.PHONY : Event_Bus/EventBus.o
+
+# target to build an object file
+Event_Bus/EventBus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EventBus.dir/build.make CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o
+.PHONY : Event_Bus/EventBus.cpp.o
+
+Event_Bus/EventBus.i: Event_Bus/EventBus.cpp.i
+.PHONY : Event_Bus/EventBus.i
+
+# target to preprocess a source file
+Event_Bus/EventBus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EventBus.dir/build.make CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.i
+.PHONY : Event_Bus/EventBus.cpp.i
+
+Event_Bus/EventBus.s: Event_Bus/EventBus.cpp.s
+.PHONY : Event_Bus/EventBus.s
+
+# target to generate assembly for a file
+Event_Bus/EventBus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EventBus.dir/build.make CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.s
+.PHONY : Event_Bus/EventBus.cpp.s
+
 Match_Engine/MatchingEngine.o: Match_Engine/MatchingEngine.cpp.o
 .PHONY : Match_Engine/MatchingEngine.o
 
@@ -227,29 +264,29 @@ Match_Engine/MatchingEngineThread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.s
 .PHONY : Match_Engine/MatchingEngineThread.cpp.s
 
-Match_Engine/test.o: Match_Engine/test.cpp.o
-.PHONY : Match_Engine/test.o
+test.o: test.cpp.o
+.PHONY : test.o
 
 # target to build an object file
-Match_Engine/test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Match_Engine/test.cpp.o
-.PHONY : Match_Engine/test.cpp.o
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.o
+.PHONY : test.cpp.o
 
-Match_Engine/test.i: Match_Engine/test.cpp.i
-.PHONY : Match_Engine/test.i
+test.i: test.cpp.i
+.PHONY : test.i
 
 # target to preprocess a source file
-Match_Engine/test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Match_Engine/test.cpp.i
-.PHONY : Match_Engine/test.cpp.i
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.i
+.PHONY : test.cpp.i
 
-Match_Engine/test.s: Match_Engine/test.cpp.s
-.PHONY : Match_Engine/test.s
+test.s: test.cpp.s
+.PHONY : test.s
 
 # target to generate assembly for a file
-Match_Engine/test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Match_Engine/test.cpp.s
-.PHONY : Match_Engine/test.cpp.s
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.s
+.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -260,20 +297,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AsyncLogger"
+	@echo "... EventBus"
 	@echo "... MatchingEngine"
 	@echo "... test"
 	@echo "... Async_Logger/AsyncLogger.o"
 	@echo "... Async_Logger/AsyncLogger.i"
 	@echo "... Async_Logger/AsyncLogger.s"
+	@echo "... Event_Bus/EventBus.o"
+	@echo "... Event_Bus/EventBus.i"
+	@echo "... Event_Bus/EventBus.s"
 	@echo "... Match_Engine/MatchingEngine.o"
 	@echo "... Match_Engine/MatchingEngine.i"
 	@echo "... Match_Engine/MatchingEngine.s"
 	@echo "... Match_Engine/MatchingEngineThread.o"
 	@echo "... Match_Engine/MatchingEngineThread.i"
 	@echo "... Match_Engine/MatchingEngineThread.s"
-	@echo "... Match_Engine/test.o"
-	@echo "... Match_Engine/test.i"
-	@echo "... Match_Engine/test.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 

@@ -23,14 +23,14 @@ void EventBus::publish(const Event& event) {
 
     for (auto* subscriber : subscribers_) {
         if (subscriber->interested_in(type)) {
-            subscriber->stats_.events_received++;
+            subscriber->record_event();
             subscriber->on_event(event);
         }
     }
 }
 
 const uint64_t& EventBus::get_stats(Subscriber* subscriber) const {
-    return subscriber->stats_.events_received;
+    return subscriber->events_received();
 }
 
 void EventBus::print_stats() const
@@ -38,7 +38,7 @@ void EventBus::print_stats() const
     std::cout << "Published: " << stats_.published_events << std::endl;
 
     for (auto* subscriber : subscribers_) {
-        std::cout << subscriber->name() << ": " << subscriber->stats_.events_received << std::endl;
+        std::cout << subscriber->name() << ": " << subscriber->events_received() << std::endl;
     }
 }
 }

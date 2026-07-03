@@ -1,8 +1,6 @@
 #include "MatchingEngineThread.h"
 
-exchange::MatchingEngineThread::MatchingEngineThread(size_t queue_size, TradeEventListener* listener) : ingress_(queue_size), listener_(listener) {
-    engine_.set_listener(listener_);
-}
+exchange::MatchingEngineThread::MatchingEngineThread(MatchingEngine& engine, size_t queue_size) : engine_(engine), ingress_(queue_size){}
 
 exchange::MatchingEngineThread::~MatchingEngineThread() {
     stop();
@@ -52,7 +50,7 @@ void exchange::MatchingEngineThread::run() {
         }
 
         for (size_t i = 0; i < count; ++i) {
-            engine_.submit_order(batch[i]);
+            engine_.process_order(batch[i]);
         }
 
         if (count == 0) std::this_thread::yield();

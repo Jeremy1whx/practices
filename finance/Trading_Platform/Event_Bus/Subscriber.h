@@ -14,6 +14,15 @@ public:
 
     virtual const char* name() const = 0;
 
+    void record_event() {
+        ++stats_.events_received;
+    }
+
+    const uint64_t& events_received() const {
+        return stats_.events_received;
+    }
+
+    protected:
     SubscriberStats stats_;
 };
 

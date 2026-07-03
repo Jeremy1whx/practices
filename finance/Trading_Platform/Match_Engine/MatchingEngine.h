@@ -6,12 +6,14 @@
 // #include "MarketDataEvent.h"
 #include "../Latency/Clock.h"
 #include "../Latency/LatencyCollector.h"
-#include "../Trade_Event/TradeEventListener.h"
-#include "../Trade_Event/TradeLogger.h"
+// #include "../Trade_Event/TradeEventListener.h"
+// #include "../Trade_Event/TradeLogger.h"
 // #include "../Trade_Event/TradeDataPublisher.h"
+#include "../Order/PriceLevel.h"
 #include "../Memory_Pool/LRU.h"
 #include "../Async_Logger/AsyncLogger.h"
 #include "../CPU_Affinity/Affinity.h"
+#include "../Event_Bus/EventPublisher.h"
 
 #include <map>
 #include <deque>
@@ -22,16 +24,16 @@
 namespace exchange {
 class MatchingEngine {
 public:
-
-    void submit_order(Order& order);
-    void submit_order(const Order& order){
+    explicit MatchingEngine(EventPublisher& publisher);
+    void process_order(Order& order);
+    void process_order(const Order& order){
         Order copy = order;
-        return submit_order(copy);
+        return process_order(copy);
     };
 
-    const auto& bids() const { return listener_->bids(); }
+    const auto& bids() const { return bids_; }
 
-    const auto& asks() const { return listener_->asks(); }
+    const auto& asks() const { return asks_; }
 
     const auto& trades() const {return trades_;}
 
@@ -43,9 +45,9 @@ public:
 
     const auto& trade_count() const {return trade_count_;}
 
-    void set_listener(TradeEventListener* listener) {listener_ = listener;};
+    // void set_listener(TradeEventListener* listener) {listener_ = listener;};
 
-    void set_logger(AsyncLogger* logger) {listener_->set_logger(logger);}
+    // void set_logger(AsyncLogger* logger) {listener_->set_logger(logger);}
 
     // void publish_market_data(const Trade& trade);
 
@@ -53,9 +55,9 @@ public:
 
 private:
 
-    // std::map<double, PriceLevel, std::greater<>> bids_;
+    std::map<double, PriceLevel, std::greater<>> bids_;
 
-    // std::map<double, PriceLevel> asks_;
+    std::map<double, PriceLevel> asks_;
 
     std::vector<Trade> trades_;
 
@@ -63,13 +65,13 @@ private:
 
     // AsyncLogger* logger_ = nullptr;
 
-    TradeEventListener* listener_ = nullptr;
+    EventPublisher& publisher_;
 
     LatencyCollector latency_collector_;
 
-    // LRUPool<Trade> trade_pool_{1024 * 1024};
+    LRUPool<Trade> trade_pool_{1024 * 1024};
 
-    // MemoryPool<Order> order_pool_{1024 * 1024};
+    MemoryPool<Order> order_pool_{1024 * 1024};
 
     std::unordered_map<uint64_t, Order*> order_lookup_;
 
@@ -80,10 +82,6 @@ private:
     void match_sell(Order& order);
 
     void add_to_book(Order& order);
-    void add_to_book(const Order& order) {
-        Order copy = order;
-        return add_to_book(order);
-    };
 
     void append_order(PriceLevel& level, Order* order);
 

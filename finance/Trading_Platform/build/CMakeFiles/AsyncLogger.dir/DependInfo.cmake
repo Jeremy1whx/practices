@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/Coursework/practices/finance/Matching_Engine/Async_Logger/AsyncLogger.cpp" "CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o" "gcc" "CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o.d"
+  "/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp" "CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o" "gcc" "CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o.d"
   )
 
 # Targets to which this target links.

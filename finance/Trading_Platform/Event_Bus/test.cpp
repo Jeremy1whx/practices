@@ -217,7 +217,7 @@ TEST_CASE("TradeLogger Integration") {
     bus.publish(trade_event);
     logger.stop();
 
-    REQUIRE(trade_logger.stats_.events_received == 1);
+    REQUIRE(trade_logger.events_received() == 1);
     REQUIRE(bus.stats().published_events == 1);
     REQUIRE(bus.stats().trade_events == 1);
 
@@ -235,7 +235,7 @@ TEST_CASE("TradeLogger Integration") {
 
     bus.publish(book_event);
 
-    REQUIRE(trade_logger.stats_.events_received == 1);
+    REQUIRE(trade_logger.events_received() == 1);
     REQUIRE(bus.stats().published_events == 2);
     REQUIRE(bus.stats().book_update_events == 1);
 }

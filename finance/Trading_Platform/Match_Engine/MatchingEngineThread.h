@@ -11,9 +11,7 @@ namespace exchange {
 class MatchingEngineThread {
 public:
 
-    explicit MatchingEngineThread(
-        size_t queue_size = 1024 * 1024, TradeEventListener* listener = nullptr
-    );
+    explicit MatchingEngineThread(MatchingEngine& engine, size_t queue_size = 1024 * 1024);
 
     ~MatchingEngineThread();
 
@@ -40,9 +38,7 @@ private:
 
     OrderIngress ingress_;
 
-    MatchingEngine engine_;
-
-    TradeEventListener* listener_ = nullptr;
+    MatchingEngine& engine_;
 
     std::thread thread_;
 

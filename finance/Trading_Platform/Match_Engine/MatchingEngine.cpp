@@ -1,7 +1,8 @@
 #include "MatchingEngine.h"
 
+exchange::MatchingEngine::MatchingEngine(EventPublisher& publisher) : publisher_(publisher){}
 
-void exchange::MatchingEngine::submit_order(Order& order) {
+void exchange::MatchingEngine::process_order(Order& order) {
 
     if (order.side == Side::Buy) {
         match_buy(order);
@@ -41,9 +42,9 @@ bool exchange::MatchingEngine::cancel_order(uint64_t order_id) {
     Order* order = it->second;
 
     if (order->side == Side::Buy) {
-        auto level_it = listener_->bids().find(order->price);
+        auto level_it = bids_.find(order->price);
 
-        if (level_it == listener_->bids().end()){
+        if (level_it == bids_.end()){
             std::cerr << "cancel_order: line " << 47 << " - Order not found: " << order_id << std::endl;
             return false; 
         }        
@@ -53,13 +54,13 @@ bool exchange::MatchingEngine::cancel_order(uint64_t order_id) {
         remove_order(level, order);
 
         if (level.head == nullptr) {
-            listener_->bids().erase(level_it);
+            bids_.erase(level_it);
         }
 
     } else {
-        auto level_it = listener_->asks().find(order->price);
+        auto level_it = asks_.find(order->price);
 
-        if (level_it == listener_->asks().end()){
+        if (level_it == asks_.end()){
             std::cerr << "cancel_order: line " << 63 << " - Order not found: " << order_id << std::endl;
             return false;
         } 
@@ -69,21 +70,21 @@ bool exchange::MatchingEngine::cancel_order(uint64_t order_id) {
         remove_order(level, order);
 
         if (level.head == nullptr) {
-            listener_->asks().erase(level_it);
+            asks_.erase(level_it);
         }
     }
 
     order_lookup_.erase(it);
 
-    listener_->order_pool().deallocate(order);
+    order_pool_.deallocate(order);
 
     return true;
 }
 
 void exchange::MatchingEngine::match_buy(Order& order) {
 
-    while (order.quantity > 0 && !listener_->asks().empty()) {
-        auto best_ask = listener_->asks().begin(); // asks_.begin() contains the lowest ask
+    while (order.quantity > 0 && !asks_.empty()) {
+        auto best_ask = asks_.begin(); // asks_.begin() contains the lowest ask
 
         if (best_ask->first > order.price) {
             break; //seller's ask should be lower than buyer's bid, then the buyer would buy
@@ -96,7 +97,7 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         uint64_t match_start_ns = now_ns();
 
         // generate trade
-        Trade* trade = listener_->trade_pool().allocate();
+        Trade* trade = trade_pool_.allocate();
 
         assert(trade != nullptr);
 
@@ -121,6 +122,12 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         trades_.push_back(*trade);
 
         trade_count_.fetch_add(1, std::memory_order_relaxed);
+
+        BookUpdate update;
+        update.best_bid = bids_.begin()->first;
+        update.best_ask = asks_.begin()->first;
+        update.last_trade_price = trade->price;
+        update.last_trade_quantity = trade->quantity;
         
         // if (logger_) {
         //     auto msg = format_trade(*trade);
@@ -128,7 +135,9 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         // } else {
         //     trade_pool_.recycle_oldest();}
 
-        listener_->on_trade(*trade);
+        // listener_->on_trade(*trade);
+        publisher_.publish(*trade);
+        publisher_.publish(update);
 
         order.quantity -= traded;
         resting->quantity -= traded;
@@ -136,10 +145,10 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         if (resting->quantity == 0) {
             remove_order(queue, resting);
             order_lookup_.erase(resting->order_id);
-            listener_->order_pool().deallocate(resting);
+            order_pool_.deallocate(resting);
 
             if (queue.head == nullptr) {
-                listener_->asks().erase(best_ask);
+                asks_.erase(best_ask);
             }
         }
     }
@@ -150,8 +159,8 @@ void exchange::MatchingEngine::match_buy(Order& order) {
 }
 
 void exchange::MatchingEngine::match_sell(Order& order) {
-    while (order.quantity > 0 && !listener_->bids().empty()) {
-        auto best_bid = listener_->bids().begin(); //bids_.begin() contains the highest bid
+    while (order.quantity > 0 && !bids_.empty()) {
+        auto best_bid = bids_.begin(); //bids_.begin() contains the highest bid
 
         if (best_bid->first < order.price) {
             break; //buyer's bid should be higher than seller's ask, then the seller would sell
@@ -163,7 +172,7 @@ void exchange::MatchingEngine::match_sell(Order& order) {
 
         uint64_t match_start_ns = now_ns();
 
-        Trade* trade = listener_->trade_pool().allocate();
+        Trade* trade = trade_pool_.allocate();
 
         assert(trade != nullptr);
 
@@ -188,6 +197,12 @@ void exchange::MatchingEngine::match_sell(Order& order) {
         trades_.push_back(*trade);
 
         trade_count_.fetch_add(1, std::memory_order_relaxed);
+
+        BookUpdate update;
+        update.best_bid = bids_.begin()->first;
+        update.best_ask = asks_.begin()->first;
+        update.last_trade_price = trade->price;
+        update.last_trade_quantity = trade->quantity;
         
         // if (logger_) {
         //     auto msg = format_trade(*trade);
@@ -195,7 +210,9 @@ void exchange::MatchingEngine::match_sell(Order& order) {
         // } else {
         //     trade_pool_.recycle_oldest();}
 
-        listener_->on_trade(*trade);
+        // listener_->on_trade(*trade);
+        publisher_.publish(*trade);
+        publisher_.publish(update);
 
         order.quantity -= traded;
         resting->quantity -= traded;
@@ -203,10 +220,10 @@ void exchange::MatchingEngine::match_sell(Order& order) {
         if (resting->quantity == 0) {
             remove_order(queue, resting);
             order_lookup_.erase(resting->order_id);
-            listener_->order_pool().deallocate(resting);
+            order_pool_.deallocate(resting);
 
             if (queue.head == nullptr) {
-                listener_->bids().erase(best_bid);
+                bids_.erase(best_bid);
             }
         }
     }
@@ -217,16 +234,16 @@ void exchange::MatchingEngine::match_sell(Order& order) {
 
 void exchange::MatchingEngine::add_to_book(Order& order) {
 
-    Order* stored = listener_->order_pool().allocate();    
+    Order* stored = order_pool_.allocate();    
 
     assert(stored != nullptr);
 
     *stored = std::move(order);
 
     if (stored->side == Side::Buy) {
-        append_order(listener_->bids()[stored->price], stored);
+        append_order(bids_[stored->price], stored);
     } else {
-        append_order(listener_->asks()[stored->price], stored);
+        append_order(asks_[stored->price], stored);
     }
     order_lookup_[stored->order_id] = stored;
 }

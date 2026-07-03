@@ -6,6 +6,7 @@
 
 #include "Subscriber.h"
 #include "TradeLogger.h"
+#include "MarketDataService.h"
 #include "Event/EventUtils.h"
 #include "EventBusStats.h"
 

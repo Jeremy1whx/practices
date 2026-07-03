@@ -346,28 +346,28 @@ TEST_CASE("Multiple trades from one order") {
     REQUIRE(ask_queue.head->quantity == 5);  
 }
 
-TEST_CASE("Trade logger integration") {
+// TEST_CASE("Trade logger integration") {
 
-    AsyncLogger logger("trade.log");
+//     AsyncLogger logger("trade.log");
 
-    logger.start();
+//     logger.start();
 
-    exchange::MatchingEngine engine;    
-    TradeLogger tlogger;
-    engine.set_listener(&tlogger);
+//     exchange::MatchingEngine engine;    
+//     TradeLogger tlogger;
+//     engine.set_listener(&tlogger);
 
-    engine.set_logger(&logger);
+//     engine.set_logger(&logger);
 
-    Order sell{1, Side::Sell, 100, 10, 1};
-    Order buy{2, Side::Buy, 100, 10, 2};
+//     Order sell{1, Side::Sell, 100, 10, 1};
+//     Order buy{2, Side::Buy, 100, 10, 2};
 
-    engine.submit_order(sell);
-    engine.submit_order(buy);
+//     engine.submit_order(sell);
+//     engine.submit_order(buy);
 
-    logger.stop();
+//     logger.stop();
 
-    REQUIRE(engine.trades().size() == 1);
-}
+//     REQUIRE(engine.trades().size() == 1);
+// }
 
 // TEST_CASE("Market data event generation") {
 
