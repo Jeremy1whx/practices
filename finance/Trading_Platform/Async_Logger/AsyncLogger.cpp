@@ -2,9 +2,8 @@
 
 #include <iostream>
 
-AsyncLogger::AsyncLogger(const std::string& filename)
-    : file_(filename, std::ios::out | std::ios::app)
-{
+AsyncLogger::AsyncLogger(const std::filesystem::path& path) {
+    file_.open(path.string(), std::ios::out | std::ios::app);
 }
 
 AsyncLogger::~AsyncLogger() {

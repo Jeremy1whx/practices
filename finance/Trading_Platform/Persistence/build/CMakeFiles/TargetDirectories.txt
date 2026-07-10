@@ -1,0 +1,5 @@
+/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/AsyncLogger.dir
+/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/EventBus.dir
+/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/test.dir
+/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/edit_cache.dir
+/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/rebuild_cache.dir

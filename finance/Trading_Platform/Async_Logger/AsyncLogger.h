@@ -7,10 +7,11 @@
 #include <thread>
 #include <fstream>
 #include <atomic>
+#include <filesystem>
 
 class AsyncLogger {
 public:
-    explicit AsyncLogger(const std::string& filename);
+    explicit AsyncLogger(const std::filesystem::path& path);
 
     ~AsyncLogger();
 

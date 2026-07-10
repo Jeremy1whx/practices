@@ -243,4 +243,7 @@ CMakeFiles/AsyncLogger.dir/Async_Logger/AsyncLogger.cpp.o: \
  /usr/include/c++/14/fstream \
  /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
- /usr/include/c++/14/bits/fstream.tcc /usr/include/c++/14/iostream
+ /usr/include/c++/14/bits/fstream.tcc /usr/include/c++/14/filesystem \
+ /usr/include/c++/14/bits/fs_fwd.h /usr/include/c++/14/bits/fs_path.h \
+ /usr/include/c++/14/codecvt /usr/include/c++/14/bits/fs_dir.h \
+ /usr/include/c++/14/bits/fs_ops.h /usr/include/c++/14/iostream
