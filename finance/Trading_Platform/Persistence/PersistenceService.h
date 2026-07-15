@@ -57,7 +57,7 @@ private:
             << "timestamp=" << event.header.timestamp_ns 
             << " best_bid=" << event.update.best_bid
             << " best_ask=" << event.update.best_ask
-            << " last_trade_pirce=" << event.update.last_trade_price
+            << " last_trade_price=" << event.update.last_trade_price
             << " last_trade_qty=" << event.update.last_trade_quantity << std::endl;
     };    
 };}

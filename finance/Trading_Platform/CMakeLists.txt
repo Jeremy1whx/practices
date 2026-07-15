@@ -9,6 +9,8 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/Async_Logger
     ${CMAKE_CURRENT_SOURCE_DIR}/Match_Engine
     ${CMAKE_CURRENT_SOURCE_DIR}/Event_Bus
+    ${CMAKE_CURRENT_SOURCE_DIR}/Persistence
+    ${CMAKE_CURRENT_SOURCE_DIR}/Replay
     ${CMAKE_CURRENT_SOURCE_DIR}/Lock_Free_Ring_Buffer/mpsc
 )
 

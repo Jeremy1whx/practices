@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <filesystem>
+#include <iostream>
 
 #include "../Event_Bus/Event/Event.h"
 
@@ -66,14 +67,14 @@ private:
 
     bool parse_book_update(const std::string& line, Event& event) {
         uint64_t timestamp;
-        std::optional<double> best_bid;
-        std::optional<double> best_ask;
-        std::optional<double> last_trade_price;
-        std::optional<uint32_t> last_trade_qty;
+        double best_bid;
+        double best_ask;
+        double last_trade_price;
+        uint32_t last_trade_qty;
 
-        sscanf(
+        int match = sscanf(
             line.c_str(),
-            "BookUpdate timestamp=%lu best_bid=%lu best_ask=%lu last_trade_price=%lf last_trade_qty=%u",
+            "BookUpdate timestamp=%lu best_bid=%lf best_ask=%lf last_trade_price=%lf last_trade_qty=%u",
             &timestamp,
             &best_bid,
             &best_ask,
@@ -81,6 +82,10 @@ private:
             &last_trade_qty
         );
 
+        if (match != 5) {
+            std::cout << "didn't match" << std::endl;
+            return false;
+        }
 
         BookUpdate update;
 
@@ -91,7 +96,7 @@ private:
 
         event = BookUpdateEvent{
             EventHeader{
-                EventType::Trade,
+                EventType::BookUpdate,
                 timestamp
             },
             update
