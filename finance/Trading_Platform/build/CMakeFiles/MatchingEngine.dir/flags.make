@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspaces/practices/finance/Trading_Platform/Async_Logger -I/workspaces/practices/finance/Trading_Platform/Match_Engine -I/workspaces/practices/finance/Trading_Platform/Event_Bus -I/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc
+CXX_INCLUDES = -I/workspaces/practices/finance/Trading_Platform/Async_Logger -I/workspaces/practices/finance/Trading_Platform/Match_Engine -I/workspaces/practices/finance/Trading_Platform/Event_Bus -I/workspaces/practices/finance/Trading_Platform/Persistence -I/workspaces/practices/finance/Trading_Platform/Replay -I/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc
 
 CXX_FLAGS =  -O2 -g -fno-omit-frame-pointer -std=gnu++20
 

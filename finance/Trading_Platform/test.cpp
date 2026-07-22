@@ -6,7 +6,7 @@
 #include "Event_Bus/EventBus.h"
 #include "Event_Bus/Subscriber.h"
 #include "Event_Bus/EventPublisher.h"
-#include "Persistence/PersistenceService.h"
+#include "Persistence/Writer.h"
 #include "Replay/ReplayEngine.h"
 
 TEST_CASE("Integration Test") {
@@ -23,7 +23,7 @@ TEST_CASE("Integration Test") {
 
     exchange::MarketDataService market_data;
 
-    exchange::PersistenceService prs_srv("prs_srv.log");
+    exchange::TextWriter prs_srv("prs_srv.log");
 
     bus.subscribe(&trade_logger);
     bus.subscribe(&market_data);
@@ -69,7 +69,7 @@ TEST_CASE("Integration Test") {
 }
 
 TEST_CASE("Replay Test") {
-    exchange::ReplayReader reader("prs_srv.log");
+    exchange::TextReader reader("prs_srv.log");
 
     exchange::EventBus bus;
 

@@ -364,6 +364,6 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/c++/14/bits/regex.h /usr/include/c++/14/bits/regex.tcc \
  /usr/include/c++/14/bits/regex_executor.h \
  /usr/include/c++/14/bits/regex_executor.tcc \
- /workspaces/practices/finance/Trading_Platform/Persistence/PersistenceService.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/Writer.h \
  /workspaces/practices/finance/Trading_Platform/Replay/ReplayEngine.h \
  /workspaces/practices/finance/Trading_Platform/Replay/ReplayReader.h

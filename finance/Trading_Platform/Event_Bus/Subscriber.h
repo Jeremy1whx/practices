@@ -61,4 +61,76 @@ public:
         return "BookSubscriber";
     }
 };
+
+// class AcceptanceSubscriber : public Subscriber {
+// public:
+
+//     std::size_t count = 0;
+
+//     void on_event(const Event&) override {
+//         ++count;
+//     }
+
+//     bool interested_in(EventType type) const override {
+//         return type == EventType::OrderAccepted;
+//     }
+
+//     const char* name() const override {
+//         return "AcceptanceSubscriber";
+//     }
+// };
+
+class CancelationSubscriber : public Subscriber {
+public:
+
+    std::size_t count = 0;
+
+    void on_event(const Event&) override {
+        ++count;
+    }
+
+    bool interested_in(EventType type) const override {
+        return type == EventType::OrderCancelled;
+    }
+
+    const char* name() const override {
+        return "CancelationSubscriber";
+    }
+};
+
+class RejectionSubscriber : public Subscriber {
+public:
+
+    std::size_t count = 0;
+
+    void on_event(const Event&) override {
+        ++count;
+    }
+
+    bool interested_in(EventType type) const override {
+        return type == EventType::OrderRejected;
+    }
+
+    const char* name() const override {
+        return "RejectionSubscriber";
+    }
+};
+
+// class RiskViolationSubscriber : public Subscriber {
+// public:
+
+//     std::size_t count = 0;
+
+//     void on_event(const Event&) override {
+//         ++count;
+//     }
+
+//     bool interested_in(EventType type) const override {
+//         return type == EventType::RiskViolation;
+//     }
+
+//     const char* name() const override {
+//         return "RiskViolationSubscriber";
+//     }
+// };
 }

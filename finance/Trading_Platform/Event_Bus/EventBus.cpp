@@ -19,6 +19,22 @@ void EventBus::publish(const Event& event) {
         case EventType::BookUpdate:
             ++stats_.book_update_events;
             break;
+            
+        // case EventType::OrderAccepted:
+        //     ++stats_.order_accepted_events;
+        //     break;
+        
+        case EventType::OrderCancelled:
+            ++stats_.order_cancelled_events;
+            break;
+
+        case EventType::OrderRejected:
+            ++stats_.order_rejected_events;
+            break;
+
+        // case EventType::RiskViolation:
+        //     ++stats_.risk_violation_events;
+        //     break;
     }
 
     for (auto* subscriber : subscribers_) {

@@ -7,9 +7,16 @@
 #include "../Event_Bus/Event/Event.h"
 
 namespace exchange{
-class ReplayReader{
+
+class ReplayReader {
 public:
-    explicit ReplayReader(const std::filesystem::path& path) {
+    virtual ~ReplayReader() = default;
+    virtual bool next(Event&) = 0;
+};
+
+class TextReader : public ReplayReader{
+public:
+    explicit TextReader(const std::filesystem::path& path) {
         journal_.open(path.string(), std::ios::in);
     };
 
@@ -21,6 +28,10 @@ public:
         if(line.starts_with("Trade")) return parse_trade(line,event);
 
         if(line.starts_with("BookUpdate")) return parse_book_update(line,event);
+
+        if(line.starts_with("OrderCancelled")) return parse_order_cancelled(line,event);
+
+        if(line.starts_with("OrderRejected")) return parse_order_rejected(line,event);
 
         return false;
     };
@@ -104,4 +115,59 @@ private:
 
         return true;
     };
+    
+
+    bool parse_order_cancelled(const std::string& line, Event event) {
+        uint64_t timestamp;
+        uint64_t order_id;
+        int r;
+
+        sscanf(
+            line.c_str(),
+            "OrderCancelled timestamp=%lu order_id=%lu cancel_reason=%d",
+            &timestamp,
+            &order_id,
+            &r
+        );
+
+        CancelReason reason = static_cast<CancelReason>(r);
+
+        event = OrderCancelledEvent{
+            EventHeader{
+                EventType::OrderCancelled,
+                timestamp
+            },
+            order_id,
+            reason
+        };
+
+        return true;
+    }
+
+    bool parse_order_rejected(const std::string& line, Event event){
+        uint64_t timestamp;
+        uint64_t order_id;
+        int r;
+
+        sscanf(
+            line.c_str(),
+            "OrderRejected timestamp=%lu order_id=%lu reject_reason=%d",
+            &timestamp,
+            &order_id,
+            &r
+        );
+
+        RejectReason reason = static_cast<RejectReason>(r);
+
+        event = OrderRejectedEvent{
+            EventHeader{
+                EventType::OrderRejected,
+                timestamp
+            },
+            order_id,
+            reason
+        };
+
+        return true;
+    }
 };}

@@ -164,8 +164,8 @@ CMakeFiles/MatchingEngine.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/test.dir/all: CMakeFiles/EventBus.dir/all
-CMakeFiles/test.dir/all: CMakeFiles/MatchingEngine.dir/all
 CMakeFiles/test.dir/all: CMakeFiles/AsyncLogger.dir/all
+CMakeFiles/test.dir/all: CMakeFiles/MatchingEngine.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/practices/finance/Trading_Platform/build/CMakeFiles --progress-num=8,9 "Built target test"
