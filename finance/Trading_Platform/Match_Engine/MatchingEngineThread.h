@@ -45,5 +45,7 @@ private:
     std::thread expiry_thread_;
 
     std::atomic<bool> running_{false};
+
+    std::atomic<bool> expiry_requested_{false};
 };
 }

@@ -44,7 +44,7 @@ void exchange::MatchingEngineThread::run() {
     constexpr size_t BATCH_SIZE = 64;
     std::array<Order, BATCH_SIZE> batch;
 
-    while (running_ || !ingress_.empty()) {
+    while (running_) {
         size_t count = 0;
 
         while (count < BATCH_SIZE && ingress_.try_get(order)) {
@@ -54,6 +54,11 @@ void exchange::MatchingEngineThread::run() {
 
         for (size_t i = 0; i < count; ++i) {
             engine_.process_order(batch[i]);
+        }
+
+        if (expiry_requested_.load(std::memory_order_relaxed)) {            
+            engine_.process_expiry(now_absolute_ns());
+            expiry_requested_.store(false, std::memory_order_relaxed);
         }
 
         if (count == 0) {
@@ -69,7 +74,7 @@ void exchange::MatchingEngineThread::expiry_loop() {
         uint64_t now = now_absolute_ns();
 
         if (now >= next_expiry) {
-            engine_.process_expiry(now);
+            expiry_requested_.store(true, std::memory_order_relaxed);
             
             do {
                 next_expiry += SECOND_NS;

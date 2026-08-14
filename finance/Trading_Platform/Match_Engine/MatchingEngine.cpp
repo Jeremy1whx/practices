@@ -143,7 +143,7 @@ bool exchange::MatchingEngine::cancel_order(uint64_t order_id, CancelReason reas
 
             Order* order = it->second;
 
-            if(order->expire_time != 0) expiry_scheduler_.delete_expiry(order_id);
+            if(order->expire_time != 0 && reason != CancelReason::Expired) expiry_scheduler_.delete_expiry(order_id);
         
             if (order->side == Side::Buy) {
                 auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_,order->price);

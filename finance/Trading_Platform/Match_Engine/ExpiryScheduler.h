@@ -89,9 +89,9 @@ public:
                 }
                 
                 day_offset_ = (day_offset_ + elapse_days - 1) % 366;
-                day_to_second(current_time);
 
-                beginning_ = today_start_ns_utc();                
+                beginning_ = today_start_ns_utc();    
+                day_to_second(current_time);            
             } else {
                 proceed_wheel(last_second, slot, seconds_wheel_);                
             }
@@ -106,7 +106,9 @@ public:
 
         while (it) {
             auto* next = it->next;
-            cancel_callback_(it->order_id, CancelReason::Expired);
+            uint64_t order_id = it->order_id;
+            delete_expiry(order_id);
+            cancel_callback_(order_id, CancelReason::Expired);
             it = next;  
         } 
 
@@ -115,6 +117,74 @@ public:
             day_offset_ = (day_offset_ + 1) % 366;
             beginning_ += DAY_NS;
         }
+    }
+
+    size_t expiry_count() const {return expiry_lookup_.size();}
+
+    bool contains(uint64_t order_id) const {
+        return expiry_lookup_.find(order_id) != expiry_lookup_.end();
+    }
+
+    size_t seconds_entry_count() const {
+        size_t count = 0;
+
+        for (const auto& list : seconds_wheel_) {
+            for (auto* it = list.head; it; it = it->next) {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
+    size_t days_entry_count() const {
+        size_t count = 0;
+
+        for (const auto& list : days_wheel_) {
+            for (auto* it = list.head; it; it = it->next) {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
+    bool validate() const {
+        size_t wheel_count = 0;
+
+        for (const auto& list : seconds_wheel_) {
+            for (auto* it = list.head; it; it = it->next) {
+                ++wheel_count;
+
+                auto lookup = expiry_lookup_.find(it->order_id);
+
+                if (lookup == expiry_lookup_.end()) {
+                    return false;
+                }
+
+                if (lookup->second != it) {
+                    return false;
+                }
+            }
+        }
+
+        for (const auto& list : days_wheel_) {
+            for (auto* it = list.head; it; it = it->next) {
+                ++wheel_count;
+
+                auto lookup = expiry_lookup_.find(it->order_id);
+
+                if (lookup == expiry_lookup_.end()) {
+                    return false;
+                }
+
+                if (lookup->second != it) {
+                    return false;
+                }
+            }
+        }
+
+        return wheel_count == expiry_lookup_.size();
     }
 
 private:
@@ -183,7 +253,9 @@ private:
         while (it) {
             auto* next = it->next;
             if (it->expire_time <= current_time) {
-                cancel_callback_(it->order_id, CancelReason::Expired);
+                uint64_t order_id = it->order_id;
+                delete_expiry(order_id);
+                cancel_callback_(order_id, CancelReason::Expired);
 
             } else {
                 remove_from_list(days_wheel_[day_offset_], it);
@@ -207,7 +279,9 @@ private:
             auto it = wheel[i].head;
             while (it) {
                 auto* next = it->next;
-                cancel_callback_(it->order_id, CancelReason::Expired);
+                uint64_t order_id = it->order_id;
+                delete_expiry(order_id);
+                cancel_callback_(order_id, CancelReason::Expired);
                 it = next;
             }
         }

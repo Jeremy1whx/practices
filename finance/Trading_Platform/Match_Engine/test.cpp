@@ -626,11 +626,21 @@ TEST_CASE("GTD order expires automatically") {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 1);
     REQUIRE(env.engine().order_lookup().size() == 1);
+    REQUIRE(env.scheduler().expiry_count() == 1);
+    REQUIRE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 1);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     std::this_thread::sleep_for(std::chrono::seconds(2));
     
     REQUIRE(env.engine().bids().empty());
     REQUIRE(env.engine().order_lookup().empty());
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     env.stop();
 }
@@ -647,11 +657,21 @@ TEST_CASE("DAY order expires at market close") {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 1);
     REQUIRE(env.engine().order_lookup().size() == 1);
+    REQUIRE(env.scheduler().expiry_count() == 1);
+    REQUIRE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 1);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     std::this_thread::sleep_for(std::chrono::seconds(3));
     
     REQUIRE(env.engine().bids().empty());
-    REQUIRE(env.engine().order_lookup().empty());
+    REQUIRE(env.engine().order_lookup().empty());    
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     env.stop();
 }
@@ -666,12 +686,18 @@ TEST_CASE("GTC order never expires") {
     
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 1);
-    REQUIRE(env.engine().order_lookup().size() == 1);
+    REQUIRE(env.engine().order_lookup().size() == 1);    
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     std::this_thread::sleep_for(std::chrono::seconds(3));
     
     REQUIRE(env.engine().bids().size() == 1);
     REQUIRE(env.engine().order_lookup().size() == 1);
+    
     
     env.stop();
 }
@@ -688,6 +714,11 @@ TEST_CASE("ExpiryScheduler handles system pause") {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 1);
     REQUIRE(env.engine().order_lookup().size() == 1);
+    REQUIRE(env.scheduler().expiry_count() == 1);
+    REQUIRE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 1);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     std::cout << "\n=== System paused for 5 seconds ===" << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(5));
@@ -701,6 +732,11 @@ TEST_CASE("ExpiryScheduler handles system pause") {
     
     REQUIRE(env.engine().bids().empty());
     REQUIRE(env.engine().order_lookup().empty());
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
 }
 
 TEST_CASE("ExpiryScheduler handles multiple orders with different expiry times") {
@@ -722,7 +758,13 @@ TEST_CASE("ExpiryScheduler handles multiple orders with different expiry times")
     
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 3);
-    REQUIRE(env.engine().order_lookup().size() == 3);
+    REQUIRE(env.engine().order_lookup().size() == 3);    
+    REQUIRE(env.scheduler().expiry_count() == 2);
+    REQUIRE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().contains(2));
+    REQUIRE(env.scheduler().seconds_entry_count() == 2);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     std::this_thread::sleep_for(std::chrono::seconds(3));
     
@@ -732,7 +774,13 @@ TEST_CASE("ExpiryScheduler handles multiple orders with different expiry times")
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     
     REQUIRE(env.engine().bids().size() == 2);
-    REQUIRE(env.engine().order_lookup().size() == 2);
+    REQUIRE(env.engine().order_lookup().size() == 2);    
+    REQUIRE(env.scheduler().expiry_count() == 1);
+    REQUIRE_FALSE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().contains(2));
+    REQUIRE(env.scheduler().seconds_entry_count() == 1);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     bool has_order2 = false;
     bool has_order3 = false;
@@ -752,7 +800,12 @@ TEST_CASE("ExpiryScheduler handles multiple orders with different expiry times")
     
     REQUIRE(env.engine().bids().size() == 1);
     REQUIRE(env.engine().order_lookup().size() == 1);
-    REQUIRE(env.engine().order_lookup().find(3) != env.engine().order_lookup().end());
+    REQUIRE(env.engine().order_lookup().find(3) != env.engine().order_lookup().end());    
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(2));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
 }
 
 TEST_CASE("ExpiryScheduler handles orders expiring during system pause") {
@@ -776,6 +829,11 @@ TEST_CASE("ExpiryScheduler handles orders expiring during system pause") {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 5);
     REQUIRE(env.engine().order_lookup().size() == 5);
+    REQUIRE(env.scheduler().expiry_count() == 5);
+    REQUIRE(env.scheduler().contains(5));
+    REQUIRE(env.scheduler().seconds_entry_count() == 5);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
     
     std::cout << "\n=== System paused for 6 seconds ===" << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(6));
@@ -789,6 +847,11 @@ TEST_CASE("ExpiryScheduler handles orders expiring during system pause") {
     
     REQUIRE(env.engine().bids().empty());
     REQUIRE(env.engine().order_lookup().empty());
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(5));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
 }
 
 TEST_CASE("ExpiryScheduler days_wheel promotion after system pause") {
@@ -802,12 +865,22 @@ TEST_CASE("ExpiryScheduler days_wheel promotion after system pause") {
     
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     REQUIRE(env.engine().bids().size() == 1);
-    REQUIRE(env.engine().order_lookup().size() == 1);
+    REQUIRE(env.engine().order_lookup().size() == 1);    
+    REQUIRE(env.scheduler().expiry_count() == 1);
+    REQUIRE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 1);
+    REQUIRE(env.scheduler().validate());
     
     std::this_thread::sleep_for(std::chrono::seconds(2));
     
     REQUIRE(env.engine().bids().size() == 1);
-    REQUIRE(env.engine().order_lookup().size() == 1);
+    REQUIRE(env.engine().order_lookup().size() == 1);    
+    REQUIRE(env.scheduler().expiry_count() == 1);
+    REQUIRE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 1);
+    REQUIRE(env.scheduler().validate());
 
     uint64_t future_time = now_absolute_ns() + 26 * 3600'000'000'000ULL;
     env.engine().process_expiry(future_time);
@@ -817,4 +890,9 @@ TEST_CASE("ExpiryScheduler days_wheel promotion after system pause") {
     
     REQUIRE(env.engine().bids().empty());
     REQUIRE(env.engine().order_lookup().empty());
+    REQUIRE(env.scheduler().expiry_count() == 0);
+    REQUIRE_FALSE(env.scheduler().contains(1));
+    REQUIRE(env.scheduler().seconds_entry_count() == 0);
+    REQUIRE(env.scheduler().days_entry_count() == 0);
+    REQUIRE(env.scheduler().validate());
 }
