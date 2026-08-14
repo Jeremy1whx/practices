@@ -1,0 +1,1 @@
+/usr/bin/c++  -O2 -g -fno-omit-frame-pointer CMakeFiles/test.dir/test.cpp.o -o test  libMatchingEngine.a libAsyncLogger.a libEventBus.a 

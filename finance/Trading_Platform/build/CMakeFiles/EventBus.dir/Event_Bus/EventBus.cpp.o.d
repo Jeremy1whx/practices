@@ -196,10 +196,39 @@ CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o: \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/BookUpdateEvent.h \
  /usr/include/c++/14/optional \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../BookUpdate.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderAcceptedEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../../Order/Order.h \
+ /usr/include/c++/14/chrono /usr/include/c++/14/bits/chrono.h \
+ /usr/include/c++/14/ratio /usr/include/c++/14/limits \
+ /usr/include/c++/14/ctime /usr/include/c++/14/sstream \
+ /usr/include/c++/14/bits/sstream.tcc \
+ /usr/include/c++/14/bits/shared_ptr.h \
+ /usr/include/c++/14/bits/shared_ptr_base.h \
+ /usr/include/c++/14/bits/allocated_ptr.h \
+ /usr/include/c++/14/bits/unique_ptr.h \
+ /usr/include/c++/14/ext/aligned_buffer.h \
+ /usr/include/c++/14/ext/concurrence.h /usr/include/c++/14/bits/align.h \
+ /usr/include/c++/14/bits/chrono_io.h /usr/include/c++/14/iomanip \
+ /usr/include/c++/14/locale \
+ /usr/include/c++/14/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/14/bits/codecvt.h \
+ /usr/include/c++/14/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/14/bits/locale_conv.h \
+ /usr/include/c++/14/bits/quoted_string.h /usr/include/c++/14/format \
+ /usr/include/c++/14/array /usr/include/c++/14/charconv \
+ /usr/include/c++/14/span /usr/include/c++/14/bits/unicode.h \
+ /usr/include/c++/14/bits/unicode-data.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderCancelledEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../CancelReason.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../RejectReason.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../RiskViolationReason.h \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
- /usr/include/c++/14/sstream /usr/include/c++/14/bits/sstream.tcc \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/AsyncLogger.h \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
  /usr/include/c++/14/atomic /usr/include/c++/14/bits/atomic_base.h \
@@ -228,30 +257,10 @@ CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o: \
  /usr/include/assert.h \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
  /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/LogMessage.h \
- /usr/include/c++/14/array /usr/include/c++/14/cstring \
- /usr/include/string.h /usr/include/strings.h /usr/include/c++/14/chrono \
- /usr/include/c++/14/bits/chrono.h /usr/include/c++/14/ratio \
- /usr/include/c++/14/limits /usr/include/c++/14/ctime \
- /usr/include/c++/14/bits/shared_ptr.h \
- /usr/include/c++/14/bits/shared_ptr_base.h \
- /usr/include/c++/14/bits/allocated_ptr.h \
- /usr/include/c++/14/bits/unique_ptr.h \
- /usr/include/c++/14/ext/aligned_buffer.h \
- /usr/include/c++/14/ext/concurrence.h /usr/include/c++/14/bits/align.h \
- /usr/include/c++/14/bits/chrono_io.h /usr/include/c++/14/iomanip \
- /usr/include/c++/14/locale \
- /usr/include/c++/14/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/14/bits/codecvt.h \
- /usr/include/c++/14/bits/locale_facets_nonio.tcc \
- /usr/include/c++/14/bits/locale_conv.h \
- /usr/include/c++/14/bits/quoted_string.h /usr/include/c++/14/format \
- /usr/include/c++/14/charconv /usr/include/c++/14/span \
- /usr/include/c++/14/bits/unicode.h \
- /usr/include/c++/14/bits/unicode-data.h /usr/include/c++/14/thread \
- /usr/include/c++/14/stop_token /usr/include/c++/14/bits/std_thread.h \
- /usr/include/c++/14/semaphore /usr/include/c++/14/bits/semaphore_base.h \
+ /usr/include/c++/14/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/14/thread /usr/include/c++/14/stop_token \
+ /usr/include/c++/14/bits/std_thread.h /usr/include/c++/14/semaphore \
+ /usr/include/c++/14/bits/semaphore_base.h \
  /usr/include/c++/14/bits/atomic_timed_wait.h \
  /usr/include/c++/14/bits/this_thread_sleep.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \

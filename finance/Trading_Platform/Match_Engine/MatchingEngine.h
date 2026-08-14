@@ -14,9 +14,9 @@
 #include "../Async_Logger/AsyncLogger.h"
 #include "../CPU_Affinity/Affinity.h"
 #include "../Event_Bus/EventPublisher.h"
+#include "ExpiryScheduler.h"
 
 #include <map>
-#include <deque>
 #include <vector>
 #include <unordered_map>
 #include <iostream>
@@ -24,7 +24,7 @@
 namespace exchange {
 class MatchingEngine {
 public:
-    explicit MatchingEngine(EventPublisher& publisher);
+    explicit MatchingEngine(EventPublisher& publisher, ExpiryScheduler& scheduler);
     void process_order(Order& order);
     void process_order(const Order& order){
         Order copy = order;
@@ -51,13 +51,52 @@ public:
 
     // void publish_market_data(const Trade& trade);
 
-    bool cancel_order(uint64_t order_id);
+    bool cancel_order(uint64_t order_id, CancelReason reason);
+
+    void process_expiry(uint64_t current_time) {
+        expiry_scheduler_.proceed_expiry(current_time);
+    }
 
 private:
 
-    std::map<double, PriceLevel, std::greater<>> bids_;
+    struct PriceLevelWithPrice {
+        double price;
+        PriceLevel level;
+    };
 
-    std::map<double, PriceLevel> asks_;
+    struct BidCompare {
+        bool operator()(const PriceLevelWithPrice& a, const PriceLevelWithPrice& b) const {
+            return a.price > b.price;
+        }
+        bool operator()(const PriceLevelWithPrice& a, double price) const {
+            return a.price > price;
+        }
+        bool operator()(double price, const PriceLevelWithPrice& a) const {
+            return price > a.price;
+        }
+        bool operator()(double a, double b) const {
+            return a > b;
+        }
+    };
+    
+    struct AskCompare {
+        bool operator()(const PriceLevelWithPrice& a, const PriceLevelWithPrice& b) const {
+            return a.price < b.price;
+        }
+        bool operator()(const PriceLevelWithPrice& a, double price) const {
+            return a.price < price;
+        }
+        bool operator()(double price, const PriceLevelWithPrice& a) const {
+            return price < a.price;
+        }
+        bool operator()(double a, double b) const {
+            return a < b;
+        }
+    };
+
+    std::vector<PriceLevelWithPrice> bids_;
+
+    std::vector<PriceLevelWithPrice> asks_;
 
     std::vector<Trade> trades_;
 
@@ -77,6 +116,20 @@ private:
 
     std::atomic<uint64_t> trade_count_{0};
 
+    ExpiryScheduler& expiry_scheduler_;
+
+    template<typename Container, typename Compare>
+    typename Container::iterator find_price_level(Container& container, double price);
+    
+    template<typename Container, typename Compare>
+    typename Container::const_iterator find_price_level(const Container& container, double price) const;
+
+    template<typename Container, typename Compare>
+    void insert_price_level(Container& container, double price, PriceLevel level);
+    
+    template<typename Container, typename Compare>
+    bool remove_price_level(Container& container, double price);
+
     void match_buy(Order& order);
 
     void match_sell(Order& order);
@@ -86,5 +139,9 @@ private:
     void append_order(PriceLevel& level, Order* order);
 
     void remove_order(PriceLevel& level, Order* order);
+    
+    bool all_matched_buy(Order& order);
+
+    bool all_matched_sell(Order& order);
 };
 }

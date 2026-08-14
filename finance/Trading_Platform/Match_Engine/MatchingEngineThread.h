@@ -17,9 +17,7 @@ public:
 
     void start();
 
-    void stop();
-
-    bool empty() const;
+    void stop();    
 
     bool submit_order(Order& order);
 
@@ -36,11 +34,15 @@ private:
 
     void run();
 
+    void expiry_loop();
+
     OrderIngress ingress_;
 
     MatchingEngine& engine_;
 
     std::thread thread_;
+
+    std::thread expiry_thread_;
 
     std::atomic<bool> running_{false};
 };

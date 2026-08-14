@@ -1,25 +1,32 @@
 #include "MatchingEngineThread.h"
 
-exchange::MatchingEngineThread::MatchingEngineThread(MatchingEngine& engine, size_t queue_size) : engine_(engine), ingress_(queue_size){}
+exchange::MatchingEngineThread::MatchingEngineThread(MatchingEngine& engine, size_t queue_size) 
+    : engine_(engine), ingress_(queue_size) {}
 
 exchange::MatchingEngineThread::~MatchingEngineThread() {
     stop();
 }
 
 void exchange::MatchingEngineThread::start() {
+    if (running_) return;
 
     running_ = true;
 
     thread_ = std::thread(&MatchingEngineThread::run, this);
+    expiry_thread_ = std::thread(&MatchingEngineThread::expiry_loop, this);
 
     pin_thread_to_core(thread_, 2);
 }
 
 void exchange::MatchingEngineThread::stop() {
-
     running_ = false;
 
-    if (thread_.joinable()) {thread_.join();}
+    if (thread_.joinable()) {
+        thread_.join();
+    }
+    if (expiry_thread_.joinable()) {
+        expiry_thread_.join();
+    }
 }
 
 bool exchange::MatchingEngineThread::submit_order(Order& order) {
@@ -28,23 +35,19 @@ bool exchange::MatchingEngineThread::submit_order(Order& order) {
 }
 
 void exchange::MatchingEngineThread::run() {
-
     Order order;
 
     #ifdef __linux__
-
     std::cout << "Matching thread running on CPU " << sched_getcpu() << "\n";
-
     #endif
 
     constexpr size_t BATCH_SIZE = 64;
-
     std::array<Order, BATCH_SIZE> batch;
 
     while (running_ || !ingress_.empty()) {
         size_t count = 0;
 
-        while (count < BATCH_SIZE &&ingress_.try_get(order)) {
+        while (count < BATCH_SIZE && ingress_.try_get(order)) {
             order.egress_timestamp_ns = now_ns();
             batch[count++] = std::move(order);
         }
@@ -53,6 +56,28 @@ void exchange::MatchingEngineThread::run() {
             engine_.process_order(batch[i]);
         }
 
-        if (count == 0) std::this_thread::yield();
+        if (count == 0) {
+            std::this_thread::yield();
+        }
+    }
+}
+
+void exchange::MatchingEngineThread::expiry_loop() {
+    uint64_t next_expiry = now_absolute_ns() + SECOND_NS;
+
+    while (running_) {
+        uint64_t now = now_absolute_ns();
+
+        if (now >= next_expiry) {
+            engine_.process_expiry(now);
+            
+            do {
+                next_expiry += SECOND_NS;
+            } while (next_expiry <= now);
+            continue;
+        }
+
+        uint64_t remaining = next_expiry - now;
+        std::this_thread::sleep_for(std::chrono::nanoseconds(remaining));
     }
 }

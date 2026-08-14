@@ -9,12 +9,17 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}../Async_Logger
     ${CMAKE_CURRENT_SOURCE_DIR}../Match_Engine
     ${CMAKE_CURRENT_SOURCE_DIR}../Lock_Free_Ring_Buffer/mpsc
+    ${CMAKE_CURRENT_SOURCE_DIR}../Event_Bus
 )
 
 find_package(Threads REQUIRED)
 
+add_library(EventBus STATIC
+    ../Event_Bus/EventBus.cpp
+)
+
 add_library(AsyncLogger STATIC
-    Async_Logger/AsyncLogger.cpp
+    ../Async_Logger/AsyncLogger.cpp
 )
 
 target_link_libraries(AsyncLogger
@@ -22,17 +27,18 @@ target_link_libraries(AsyncLogger
 )
 
 add_library(MatchingEngine STATIC
-    Match_Engine/MatchingEngine.cpp
-    Match_Engine/MatchingEngineThread.cpp
+    MatchingEngine.cpp
+    MatchingEngineThread.cpp
 )
 
 target_link_libraries(MatchingEngine
     AsyncLogger
+    EventBus
     Threads::Threads
 )
 
 add_executable(test
-    Match_Engine/test.cpp
+    test.cpp
 )
 
 target_link_libraries(test

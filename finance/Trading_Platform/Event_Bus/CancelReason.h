@@ -6,7 +6,8 @@ enum class CancelReason{
     IOCResidual = 2,
     FOKNotFilled = 3,
     MarketClosed = 4,
-    // RiskLiquidation,
-    SystemShutdown = 5 
+    SystemShutdown = 5,    
+    RiskLiquidation = 6,
+    Expired = 7
 };
 }

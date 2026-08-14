@@ -346,6 +346,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   ../Event_Bus/Event/EventType.h \
   ../Event_Bus/Event/BookUpdateEvent.h \
   ../Event_Bus/BookUpdate.h \
+  ../Event_Bus/Event/OrderAcceptedEvent.h \
+  ../Event_Bus/Event/OrderCancelledEvent.h \
+  ../Event_Bus/CancelReason.h \
+  ../Event_Bus/Event/OrderRejectedEvent.h \
+  ../Event_Bus/RejectReason.h \
+  ../Event_Bus/Event/RiskViolationEvent.h \
+  ../Event_Bus/RiskViolationReason.h \
   ../Event_Bus/SubscriberStats.h \
   ../Event_Bus/TradeLogger.h \
   ../Event_Bus/TradeFormatter.h \
@@ -450,14 +457,14 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /usr/include/c++/14/bits/regex.tcc \
   /usr/include/c++/14/bits/regex_executor.h \
   /usr/include/c++/14/bits/regex_executor.tcc \
-  ../Persistence/PersistenceService.h \
+  ../Persistence/Writer.h \
   ../Replay/ReplayEngine.h \
   ../Replay/ReplayReader.h
 
 
 ../Replay/ReplayEngine.h:
 
-../Persistence/PersistenceService.h:
+../Persistence/Writer.h:
 
 /usr/include/c++/14/bits/regex_executor.tcc:
 
@@ -502,6 +509,12 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/stl_set.h:
 
 /usr/include/c++/14/set:
+
+/usr/include/c++/14/bits/stl_numeric.h:
+
+/usr/include/c++/14/bits/random.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/opt_random.h:
 
 /usr/include/c++/14/bits/erase_if.h:
 
@@ -635,6 +648,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/linux/types.h:
 
+../Event_Bus/Event/OrderRejectedEvent.h:
+
+../Event_Bus/Event/RiskViolationEvent.h:
+
 /usr/include/c++/14/functional:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
@@ -753,6 +770,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/stdint.h:
 
+/usr/include/c++/14/bits/stream_iterator.h:
+
+/usr/include/x86_64-linux-gnu/sys/time.h:
+
 /usr/include/linux/limits.h:
 
 /usr/include/strings.h:
@@ -825,6 +846,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/char_traits.h:
 
+/usr/include/c++/14/numeric:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h:
+
 ../Event_Bus/Subscriber.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
@@ -842,8 +867,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/move.h:
 
 /usr/include/c++/14/pstl/pstl_config.h:
-
-/usr/include/c++/14/bits/stl_numeric.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
@@ -929,8 +952,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/istream.tcc:
 
-/usr/include/c++/14/bits/postypes.h:
-
 /usr/include/endian.h:
 
 /usr/include/c++/14/ext/atomicity.h:
@@ -977,8 +998,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/debug/assertions.h:
 
-/usr/include/c++/14/bits/memory_resource.h:
-
 /usr/include/c++/14/cstddef:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
@@ -1004,8 +1023,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/cwctype:
 
 /usr/include/c++/14/bits/atomic_timed_wait.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/opt_random.h:
 
 /usr/include/c++/14/bits/ranges_util.h:
 
@@ -1038,8 +1055,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
 /usr/include/c++/14/vector:
-
-/usr/include/c++/14/bits/locale_facets.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
@@ -1153,6 +1168,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/linux/close_range.h:
 
+/usr/include/c++/14/pstl/glue_numeric_defs.h:
+
+/usr/include/c++/14/climits:
+
 /usr/include/c++/14/iomanip:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
@@ -1217,10 +1236,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/this_thread_sleep.h:
 
-/usr/include/x86_64-linux-gnu/sys/time.h:
-
-/usr/include/c++/14/bits/stream_iterator.h:
-
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/include/c++/14/fstream:
@@ -1263,7 +1278,31 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/iostream:
 
+/usr/include/c++/14/iterator:
+
+/usr/include/c++/14/cstdlib:
+
+../Event_Bus/Event/TradeEvent.h:
+
 ../Event_Bus/Event/BookUpdateEvent.h:
+
+/usr/include/c++/14/bits/postypes.h:
+
+../Event_Bus/Event/OrderAcceptedEvent.h:
+
+/usr/include/c++/14/tr1/gamma.tcc:
+
+/usr/include/c++/14/bits/memory_resource.h:
+
+../Event_Bus/Event/OrderCancelledEvent.h:
+
+../Event_Bus/CancelReason.h:
+
+../Event_Bus/RejectReason.h:
+
+/usr/include/c++/14/bits/locale_facets.tcc:
+
+../Event_Bus/RiskViolationReason.h:
 
 ../Event_Bus/MarketDataService.h:
 
@@ -1329,8 +1368,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/specfun.h:
 
-/usr/include/c++/14/tr1/gamma.tcc:
-
 /usr/include/c++/14/tr1/special_function_util.h:
 
 /usr/include/asm-generic/int-ll64.h:
@@ -1342,19 +1379,3 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/tr1/exp_integral.tcc:
 
 /usr/include/c++/14/bits/random.h:
-
-/usr/include/c++/14/bits/random.tcc:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h:
-
-/usr/include/c++/14/numeric:
-
-/usr/include/c++/14/climits:
-
-/usr/include/c++/14/pstl/glue_numeric_defs.h:
-
-/usr/include/c++/14/cstdlib:
-
-../Event_Bus/Event/TradeEvent.h:
-
-/usr/include/c++/14/iterator:

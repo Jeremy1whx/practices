@@ -243,6 +243,14 @@ CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o: ../Event_Bus/EventBus.cpp \
   ../Event_Bus/Event/BookUpdateEvent.h \
   /usr/include/c++/14/optional \
   ../Event_Bus/BookUpdate.h \
+  ../Event_Bus/Event/OrderAcceptedEvent.h \
+  ../Order/Order.h \
+  ../Event_Bus/Event/OrderCancelledEvent.h \
+  ../Event_Bus/CancelReason.h \
+  ../Event_Bus/Event/OrderRejectedEvent.h \
+  ../Event_Bus/RejectReason.h \
+  ../Event_Bus/Event/RiskViolationEvent.h \
+  ../Event_Bus/RiskViolationReason.h \
   ../Event_Bus/SubscriberStats.h \
   ../Event_Bus/TradeLogger.h \
   ../Event_Bus/TradeFormatter.h \
@@ -454,6 +462,16 @@ CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o: ../Event_Bus/EventBus.cpp \
 /usr/include/c++/14/bits/fs_ops.h:
 
 ../Event_Bus/TradeFormatter.h:
+
+../Event_Bus/RiskViolationReason.h:
+
+../Event_Bus/RejectReason.h:
+
+../Event_Bus/CancelReason.h:
+
+../Event_Bus/Event/OrderCancelledEvent.h:
+
+../Event_Bus/Event/OrderAcceptedEvent.h:
 
 /usr/include/c++/14/bits/shared_ptr.h:
 
@@ -943,6 +961,10 @@ CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o: ../Event_Bus/EventBus.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+../Event_Bus/Event/RiskViolationEvent.h:
+
+../Event_Bus/Event/OrderRejectedEvent.h:
+
 /usr/include/linux/types.h:
 
 /usr/lib/linux/uapi/x86/asm/types.h:
@@ -960,6 +982,8 @@ CMakeFiles/EventBus.dir/Event_Bus/EventBus.cpp.o: ../Event_Bus/EventBus.cpp \
 /usr/include/c++/14/ext/atomicity.h:
 
 /usr/include/asm-generic/posix_types.h:
+
+../Order/Order.h:
 
 /usr/include/c++/14/bits/locale_facets.h:
 

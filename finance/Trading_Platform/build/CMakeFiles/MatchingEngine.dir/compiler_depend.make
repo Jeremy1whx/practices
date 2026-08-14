@@ -345,6 +345,13 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngine.cpp.o: ../Match_Engine
   ../Event_Bus/Event/EventType.h \
   ../Event_Bus/Event/BookUpdateEvent.h \
   ../Event_Bus/BookUpdate.h \
+  ../Event_Bus/Event/OrderAcceptedEvent.h \
+  ../Event_Bus/Event/OrderCancelledEvent.h \
+  ../Event_Bus/CancelReason.h \
+  ../Event_Bus/Event/OrderRejectedEvent.h \
+  ../Event_Bus/RejectReason.h \
+  ../Event_Bus/Event/RiskViolationEvent.h \
+  ../Event_Bus/RiskViolationReason.h \
   ../Event_Bus/SubscriberStats.h \
   ../Event_Bus/TradeLogger.h \
   ../Event_Bus/TradeFormatter.h \
@@ -707,6 +714,13 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.o: ../Match_
   ../Event_Bus/Event/EventType.h \
   ../Event_Bus/Event/BookUpdateEvent.h \
   ../Event_Bus/BookUpdate.h \
+  ../Event_Bus/Event/OrderAcceptedEvent.h \
+  ../Event_Bus/Event/OrderCancelledEvent.h \
+  ../Event_Bus/CancelReason.h \
+  ../Event_Bus/Event/OrderRejectedEvent.h \
+  ../Event_Bus/RejectReason.h \
+  ../Event_Bus/Event/RiskViolationEvent.h \
+  ../Event_Bus/RiskViolationReason.h \
   ../Event_Bus/SubscriberStats.h \
   ../Event_Bus/TradeLogger.h \
   ../Event_Bus/TradeFormatter.h \
@@ -750,6 +764,16 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.o: ../Match_
 ../Event_Bus/Event/EventUtils.h:
 
 ../Event_Bus/MarketDataService.h:
+
+../Event_Bus/RiskViolationReason.h:
+
+../Event_Bus/RejectReason.h:
+
+../Event_Bus/CancelReason.h:
+
+../Event_Bus/Event/OrderCancelledEvent.h:
+
+../Event_Bus/Event/OrderAcceptedEvent.h:
 
 ../Event_Bus/Event/BookUpdateEvent.h:
 
@@ -1276,6 +1300,10 @@ CMakeFiles/MatchingEngine.dir/Match_Engine/MatchingEngineThread.cpp.o: ../Match_
 /usr/include/c++/14/bits/string_view.tcc:
 
 /usr/include/linux/sched/types.h:
+
+../Event_Bus/Event/RiskViolationEvent.h:
+
+../Event_Bus/Event/OrderRejectedEvent.h:
 
 /usr/include/linux/types.h:
 

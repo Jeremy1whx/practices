@@ -15,6 +15,7 @@ TEST_CASE("Integration Test") {
     exchange::EventBus bus;
 
     exchange::EventPublisher publisher(bus);
+    exchange::ExpiryScheduler scheduler;
 
     AsyncLogger logger("logger.log");
     logger.start();
@@ -29,11 +30,11 @@ TEST_CASE("Integration Test") {
     bus.subscribe(&market_data);
     bus.subscribe(&prs_srv);
 
-    exchange::MatchingEngine engine(publisher);
+    exchange::MatchingEngine engine(publisher,scheduler);
 
-    Order sell{1, Side::Sell, 100.0, 10, 1};
+    Order sell{1, Side::Sell, Type::GTC, 100.0, 10, 1};
 
-    Order buy{2, Side::Buy, 100.0, 10, 2};
+    Order buy{2, Side::Buy, Type::GTC, 100.0, 10, 2};
 
     engine.process_order(sell);
 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libAsyncLogger.a CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o
+/usr/bin/ranlib libAsyncLogger.a

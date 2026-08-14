@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMatchingEngine.a CMakeFiles/MatchingEngine.dir/MatchingEngine.cpp.o CMakeFiles/MatchingEngine.dir/MatchingEngineThread.cpp.o
+/usr/bin/ranlib libMatchingEngine.a
