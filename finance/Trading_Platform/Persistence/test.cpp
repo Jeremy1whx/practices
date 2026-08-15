@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_ENABLE_BENCHMARKING 
 
-#include "PersistenceService.h"
+#include "Writer.h"
 #include "../Event_Bus/EventBus.h"
 #include "../Event_Bus/EventPublisher.h"
 #include "../Lock_Free_Ring_Buffer/mpsc/catch.hpp"
@@ -9,7 +9,7 @@
 TEST_CASE("Persistence receives events") {
     exchange::EventBus bus;
 
-    exchange::PersistenceService prs_srv("test.log");
+    exchange::TextWriter prs_srv("test.log");
 
     bus.subscribe(&prs_srv);
 

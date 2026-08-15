@@ -254,7 +254,11 @@ private:
             auto* next = it->next;
             if (it->expire_time <= current_time) {
                 uint64_t order_id = it->order_id;
-                delete_expiry(order_id);
+                auto expiry = expiry_lookup_.find(order_id);
+                assert(expiry != expiry_lookup_.end());
+                remove_from_list(days_wheel_[day_offset_], it);
+                expiry_lookup_.erase(expiry);
+                expiry_pool_.deallocate(it);
                 cancel_callback_(order_id, CancelReason::Expired);
 
             } else {
