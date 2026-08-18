@@ -305,6 +305,6 @@ Results from running on a dedicated CPU core (Linux):
 - Abstract event bus from matching engine and extend different events
 - Persistence and replay for matching results (being done)
 - Snapshot and replay for order books (being done)
-- 30 test cases for matching engine, 
+- 30 test cases for matching engine, 12 test cases for event bus
 
 # By Jeremy
