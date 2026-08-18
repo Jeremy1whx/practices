@@ -241,11 +241,48 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
   ../Event/BookUpdateEvent.h \
   /usr/include/c++/14/optional \
   ../BookUpdate.h \
+  ../Event/OrderAcceptedEvent.h \
+  /workspaces/practices/finance/Trading_Platform/Order/Order.h \
+  /usr/include/c++/14/chrono \
+  /usr/include/c++/14/bits/chrono.h \
+  /usr/include/c++/14/ratio \
+  /usr/include/c++/14/limits \
+  /usr/include/c++/14/ctime \
+  /usr/include/c++/14/sstream \
+  /usr/include/c++/14/bits/sstream.tcc \
+  /usr/include/c++/14/bits/shared_ptr.h \
+  /usr/include/c++/14/bits/shared_ptr_base.h \
+  /usr/include/c++/14/bits/allocated_ptr.h \
+  /usr/include/c++/14/bits/unique_ptr.h \
+  /usr/include/c++/14/ext/aligned_buffer.h \
+  /usr/include/c++/14/ext/concurrence.h \
+  /usr/include/c++/14/bits/align.h \
+  /usr/include/c++/14/bits/chrono_io.h \
+  /usr/include/c++/14/iomanip \
+  /usr/include/c++/14/locale \
+  /usr/include/c++/14/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/14/bits/codecvt.h \
+  /usr/include/c++/14/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/14/bits/locale_conv.h \
+  /usr/include/c++/14/bits/quoted_string.h \
+  /usr/include/c++/14/format \
+  /usr/include/c++/14/array \
+  /usr/include/c++/14/charconv \
+  /usr/include/c++/14/span \
+  /usr/include/c++/14/bits/unicode.h \
+  /usr/include/c++/14/bits/unicode-data.h \
+  ../Event/OrderCancelledEvent.h \
+  ../CancelReason.h \
+  ../Event/OrderRejectedEvent.h \
+  ../RejectReason.h \
+  ../Event/RiskViolationEvent.h \
+  ../RiskViolationReason.h \
   ../SubscriberStats.h \
   ../TradeLogger.h \
   ../TradeFormatter.h \
-  /usr/include/c++/14/sstream \
-  /usr/include/c++/14/bits/sstream.tcc \
   /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
   /usr/include/c++/14/atomic \
@@ -280,38 +317,9 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
   /usr/include/assert.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
   /workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h \
-  /usr/include/c++/14/array \
   /usr/include/c++/14/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/14/chrono \
-  /usr/include/c++/14/bits/chrono.h \
-  /usr/include/c++/14/ratio \
-  /usr/include/c++/14/limits \
-  /usr/include/c++/14/ctime \
-  /usr/include/c++/14/bits/shared_ptr.h \
-  /usr/include/c++/14/bits/shared_ptr_base.h \
-  /usr/include/c++/14/bits/allocated_ptr.h \
-  /usr/include/c++/14/bits/unique_ptr.h \
-  /usr/include/c++/14/ext/aligned_buffer.h \
-  /usr/include/c++/14/ext/concurrence.h \
-  /usr/include/c++/14/bits/align.h \
-  /usr/include/c++/14/bits/chrono_io.h \
-  /usr/include/c++/14/iomanip \
-  /usr/include/c++/14/locale \
-  /usr/include/c++/14/bits/locale_facets_nonio.h \
-  /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
-  /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/14/bits/codecvt.h \
-  /usr/include/c++/14/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/14/bits/locale_conv.h \
-  /usr/include/c++/14/bits/quoted_string.h \
-  /usr/include/c++/14/format \
-  /usr/include/c++/14/charconv \
-  /usr/include/c++/14/span \
-  /usr/include/c++/14/bits/unicode.h \
-  /usr/include/c++/14/bits/unicode-data.h \
   /usr/include/c++/14/thread \
   /usr/include/c++/14/stop_token \
   /usr/include/c++/14/bits/std_thread.h \
@@ -326,11 +334,24 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
   /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
   /usr/include/c++/14/bits/fstream.tcc \
+  /usr/include/c++/14/filesystem \
+  /usr/include/c++/14/bits/fs_fwd.h \
+  /usr/include/c++/14/bits/fs_path.h \
+  /usr/include/c++/14/codecvt \
+  /usr/include/c++/14/bits/fs_dir.h \
+  /usr/include/c++/14/bits/fs_ops.h \
+  ../MarketDataService.h \
   ../Event/EventUtils.h \
   ../EventBusStats.h
 
 
 ../EventBusStats.h:
+
+/usr/include/c++/14/bits/fs_ops.h:
+
+/usr/include/c++/14/codecvt:
+
+/usr/include/c++/14/bits/fs_path.h:
 
 /usr/include/c++/14/bits/fstream.tcc:
 
@@ -351,36 +372,6 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 /usr/include/c++/14/bits/std_thread.h:
 
 /usr/include/c++/14/stop_token:
-
-/usr/include/c++/14/bits/unicode-data.h:
-
-/usr/include/c++/14/charconv:
-
-/usr/include/c++/14/format:
-
-/usr/include/c++/14/bits/quoted_string.h:
-
-/usr/include/c++/14/bits/locale_conv.h:
-
-/usr/include/c++/14/bits/codecvt.h:
-
-/usr/include/c++/14/bits/locale_facets_nonio.h:
-
-/usr/include/c++/14/bits/chrono_io.h:
-
-/usr/include/c++/14/ext/concurrence.h:
-
-/usr/include/c++/14/ext/aligned_buffer.h:
-
-/usr/include/c++/14/bits/allocated_ptr.h:
-
-/usr/include/c++/14/ctime:
-
-/usr/include/c++/14/limits:
-
-/usr/include/c++/14/bits/chrono.h:
-
-/usr/include/c++/14/chrono:
 
 /usr/include/string.h:
 
@@ -418,10 +409,6 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/include/c++/14/climits:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
-
-/usr/include/c++/14/bits/atomic_wait.h:
-
 /usr/include/linux/close_range.h:
 
 /usr/include/c++/14/bits/atomic_base.h:
@@ -430,11 +417,53 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 ../TradeFormatter.h:
 
-/usr/include/c++/14/iomanip:
+../SubscriberStats.h:
+
+../Event/RiskViolationEvent.h:
+
+../CancelReason.h:
+
+/usr/include/c++/14/bits/unicode-data.h:
+
+/usr/include/c++/14/charconv:
+
+/usr/include/c++/14/format:
+
+/usr/include/c++/14/bits/quoted_string.h:
+
+/usr/include/c++/14/bits/locale_conv.h:
+
+/usr/include/c++/14/bits/codecvt.h:
+
+/usr/include/c++/14/bits/atomic_wait.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
+
+/usr/include/c++/14/bits/locale_facets_nonio.h:
 
 ../TradeLogger.h:
 
-../SubscriberStats.h:
+/usr/include/c++/14/iomanip:
+
+/usr/include/c++/14/bits/chrono_io.h:
+
+/usr/include/c++/14/ext/concurrence.h:
+
+/usr/include/c++/14/ext/aligned_buffer.h:
+
+/usr/include/c++/14/bits/allocated_ptr.h:
+
+/usr/include/c++/14/ctime:
+
+/usr/include/c++/14/limits:
+
+/usr/include/c++/14/bits/chrono.h:
+
+/usr/include/c++/14/chrono:
+
+/workspaces/practices/finance/Trading_Platform/Order/Order.h:
+
+../Event/OrderAcceptedEvent.h:
 
 ../BookUpdate.h:
 
@@ -538,6 +567,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
+/usr/include/c++/14/bits/fs_fwd.h:
+
 /usr/include/c++/14/variant:
 
 /usr/include/c++/14/cstddef:
@@ -549,6 +580,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 /usr/include/c++/14/bits/vector.tcc:
 
 /usr/include/c++/14/bits/cpp_type_traits.h:
+
+/usr/include/c++/14/filesystem:
 
 /usr/include/c++/14/cstdint:
 
@@ -599,6 +632,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 /usr/include/c++/14/bits/unique_ptr.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h:
+
+../MarketDataService.h:
 
 /usr/include/time.h:
 
@@ -712,6 +747,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
+../Event/OrderRejectedEvent.h:
+
 /usr/include/asm-generic/int-ll64.h:
 
 /usr/include/c++/14/bits/locale_facets_nonio.tcc:
@@ -744,11 +781,17 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 ../EventBus.cpp:
 
+/usr/include/c++/14/bits/fs_dir.h:
+
 /usr/include/c++/14/bits/stl_iterator.h:
 
 /usr/include/c++/14/bits/stl_iterator_base_funcs.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+../RejectReason.h:
+
+../Event/OrderCancelledEvent.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
@@ -788,9 +831,9 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 
 /usr/include/c++/14/bit:
 
-/usr/include/c++/14/bits/shared_ptr_base.h:
-
 /usr/include/unistd.h:
+
+/usr/include/c++/14/bits/shared_ptr_base.h:
 
 /usr/include/c++/14/bits/localefwd.h:
 
@@ -811,6 +854,8 @@ CMakeFiles/EventBus.dir/EventBus.cpp.o: ../EventBus.cpp \
 /usr/include/c++/14/ext/alloc_traits.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+../RiskViolationReason.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 

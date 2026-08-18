@@ -293,7 +293,9 @@ Results from running on a dedicated CPU core (Linux):
 
 *Test configuration: 5 million trade pairs (10 million orders)*
 
-![alt text](image2.png)
+![alt text](image2match.png)
+
+![alt text](image2event.png)
 
 ## What's new
 
@@ -303,5 +305,6 @@ Results from running on a dedicated CPU core (Linux):
 - Abstract event bus from matching engine and extend different events
 - Persistence and replay for matching results (being done)
 - Snapshot and replay for order books (being done)
+- 30 test cases for matching engine, 
 
 # By Jeremy

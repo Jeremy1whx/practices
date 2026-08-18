@@ -241,11 +241,48 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   ../Event/BookUpdateEvent.h \
   /usr/include/c++/14/optional \
   ../BookUpdate.h \
+  ../Event/OrderAcceptedEvent.h \
+  /workspaces/practices/finance/Trading_Platform/Order/Order.h \
+  /usr/include/c++/14/chrono \
+  /usr/include/c++/14/bits/chrono.h \
+  /usr/include/c++/14/ratio \
+  /usr/include/c++/14/limits \
+  /usr/include/c++/14/ctime \
+  /usr/include/c++/14/sstream \
+  /usr/include/c++/14/bits/sstream.tcc \
+  /usr/include/c++/14/bits/shared_ptr.h \
+  /usr/include/c++/14/bits/shared_ptr_base.h \
+  /usr/include/c++/14/bits/allocated_ptr.h \
+  /usr/include/c++/14/bits/unique_ptr.h \
+  /usr/include/c++/14/ext/aligned_buffer.h \
+  /usr/include/c++/14/ext/concurrence.h \
+  /usr/include/c++/14/bits/align.h \
+  /usr/include/c++/14/bits/chrono_io.h \
+  /usr/include/c++/14/iomanip \
+  /usr/include/c++/14/locale \
+  /usr/include/c++/14/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/14/bits/codecvt.h \
+  /usr/include/c++/14/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/14/bits/locale_conv.h \
+  /usr/include/c++/14/bits/quoted_string.h \
+  /usr/include/c++/14/format \
+  /usr/include/c++/14/array \
+  /usr/include/c++/14/charconv \
+  /usr/include/c++/14/span \
+  /usr/include/c++/14/bits/unicode.h \
+  /usr/include/c++/14/bits/unicode-data.h \
+  ../Event/OrderCancelledEvent.h \
+  ../CancelReason.h \
+  ../Event/OrderRejectedEvent.h \
+  ../RejectReason.h \
+  ../Event/RiskViolationEvent.h \
+  ../RiskViolationReason.h \
   ../SubscriberStats.h \
   ../TradeLogger.h \
   ../TradeFormatter.h \
-  /usr/include/c++/14/sstream \
-  /usr/include/c++/14/bits/sstream.tcc \
   /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
   /usr/include/c++/14/atomic \
@@ -280,38 +317,9 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /usr/include/assert.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
   /workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h \
-  /usr/include/c++/14/array \
   /usr/include/c++/14/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/14/chrono \
-  /usr/include/c++/14/bits/chrono.h \
-  /usr/include/c++/14/ratio \
-  /usr/include/c++/14/limits \
-  /usr/include/c++/14/ctime \
-  /usr/include/c++/14/bits/shared_ptr.h \
-  /usr/include/c++/14/bits/shared_ptr_base.h \
-  /usr/include/c++/14/bits/allocated_ptr.h \
-  /usr/include/c++/14/bits/unique_ptr.h \
-  /usr/include/c++/14/ext/aligned_buffer.h \
-  /usr/include/c++/14/ext/concurrence.h \
-  /usr/include/c++/14/bits/align.h \
-  /usr/include/c++/14/bits/chrono_io.h \
-  /usr/include/c++/14/iomanip \
-  /usr/include/c++/14/locale \
-  /usr/include/c++/14/bits/locale_facets_nonio.h \
-  /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
-  /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/14/bits/codecvt.h \
-  /usr/include/c++/14/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/14/bits/locale_conv.h \
-  /usr/include/c++/14/bits/quoted_string.h \
-  /usr/include/c++/14/format \
-  /usr/include/c++/14/charconv \
-  /usr/include/c++/14/span \
-  /usr/include/c++/14/bits/unicode.h \
-  /usr/include/c++/14/bits/unicode-data.h \
   /usr/include/c++/14/thread \
   /usr/include/c++/14/stop_token \
   /usr/include/c++/14/bits/std_thread.h \
@@ -326,6 +334,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
   /usr/include/c++/14/bits/fstream.tcc \
+  /usr/include/c++/14/filesystem \
+  /usr/include/c++/14/bits/fs_fwd.h \
+  /usr/include/c++/14/bits/fs_path.h \
+  /usr/include/c++/14/codecvt \
+  /usr/include/c++/14/bits/fs_dir.h \
+  /usr/include/c++/14/bits/fs_ops.h \
+  ../MarketDataService.h \
   ../Event/EventUtils.h \
   ../EventBusStats.h \
   ../EventPublisher.h \
@@ -447,6 +462,22 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/signal_ext.h:
 
+/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
+
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
+
 /usr/include/c++/14/bits/erase_if.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
@@ -455,7 +486,9 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
-/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/cpu_defines.h:
 
 /usr/include/c++/14/algorithm:
 
@@ -463,11 +496,11 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/cxxabi_forced.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/c++/14/ratio:
 
 /usr/include/c++/14/cctype:
-
-/usr/include/asm-generic/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
@@ -503,8 +536,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/functional:
 
-/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
-
 /usr/include/c++/14/bits/regex.tcc:
 
 /usr/include/sched.h:
@@ -512,6 +543,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/concepts:
 
 /usr/include/c++/14/cwchar:
+
+/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/c++/14/bits/uniform_int_dist.h:
 
 /usr/include/ctype.h:
 
@@ -577,11 +612,9 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
-/usr/include/c++/14/bits/predefined_ops.h:
-
-/usr/include/libintl.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+
+../RiskViolationReason.h:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
@@ -596,8 +629,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
 /usr/include/c++/14/debug/debug.h:
 
@@ -646,6 +677,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/tr1/modified_bessel_func.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+../RejectReason.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
@@ -703,15 +738,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/unicode.h:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
-
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
 /usr/include/c++/14/vector:
 
 /usr/include/c++/14/bits/basic_string.tcc:
+
+../Event/OrderCancelledEvent.h:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -730,6 +763,12 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/c++/14/bits/locale_facets_nonio.tcc:
+
+../Event/OrderRejectedEvent.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+/usr/include/c++/14/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/14/bits/alloc_traits.h:
 
@@ -819,6 +858,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
+/usr/include/c++/14/bits/predefined_ops.h:
+
+../MarketDataService.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h:
 
 /usr/include/c++/14/bits/unique_ptr.h:
@@ -883,15 +926,15 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/cstdint:
 
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
-
-/usr/include/c++/14/bits/cpp_type_traits.h:
+/usr/include/c++/14/filesystem:
 
 /usr/include/c++/14/bits/vector.tcc:
 
 /usr/include/c++/14/bits/memory_resource.h:
 
 /usr/include/c++/14/cstddef:
+
+/usr/include/c++/14/bits/fs_fwd.h:
 
 /usr/include/c++/14/bits/atomic_lockfree_defines.h:
 
@@ -969,6 +1012,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/stl_iterator_base_funcs.h:
 
+/usr/include/c++/14/bits/fs_dir.h:
+
 /usr/include/c++/14/bits/streambuf.tcc:
 
 /usr/include/c++/14/bits/basic_ios.h:
@@ -1011,12 +1056,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
-
-/usr/include/c++/14/bits/uniform_int_dist.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
-
 ../Event/EventType.h:
 
 /usr/include/x86_64-linux-gnu/bits/signum-arch.h:
@@ -1033,15 +1072,73 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 ../BookUpdate.h:
 
-../SubscriberStats.h:
+/workspaces/practices/finance/Trading_Platform/Order/Order.h:
+
+../EventBus.h:
+
+/usr/include/c++/14/chrono:
+
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
+
+/usr/include/c++/14/bits/stl_pair.h:
+
+/usr/include/c++/14/bits/chrono.h:
+
+/usr/include/c++/14/tr1/beta_function.tcc:
+
+/usr/include/c++/14/limits:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/c++/14/ctime:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/error_constants.h:
+
+/usr/include/c++/14/bits/allocated_ptr.h:
+
+/usr/include/time.h:
+
+/usr/include/c++/14/ext/aligned_buffer.h:
+
+/usr/include/c++/14/ext/concurrence.h:
+
+/usr/include/c++/14/bits/chrono_io.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
 ../TradeLogger.h:
 
+/usr/include/c++/14/bits/locale_facets_nonio.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
+
+/usr/include/c++/14/bits/locale_conv.h:
+
+/usr/include/c++/14/bits/quoted_string.h:
+
+/usr/include/c++/14/bits/atomic_wait.h:
+
+/usr/include/c++/14/format:
+
+/usr/include/c++/14/charconv:
+
+/usr/include/c++/14/bits/unicode-data.h:
+
+/usr/include/asm-generic/errno.h:
+
+../CancelReason.h:
+
+/usr/include/c++/14/bits/specfun.h:
+
+../Event/RiskViolationEvent.h:
+
+../SubscriberStats.h:
+
 /usr/include/c++/14/bits/basic_ios.tcc:
 
 ../TradeFormatter.h:
+
+../Event/OrderAcceptedEvent.h:
 
 /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h:
 
@@ -1053,8 +1150,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/linux/close_range.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
-
 /usr/include/c++/14/pstl/glue_numeric_defs.h:
 
 /usr/include/c++/14/climits:
@@ -1063,9 +1158,9 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
-
 /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h:
 
@@ -1115,52 +1210,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/math.h:
 
-../EventBus.h:
-
-/usr/include/c++/14/chrono:
-
-/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
-
-/usr/include/c++/14/bits/stl_pair.h:
-
-/usr/include/c++/14/bits/chrono.h:
-
-/usr/include/c++/14/tr1/beta_function.tcc:
-
-/usr/include/c++/14/limits:
-
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
-/usr/include/c++/14/ctime:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/error_constants.h:
-
-/usr/include/c++/14/bits/allocated_ptr.h:
-
-/usr/include/time.h:
-
-/usr/include/c++/14/ext/aligned_buffer.h:
-
-/usr/include/c++/14/ext/concurrence.h:
-
-/usr/include/c++/14/bits/chrono_io.h:
-
-/usr/include/c++/14/bits/locale_facets_nonio.h:
-
-/usr/include/c++/14/bits/locale_conv.h:
-
-/usr/include/c++/14/bits/quoted_string.h:
-
-/usr/include/c++/14/bits/atomic_wait.h:
-
-/usr/include/c++/14/format:
-
-/usr/include/c++/14/charconv:
-
-/usr/include/c++/14/bits/unicode-data.h:
-
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
-
 /usr/include/c++/14/backward/binders.h:
 
 /usr/include/c++/14/stop_token:
@@ -1174,10 +1223,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
 /usr/include/semaphore.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/cpu_defines.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigstack.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
@@ -1195,13 +1240,23 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
 
-/usr/include/syscall.h:
-
 /usr/include/c++/14/bits/codecvt.h:
+
+/usr/include/syscall.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h:
 
 /usr/include/c++/14/bits/fstream.tcc:
+
+/usr/include/libintl.h:
+
+/usr/include/c++/14/bits/fs_path.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/c++/14/bits/cpp_type_traits.h:
+
+/usr/include/c++/14/bits/fs_ops.h:
 
 /usr/include/stdlib.h:
 
@@ -1231,23 +1286,19 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/cmath:
 
-/usr/include/c++/14/bits/stl_iterator_base_types.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigaction.h:
-
 /usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
+/usr/include/c++/14/codecvt:
+
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
 /usr/include/c++/14/bits/regex_scanner.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/usr/include/c++/14/bits/specfun.h:
 
 /usr/include/c++/14/tr1/gamma.tcc:
 
@@ -1286,9 +1337,3 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 ../EventBusStats.h:
 
 /usr/include/x86_64-linux-gnu/bits/signum-generic.h:
-
-/usr/include/c++/14/ratio:
-
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
