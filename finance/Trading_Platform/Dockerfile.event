@@ -1,0 +1,13 @@
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y libstdc++6 && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /results
+
+WORKDIR /app
+
+COPY Event_Bus/build/test ./event_bus
+
+RUN chmod +x ./event_bus
+
+CMD ./event_bus 2>&1 | tee /results/output.log
