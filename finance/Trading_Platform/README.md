@@ -299,7 +299,7 @@ Results from running on a dedicated CPU core (Linux):
 
 ## What's new
 
-1. Matching Engine – 4M+ orders/sec with 100ns P99 match latency
+- 1. Matching Engine – 4M+ orders/sec with 100ns P99 match latency
 
 Designed deterministic price-time priority matching using cache-optimized std::vector + intrusive linked list (replaced std::map for better cache locality)
 
@@ -313,7 +313,7 @@ Achieved 4.05M orders/sec throughput with P99 match duration of 100ns (peak: 69�
 
 Optimized via CPU affinity (dedicated core) and batch processing (4.38M orders/sec in batch mode)
 
-2. Event Bus – 6.9M+ events/sec with 197ns per-event latency
+- 2. Event Bus – 6.9M+ events/sec with 197ns per-event latency
 
 Built event-driven architecture with std::variant-based typed events (Trade, BookUpdate, OrderCancelled, OrderRejected)
 
@@ -325,7 +325,7 @@ Average per-event latency: 197ns (subscriber dispatch overhead)
 
 Designed for extensibility – new event types/subscribers can be added without modifying core dispatcher
 
-3. Persistence & Replay – Journaling and state recovery (in progress)
+- 3. Persistence & Replay – Journaling and state recovery (in progress)
 
 Implemented event journaling via TextWriter with async file I/O (non-blocking persistence)
 
