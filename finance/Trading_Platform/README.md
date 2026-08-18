@@ -253,25 +253,26 @@ Results from running on a dedicated CPU core (Linux):
 
 ## Key Components
 
-Component	Description
-`MatchingEngine`	Core matching logic with price-time priority
-`MatchingEngineThread`	Worker thread with batch processing and CPU affinity
-`ExpiryScheduler`	Time-wheel based order expiration manager
-`EventBus`	Central event dispatcher with observer pattern
-`EventPublisher`	Event publishing interface with timestamp generation
-`RingBuffer<T>`	Lock-free MPSC queue with cache-aligned head/tail
-`MemoryPool<T>`	Fixed-size object pool with O(1) allocation
-`LRUPool<T>`	Memory pool with LRU recycling policy
-`LatencyCollector`	Percentile (P50/P99) and max latency statistics
-`AsyncLogger`	Non-blocking file logger with background thread
-`OrderIngress`	Order submission entry point with MPSC queue
-`TextWriter`	Event persistence to journal file
-`SnapshotService`	Order book state snapshot capture
-`ReplayEngine`	System recovery from journal + snapshots
-`PriceLevel`	Order book price node with doubly-linked list
-`Order`	Core order data structure with expiry support
-`CacheAligned<T>`	False-sharing prevention with 64-byte alignment
-`pin_thread_to_core`	CPU affinity utility for Linux platforms
+| Component | Description |
+|-----------|-------------|
+| `MatchingEngine` | Core matching logic with price-time priority |
+| `MatchingEngineThread` |	Worker thread with batch processing and CPU affinity |
+| `ExpiryScheduler` |	Time-wheel based order expiration manager |
+| `EventBus` |	Central event dispatcher with observer pattern |
+| `EventPublisher` |	Event publishing interface with timestamp generation |
+| `RingBuffer<T>` |	Lock-free MPSC queue with cache-aligned head/tail |
+| `MemoryPool<T>` |	Fixed-size object pool with O(1) allocation |
+| `LRUPool<T>` |	Memory pool with LRU recycling policy |
+| `LatencyCollector` |	Percentile (P50/P99) and max latency statistics |
+| `AsyncLogger` |	Non-blocking file logger with background thread |
+| `OrderIngress` |	Order submission entry point with MPSC queue |
+| `TextWriter` |	Event persistence to journal file |
+| `SnapshotService` |	Order book state snapshot capture |
+| `ReplayEngine` |	System recovery from journal + snapshots |
+| `PriceLevel` |	Order book price node with doubly-linked list |
+| `Order` |	Core order data structure with expiry support |
+| `CacheAligned<T>` |	False-sharing prevention with 64-byte alignment |
+| `pin_thread_to_core` |	CPU affinity utility for Linux platforms |
 
 ## Performance Benchmarks
 
