@@ -25,20 +25,21 @@ std::ostream& operator<<(std::ostream& os, const std::optional<uint32_t>& opt) {
 }
 
 std::string_view to_string(CancelReason reason) {
-    switch (reason)
-    {
+    switch (reason) {
     case CancelReason::FOKNotFilled:
         return "FOKNotFIlled";
     case CancelReason::IOCResidual:
         return "IOCResidual";
     case CancelReason::MarketClosed:
         return "MarketClosed";
-    // case CancelReason::RiskLiquidation:
-    //     return "RiskLiquidation";
+    case CancelReason::RiskLiquidation:
+        return "RiskLiquidation";
     case CancelReason::SystemShutdown:
         return "SystemShutdown";
     case CancelReason::UserRequest:
-        return "UserRequest";    
+        return "UserRequest";
+    case CancelReason::Expired:
+        return "Expired";    
     default:
         return "Unknown";
     }
@@ -68,17 +69,17 @@ public:
 
     explicit TextWriter(const std::filesystem::path& path){
         journal_.open(path.string(), std::ios::out | std::ios::app);
-    };
+    }
 
     void on_event(const Event& event) override {
         std::visit([this](const auto& e) {
             write(e);
         }, event);
-    };
+    }
 
-    bool interested_in(EventType) const override {return true;};
+    bool interested_in(EventType) const override {return true;}
 
-    const char* name() const override {return "Persistence";};
+    const char* name() const override {return "Persistence";}
 
 private:
     std::ofstream journal_;
@@ -99,7 +100,7 @@ private:
             << " best_ask=" << event.update.best_ask
             << " last_trade_price=" << event.update.last_trade_price
             << " last_trade_qty=" << event.update.last_trade_quantity << std::endl;
-    };
+    }
     
     // void write(const OrderAcceptedEvent& event) {};
 
@@ -108,14 +109,15 @@ private:
             << "timestamp=" << event.header.timestamp_ns
             << " order_id=" << event.order_id
             << " cancel_reason=" << static_cast<int>(event.reason) << std::endl;
-    };
+    }
 
     void write(const OrderRejectedEvent& event) {
         journal_ << "OrderRejceted "
             << "timestamp= " << event.header.timestamp_ns
             << " order_id=" << event.order_id
             << " reject_reason=" << static_cast<int>(event.reason) << std::endl;
-    };
+    }
 
     // void write(const RiskViolationEvent& event) {};
-};}
+};
+}

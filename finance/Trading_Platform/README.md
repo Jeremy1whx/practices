@@ -299,42 +299,22 @@ Results from running on a dedicated CPU core (Linux):
 
 ## What's new
 
-- ### Matching Engine – 4M+ orders/sec with 100ns P99 match latency
+### 1. Matching Engine
+- Price-time priority matching with 6 order types (GTC/GTD/GTT/DAY/IOC/FOK)
+- Order book: changed `std::map` + intrusive list to `std::vector` + intrusive list for cache efficiency
+- Two-level time wheel (366-day + 86400-second) for O(1) expiry management
+- Custom memory pools with LRU recycling
 
-Designed deterministic price-time priority matching using cache-optimized std::vector + intrusive linked list (replaced std::map for better cache locality)
+### 2. Event Bus
+- Observer-pattern dispatcher with type-safe event filtering
+- 6.99M mixed events/sec to 4 subscribers
+- 197ns average latency per event
+- Supports Trade, BookUpdate, and Order lifecycle events
 
-Implemented 6 order types (GTC/GTD/GTT/DAY/IOC/FOK) with time-wheel based expiry management (366-day wheel + 86,400-second wheel)
-
-Built lock-free MPSC ring buffer for concurrent order ingestion with cache-aligned head/tail to prevent false sharing
-
-Developed custom memory pool with O(1) allocation, eliminating dynamic allocation in hot path
-
-Achieved 4.05M orders/sec throughput with P99 match duration of 100ns (peak: 69µs)
-
-Optimized via CPU affinity (dedicated core) and batch processing (4.38M orders/sec in batch mode)
-
-- ### Event Bus – 6.9M+ events/sec with 197ns per-event latency
-
-Built event-driven architecture with std::variant-based typed events (Trade, BookUpdate, OrderCancelled, OrderRejected)
-
-Implemented observer pattern with event filtering (interested_in) for fine-grained subscription control
-
-Achieved 6.99M mixed events/sec to 4 subscribers, 5.05M Trade events/sec to 5 subscribers
-
-Average per-event latency: 197ns (subscriber dispatch overhead)
-
-Designed for extensibility – new event types/subscribers can be added without modifying core dispatcher
-
-- ### Persistence & Replay – Journaling and state recovery (in progress)
-
-Implemented event journaling via TextWriter with async file I/O (non-blocking persistence)
-
-Designed snapshot service for order book state capture to enable fast recovery
-
-Built replay engine to reconstruct system state from journal + snapshots
-
-Currently validating integration: end-to-end persistence + replay tests passing
-
-Next: crash recovery scenarios and performance tuning for high-throughput replay
+### 3. Persistence & Replay
+- Journal writes all events to disk (human-readable format)
+- Replay engine reconstructs state from journal
+- Integration tests validate write-replay cycle
+- (In progress) Snapshot-based recovery for production use
 
 # By Jeremy

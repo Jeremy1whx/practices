@@ -3,9 +3,9 @@
 #include <cassert>
 
 template <typename T>
-class RingBuffer {
+class SPSCRingBuffer {
     public:
-        explicit RingBuffer(size_t capacity) : capacity_(capacity), buffer_(capacity) {
+        explicit SPSCRingBuffer(size_t capacity) : capacity_(capacity), buffer_(capacity) {
             assert ((capacity & (capacity - 1)) == 0 && "capacity must be power of 2");
             head_.store(0, std::memory_order_relaxed);
             tail_.store(0, std::memory_order_relaxed);
