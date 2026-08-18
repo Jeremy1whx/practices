@@ -240,12 +240,12 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         //     auto msg = format_trade(*trade);
         //     logger_->log(msg.c_str());
         // } else {
-        //     trade_pool_.recycle_oldest();}
+        
 
         // listener_->on_trade(*trade);
         publisher_.publish(*trade);
         publisher_.publish(update);
-
+        trade_pool_.recycle_oldest();
         order.quantity -= traded;
         resting->quantity -= traded;
 
@@ -337,11 +337,11 @@ void exchange::MatchingEngine::match_sell(Order& order) {
         //     auto msg = format_trade(*trade);
         //     logger_->log(msg.c_str());
         // } else {
-        //     trade_pool_.recycle_oldest();}
 
         // listener_->on_trade(*trade);
         publisher_.publish(*trade);
         publisher_.publish(update);
+        trade_pool_.recycle_oldest();
 
         order.quantity -= traded;
         resting->quantity -= traded;

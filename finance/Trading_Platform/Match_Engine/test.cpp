@@ -437,7 +437,7 @@ TEST_CASE("MPSC order ingress") {
     env.start();
 
     constexpr int threads = 4;
-    constexpr int N = 100000;
+    constexpr int N = 250000;
 
     std::vector<std::thread> workers;
 
@@ -450,7 +450,7 @@ TEST_CASE("MPSC order ingress") {
                     100.0,
                     1
                 );
-                while (!env.thread().submit_order(order)) {}
+                while (!env.thread().submit_order(order)) {std::this_thread::yield();}
             }
         });
     }
@@ -489,7 +489,7 @@ TEST_CASE("Latency benchmark") {
     auto env = create_test_env();
     env.start();
 
-    constexpr int N = 500000;
+    constexpr int N = 5000000;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -542,7 +542,7 @@ TEST_CASE("Batch processing benchmark") {
     auto env = create_test_env();
     env.start();
 
-    constexpr int N = 500000;
+    constexpr int N = 5000000;
 
     auto start = std::chrono::steady_clock::now();
 
