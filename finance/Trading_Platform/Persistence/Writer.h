@@ -90,7 +90,7 @@ private:
             << " buy=" << event.trade.buy_order_id
             << " sell=" << event.trade.sell_order_id
             << " price=" << event.trade.price
-            << " qty=" << event.trade.quantity << std::endl;
+            << " qty=" << event.trade.quantity << '\n';
     }
 
     void write(const BookUpdateEvent& event) {
@@ -99,7 +99,7 @@ private:
             << " best_bid=" << event.update.best_bid
             << " best_ask=" << event.update.best_ask
             << " last_trade_price=" << event.update.last_trade_price
-            << " last_trade_qty=" << event.update.last_trade_quantity << std::endl;
+            << " last_trade_qty=" << event.update.last_trade_quantity << '\n';
     }
     
     // void write(const OrderAcceptedEvent& event) {};
@@ -108,14 +108,14 @@ private:
         journal_ << "OrderCanCelled "
             << "timestamp=" << event.header.timestamp_ns
             << " order_id=" << event.order_id
-            << " cancel_reason=" << static_cast<int>(event.reason) << std::endl;
+            << " cancel_reason=" << static_cast<int>(event.reason) << '\n';
     }
 
     void write(const OrderRejectedEvent& event) {
         journal_ << "OrderRejceted "
             << "timestamp= " << event.header.timestamp_ns
             << " order_id=" << event.order_id
-            << " reject_reason=" << static_cast<int>(event.reason) << std::endl;
+            << " reject_reason=" << static_cast<int>(event.reason) << '\n';
     }
 
     // void write(const RiskViolationEvent& event) {};

@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/test.dir/test.cpp.o -o test  libEventBus.a libAsyncLogger.a 
+/usr/bin/c++ CMakeFiles/test.dir/test.cpp.o -o test  libEventBus.a libMatchingEngine.a libAsyncLogger.a 

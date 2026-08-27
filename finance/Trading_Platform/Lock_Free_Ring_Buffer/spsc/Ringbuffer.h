@@ -1,3 +1,5 @@
+#pragma once
+
 #include <atomic>
 #include <vector>
 #include <cassert>
@@ -19,7 +21,7 @@ class SPSCRingBuffer {
                 return false;
             }
 
-            buffer_[head] = item;
+            buffer_[head] = std::move(item);
             head_.store(next, std::memory_order_release);
             return true;
         }

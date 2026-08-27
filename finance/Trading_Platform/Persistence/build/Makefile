@@ -143,6 +143,19 @@ EventBus/fast:
 .PHONY : EventBus/fast
 
 #=============================================================================
+# Target rules for targets named MatchingEngine
+
+# Build rule for target.
+MatchingEngine: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MatchingEngine
+.PHONY : MatchingEngine
+
+# fast build rule for target.
+MatchingEngine/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/build
+.PHONY : MatchingEngine/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -227,6 +240,54 @@ workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EventBus.dir/build.make CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.s
 .PHONY : workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.s
 
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.o: workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.o
+
+# target to build an object file
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o
+
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.i: workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.i
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.i
+
+# target to preprocess a source file
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.i
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.i
+
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.s: workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.s
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.s
+
+# target to generate assembly for a file
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.s
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.s
+
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.o: workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.o
+
+# target to build an object file
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o
+
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.i: workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.i
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.i
+
+# target to preprocess a source file
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.i
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.i
+
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.s: workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.s
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.s
+
+# target to generate assembly for a file
+workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.s
+.PHONY : workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -237,6 +298,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... AsyncLogger"
 	@echo "... EventBus"
+	@echo "... MatchingEngine"
 	@echo "... test"
 	@echo "... test.o"
 	@echo "... test.i"
@@ -247,6 +309,12 @@ help:
 	@echo "... workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.o"
 	@echo "... workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.i"
 	@echo "... workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.s"
+	@echo "... workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.o"
+	@echo "... workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.i"
+	@echo "... workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.s"
+	@echo "... workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.o"
+	@echo "... workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.i"
+	@echo "... workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.s"
 .PHONY : help
 
 

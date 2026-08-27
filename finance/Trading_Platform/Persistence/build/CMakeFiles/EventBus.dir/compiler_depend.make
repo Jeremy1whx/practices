@@ -241,11 +241,48 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
   /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/BookUpdateEvent.h \
   /usr/include/c++/14/optional \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/BookUpdate.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderAcceptedEvent.h \
+  /workspaces/practices/finance/Trading_Platform/Order/Order.h \
+  /usr/include/c++/14/chrono \
+  /usr/include/c++/14/bits/chrono.h \
+  /usr/include/c++/14/ratio \
+  /usr/include/c++/14/limits \
+  /usr/include/c++/14/ctime \
+  /usr/include/c++/14/sstream \
+  /usr/include/c++/14/bits/sstream.tcc \
+  /usr/include/c++/14/bits/shared_ptr.h \
+  /usr/include/c++/14/bits/shared_ptr_base.h \
+  /usr/include/c++/14/bits/allocated_ptr.h \
+  /usr/include/c++/14/bits/unique_ptr.h \
+  /usr/include/c++/14/ext/aligned_buffer.h \
+  /usr/include/c++/14/ext/concurrence.h \
+  /usr/include/c++/14/bits/align.h \
+  /usr/include/c++/14/bits/chrono_io.h \
+  /usr/include/c++/14/iomanip \
+  /usr/include/c++/14/locale \
+  /usr/include/c++/14/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/14/bits/codecvt.h \
+  /usr/include/c++/14/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/14/bits/locale_conv.h \
+  /usr/include/c++/14/bits/quoted_string.h \
+  /usr/include/c++/14/format \
+  /usr/include/c++/14/array \
+  /usr/include/c++/14/charconv \
+  /usr/include/c++/14/span \
+  /usr/include/c++/14/bits/unicode.h \
+  /usr/include/c++/14/bits/unicode-data.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderCancelledEvent.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
-  /usr/include/c++/14/sstream \
-  /usr/include/c++/14/bits/sstream.tcc \
   /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
   /usr/include/c++/14/atomic \
@@ -280,38 +317,9 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
   /usr/include/assert.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
   /workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h \
-  /usr/include/c++/14/array \
   /usr/include/c++/14/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/14/chrono \
-  /usr/include/c++/14/bits/chrono.h \
-  /usr/include/c++/14/ratio \
-  /usr/include/c++/14/limits \
-  /usr/include/c++/14/ctime \
-  /usr/include/c++/14/bits/shared_ptr.h \
-  /usr/include/c++/14/bits/shared_ptr_base.h \
-  /usr/include/c++/14/bits/allocated_ptr.h \
-  /usr/include/c++/14/bits/unique_ptr.h \
-  /usr/include/c++/14/ext/aligned_buffer.h \
-  /usr/include/c++/14/ext/concurrence.h \
-  /usr/include/c++/14/bits/align.h \
-  /usr/include/c++/14/bits/chrono_io.h \
-  /usr/include/c++/14/iomanip \
-  /usr/include/c++/14/locale \
-  /usr/include/c++/14/bits/locale_facets_nonio.h \
-  /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
-  /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/14/bits/codecvt.h \
-  /usr/include/c++/14/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/14/bits/locale_conv.h \
-  /usr/include/c++/14/bits/quoted_string.h \
-  /usr/include/c++/14/format \
-  /usr/include/c++/14/charconv \
-  /usr/include/c++/14/span \
-  /usr/include/c++/14/bits/unicode.h \
-  /usr/include/c++/14/bits/unicode-data.h \
   /usr/include/c++/14/thread \
   /usr/include/c++/14/stop_token \
   /usr/include/c++/14/bits/std_thread.h \
@@ -367,38 +375,6 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 
 /usr/include/c++/14/stop_token:
 
-/usr/include/c++/14/bits/unicode-data.h:
-
-/usr/include/c++/14/charconv:
-
-/usr/include/c++/14/format:
-
-/usr/include/c++/14/bits/quoted_string.h:
-
-/usr/include/c++/14/bits/locale_conv.h:
-
-/usr/include/c++/14/bits/locale_facets_nonio.tcc:
-
-/usr/include/c++/14/bits/locale_facets_nonio.h:
-
-/usr/include/c++/14/iomanip:
-
-/usr/include/c++/14/bits/chrono_io.h:
-
-/usr/include/c++/14/ext/concurrence.h:
-
-/usr/include/c++/14/ext/aligned_buffer.h:
-
-/usr/include/c++/14/bits/allocated_ptr.h:
-
-/usr/include/c++/14/ctime:
-
-/usr/include/c++/14/limits:
-
-/usr/include/c++/14/bits/chrono.h:
-
-/usr/include/c++/14/chrono:
-
 /usr/include/string.h:
 
 /workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h:
@@ -431,23 +407,63 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
-
-/usr/include/c++/14/bits/atomic_wait.h:
-
 /usr/include/linux/close_range.h:
 
 /usr/include/c++/14/bits/atomic_base.h:
 
 /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h:
 
-/usr/include/c++/14/bits/sstream.tcc:
-
 /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h:
 
 /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h:
 
 /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h:
+
+/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h:
+
+/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderCancelledEvent.h:
+
+/usr/include/c++/14/bits/unicode-data.h:
+
+/usr/include/c++/14/charconv:
+
+/usr/include/c++/14/format:
+
+/usr/include/c++/14/bits/quoted_string.h:
+
+/usr/include/c++/14/bits/locale_conv.h:
+
+/usr/include/c++/14/bits/locale_facets_nonio.tcc:
+
+/usr/include/c++/14/bits/atomic_wait.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
+
+/usr/include/c++/14/bits/locale_facets_nonio.h:
+
+/usr/include/c++/14/iomanip:
+
+/usr/include/c++/14/bits/chrono_io.h:
+
+/usr/include/c++/14/ext/concurrence.h:
+
+/usr/include/c++/14/ext/aligned_buffer.h:
+
+/usr/include/c++/14/bits/allocated_ptr.h:
+
+/usr/include/c++/14/bits/sstream.tcc:
+
+/usr/include/c++/14/ctime:
+
+/usr/include/c++/14/limits:
+
+/usr/include/c++/14/bits/chrono.h:
+
+/workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h:
+
+/usr/include/c++/14/chrono:
+
+/workspaces/practices/finance/Trading_Platform/Order/Order.h:
 
 /usr/include/c++/14/climits:
 
@@ -621,6 +637,8 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 
 /usr/include/c++/14/pstl/pstl_config.h:
 
+/workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h:
+
 /usr/include/c++/14/bits/basic_ios.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
@@ -775,6 +793,8 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
+/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h:
+
 /usr/include/c++/14/bits/move.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
@@ -803,9 +823,9 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 
 /usr/include/c++/14/bit:
 
-/usr/include/c++/14/bits/shared_ptr_base.h:
-
 /usr/include/unistd.h:
+
+/usr/include/c++/14/bits/shared_ptr_base.h:
 
 /usr/include/c++/14/bits/localefwd.h:
 
@@ -870,6 +890,8 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 /usr/include/c++/14/iosfwd:
 
 /usr/include/c++/14/bits/stringfwd.h:
+
+/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderAcceptedEvent.h:
 
 /usr/include/c++/14/bits/postypes.h:
 
@@ -966,6 +988,8 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
 /usr/include/c++/14/bits/ranges_algo.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 

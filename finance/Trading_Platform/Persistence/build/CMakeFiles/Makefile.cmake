@@ -45,5 +45,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/AsyncLogger.dir/DependInfo.cmake"
   "CMakeFiles/EventBus.dir/DependInfo.cmake"
+  "CMakeFiles/MatchingEngine.dir/DependInfo.cmake"
   "CMakeFiles/test.dir/DependInfo.cmake"
   )

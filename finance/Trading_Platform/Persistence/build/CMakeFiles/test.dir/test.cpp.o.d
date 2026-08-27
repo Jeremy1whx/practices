@@ -1,7 +1,7 @@
 CMakeFiles/test.dir/test.cpp.o: \
  /workspaces/practices/finance/Trading_Platform/Persistence/test.cpp \
  /usr/include/stdc-predef.h \
- /workspaces/practices/finance/Trading_Platform/Persistence/PersistenceService.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/Writer.h \
  /usr/include/c++/14/fstream /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h \
@@ -184,38 +184,50 @@ CMakeFiles/test.dir/test.cpp.o: \
  /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/BookUpdateEvent.h \
  /usr/include/c++/14/optional \
  /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/../BookUpdate.h \
- /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/SubscriberStats.h \
- /usr/include/c++/14/filesystem /usr/include/c++/14/bits/fs_fwd.h \
- /usr/include/c++/14/bits/chrono.h /usr/include/c++/14/ratio \
- /usr/include/c++/14/limits /usr/include/c++/14/ctime \
- /usr/include/c++/14/bits/fs_path.h /usr/include/c++/14/locale \
- /usr/include/c++/14/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/14/bits/locale_facets_nonio.tcc \
- /usr/include/c++/14/bits/locale_conv.h /usr/include/c++/14/iomanip \
- /usr/include/c++/14/bits/quoted_string.h /usr/include/c++/14/sstream \
- /usr/include/c++/14/bits/sstream.tcc /usr/include/c++/14/codecvt \
- /usr/include/c++/14/ext/concurrence.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/OrderAcceptedEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/../../Order/Order.h \
+ /usr/include/c++/14/chrono /usr/include/c++/14/bits/chrono.h \
+ /usr/include/c++/14/ratio /usr/include/c++/14/limits \
+ /usr/include/c++/14/ctime /usr/include/c++/14/sstream \
+ /usr/include/c++/14/bits/sstream.tcc /usr/include/c++/14/vector \
+ /usr/include/c++/14/bits/stl_uninitialized.h \
+ /usr/include/c++/14/bits/stl_vector.h \
+ /usr/include/c++/14/bits/stl_bvector.h \
+ /usr/include/c++/14/bits/vector.tcc /usr/include/c++/14/bits/stl_algo.h \
+ /usr/include/c++/14/bits/algorithmfwd.h \
+ /usr/include/c++/14/bits/stl_heap.h \
+ /usr/include/c++/14/bits/uniform_int_dist.h \
+ /usr/include/c++/14/bits/stl_tempbuf.h \
  /usr/include/c++/14/bits/shared_ptr.h \
  /usr/include/c++/14/bits/shared_ptr_base.h \
  /usr/include/c++/14/bits/allocated_ptr.h \
  /usr/include/c++/14/bits/unique_ptr.h \
  /usr/include/c++/14/ext/aligned_buffer.h \
- /usr/include/c++/14/bits/align.h \
- /usr/include/c++/14/bits/stl_uninitialized.h \
+ /usr/include/c++/14/ext/concurrence.h /usr/include/c++/14/bits/align.h \
+ /usr/include/c++/14/bits/chrono_io.h /usr/include/c++/14/iomanip \
+ /usr/include/c++/14/locale \
+ /usr/include/c++/14/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/14/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/14/bits/locale_conv.h \
+ /usr/include/c++/14/bits/quoted_string.h /usr/include/c++/14/format \
+ /usr/include/c++/14/array /usr/include/c++/14/charconv \
+ /usr/include/c++/14/span /usr/include/c++/14/bits/ranges_algobase.h \
+ /usr/include/c++/14/bits/unicode.h \
+ /usr/include/c++/14/bits/unicode-data.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/OrderCancelledEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/../CancelReason.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/OrderRejectedEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/../RejectReason.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/RiskViolationEvent.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/Event/../RiskViolationReason.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/SubscriberStats.h \
+ /usr/include/c++/14/filesystem /usr/include/c++/14/bits/fs_fwd.h \
+ /usr/include/c++/14/bits/fs_path.h /usr/include/c++/14/codecvt \
  /usr/include/c++/14/bits/fs_dir.h /usr/include/c++/14/bits/fs_ops.h \
  /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/EventBus.h \
- /usr/include/c++/14/vector /usr/include/c++/14/bits/stl_vector.h \
- /usr/include/c++/14/bits/stl_bvector.h \
- /usr/include/c++/14/bits/vector.tcc /usr/include/c++/14/algorithm \
- /usr/include/c++/14/bits/stl_algo.h \
- /usr/include/c++/14/bits/algorithmfwd.h \
- /usr/include/c++/14/bits/stl_heap.h \
- /usr/include/c++/14/bits/uniform_int_dist.h \
- /usr/include/c++/14/bits/stl_tempbuf.h \
- /usr/include/c++/14/bits/ranges_algo.h \
- /usr/include/c++/14/bits/ranges_algobase.h \
+ /usr/include/c++/14/algorithm /usr/include/c++/14/bits/ranges_algo.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h /usr/include/c++/14/iostream \
  /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/TradeLogger.h \
@@ -248,14 +260,10 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/assert.h \
  /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
  /workspaces/practices/finance/Trading_Platform/Persistence/../Event_Bus/../Async_Logger/LogMessage.h \
- /usr/include/c++/14/array /usr/include/c++/14/cstring \
- /usr/include/string.h /usr/include/strings.h /usr/include/c++/14/chrono \
- /usr/include/c++/14/bits/chrono_io.h /usr/include/c++/14/format \
- /usr/include/c++/14/charconv /usr/include/c++/14/span \
- /usr/include/c++/14/bits/unicode.h \
- /usr/include/c++/14/bits/unicode-data.h /usr/include/c++/14/thread \
- /usr/include/c++/14/stop_token /usr/include/c++/14/bits/std_thread.h \
- /usr/include/c++/14/semaphore /usr/include/c++/14/bits/semaphore_base.h \
+ /usr/include/c++/14/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/14/thread /usr/include/c++/14/stop_token \
+ /usr/include/c++/14/bits/std_thread.h /usr/include/c++/14/semaphore \
+ /usr/include/c++/14/bits/semaphore_base.h \
  /usr/include/c++/14/bits/atomic_timed_wait.h \
  /usr/include/c++/14/bits/this_thread_sleep.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
@@ -350,4 +358,18 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/c++/14/bits/regex_compiler.tcc \
  /usr/include/c++/14/bits/regex.h /usr/include/c++/14/bits/regex.tcc \
  /usr/include/c++/14/bits/regex_executor.h \
- /usr/include/c++/14/bits/regex_executor.tcc
+ /usr/include/c++/14/bits/regex_executor.tcc \
+ /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotThread.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/MatchingEngineThread.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/MatchingEngine.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Latency/LatencyCollector.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Order/PriceLevel.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Memory_Pool/LRU.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Memory_Pool/MemoryPool.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../CPU_Affinity/Affinity.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/ExpiryScheduler.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Order/OrderIngress.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Order/MPSCQueue.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Persistence/SnapshotService.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/../Match_Engine/../Persistence/../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
+ /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotWriter.h

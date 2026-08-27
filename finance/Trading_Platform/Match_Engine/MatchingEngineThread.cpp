@@ -1,7 +1,7 @@
 #include "MatchingEngineThread.h"
 
-exchange::MatchingEngineThread::MatchingEngineThread(MatchingEngine& engine, size_t queue_size) 
-    : engine_(engine), ingress_(queue_size) {}
+exchange::MatchingEngineThread::MatchingEngineThread(MatchingEngine& engine, SnapshotService& service, size_t queue_size) 
+    : engine_(engine), service_(service), ingress_(queue_size) {}
 
 exchange::MatchingEngineThread::~MatchingEngineThread() {
     stop();
@@ -61,6 +61,13 @@ void exchange::MatchingEngineThread::run() {
             expiry_requested_.store(false, std::memory_order_relaxed);
         }
 
+        if (snapshot_requested_.load(std::memory_order_relaxed)) {
+            service_.append_snapshot(snapshot_sequence_, now_absolute_ns());
+            completed_snapshot_.store(snapshot_sequence_, std::memory_order_release);
+            ++snapshot_sequence_;
+            snapshot_requested_.store(false, std::memory_order_relaxed);
+        }
+
         if (count == 0) {
             std::this_thread::yield();
         }
@@ -68,21 +75,20 @@ void exchange::MatchingEngineThread::run() {
 }
 
 void exchange::MatchingEngineThread::expiry_loop() {
-    uint64_t next_expiry = now_absolute_ns() + SECOND_NS;
+    auto next_expiry = std::chrono::system_clock::now() + std::chrono::seconds(60);
 
     while (running_) {
-        uint64_t now = now_absolute_ns();
+        auto now = std::chrono::system_clock::now();
 
         if (now >= next_expiry) {
             expiry_requested_.store(true, std::memory_order_relaxed);
             
             do {
-                next_expiry += SECOND_NS;
+                next_expiry += std::chrono::seconds(60);
             } while (next_expiry <= now);
             continue;
         }
 
-        uint64_t remaining = next_expiry - now;
-        std::this_thread::sleep_for(std::chrono::nanoseconds(remaining));
+        std::this_thread::sleep_until(next_expiry);
     }
 }

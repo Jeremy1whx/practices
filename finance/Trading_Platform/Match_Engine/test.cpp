@@ -13,7 +13,8 @@ public:
           publisher_(bus_),
           scheduler_(),
           engine_(publisher_, scheduler_),
-          thread_(engine_, 1024 * 1024) {
+          thread_(engine_,service_, 1024 * 1024),
+          service_(engine_) {
         scheduler_.set_cancel_callback([this](uint64_t order_id, exchange::CancelReason reason) {
             engine_.cancel_order(order_id, reason);
         });
@@ -40,7 +41,8 @@ private:
     exchange::EventPublisher publisher_;
     exchange::ExpiryScheduler scheduler_;
     exchange::MatchingEngine engine_{publisher_, scheduler_};
-    exchange::MatchingEngineThread thread_{engine_, 1024 * 1024};
+    exchange::MatchingEngineThread thread_{engine_, service_, 1024 * 1024};
+    exchange::SnapshotService service_{engine_};
     // exchange::ExpiryTimer timer_{thread_};
 };
 

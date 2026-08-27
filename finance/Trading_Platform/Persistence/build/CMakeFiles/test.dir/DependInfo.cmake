@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/EventBus.dir/DependInfo.cmake"
+  "/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/MatchingEngine.dir/DependInfo.cmake"
   "/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles/AsyncLogger.dir/DependInfo.cmake"
   )
 
