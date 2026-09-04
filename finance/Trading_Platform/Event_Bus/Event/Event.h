@@ -13,7 +13,7 @@ namespace exchange {
 using Event = std::variant<
                         TradeEvent, 
                         BookUpdateEvent, 
-                        // OrderAcceptedEvent, 
+                        OrderAcceptedEvent, 
                         OrderCancelledEvent, 
                         OrderRejectedEvent 
                         // RiskViolationEvent

@@ -17,7 +17,7 @@ add_library(AsyncLogger STATIC
     ../Async_Logger/AsyncLogger.cpp
 )
 
-add_library(EventBus
+add_library(EventBus STATIC
     ../Event_Bus/EventBus.cpp
 )
 
@@ -30,6 +30,11 @@ add_executable(test
 )
 
 target_link_libraries(EventBus
+    AsyncLogger
+)
+
+target_link_libraries(MatchingEngine
+    EventBus
     AsyncLogger
 )
 

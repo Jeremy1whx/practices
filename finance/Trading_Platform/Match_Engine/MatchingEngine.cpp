@@ -391,6 +391,8 @@ void exchange::MatchingEngine::add_to_book(Order& order) {
     assert(stored != nullptr);
 
     *stored = std::move(order);
+    
+    publisher_.publish(stored->order_id, stored->side, stored->price, stored->quantity);
 
     if (stored->side == Side::Buy) {
         // std::cout << "add to bid, id =" << stored->order_id << std::endl;

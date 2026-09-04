@@ -29,18 +29,18 @@ public:
         });
     }
 
-    // void publish(const uint64_t order_id, const Side& side, const double price, const uint32_t quantity) {
-    //     bus_.publish(OrderAcceptedEvent{
-    //         EventHeader{
-    //             EventType::OrderAccepted,
-    //             now_ns()
-    //         },
-    //         order_id,
-    //         side,
-    //         price,
-    //         quantity            
-    //     });
-    // }
+    void publish(const uint64_t order_id, const Side& side, const double price, const uint32_t quantity) {
+        bus_.publish(OrderAcceptedEvent{
+            EventHeader{
+                EventType::OrderAccepted,
+                now_ns()
+            },
+            order_id,
+            side,
+            price,
+            quantity            
+        });
+    }
 
     void publish(const uint64_t order_id, const CancelReason& reason) {
         bus_.publish(OrderCancelledEvent{

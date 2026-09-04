@@ -62,23 +62,23 @@ public:
     }
 };
 
-// class AcceptanceSubscriber : public Subscriber {
-// public:
+class AcceptanceSubscriber : public Subscriber {
+public:
 
-//     std::size_t count = 0;
+    std::size_t count = 0;
 
-//     void on_event(const Event&) override {
-//         ++count;
-//     }
+    void on_event(const Event&) override {
+        ++count;
+    }
 
-//     bool interested_in(EventType type) const override {
-//         return type == EventType::OrderAccepted;
-//     }
+    bool interested_in(EventType type) const override {
+        return type == EventType::OrderAccepted;
+    }
 
-//     const char* name() const override {
-//         return "AcceptanceSubscriber";
-//     }
-// };
+    const char* name() const override {
+        return "AcceptanceSubscriber";
+    }
+};
 
 class CancelationSubscriber : public Subscriber {
 public:

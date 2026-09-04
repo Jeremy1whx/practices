@@ -10,7 +10,7 @@
 #include "Ringbuffer.h" 
 
 TEST_CASE("Basic push/pop") {
-    RingBuffer<int> rb(8);
+    MPSCRingBuffer<int> rb(8);
 
     REQUIRE(rb.push(1));
     REQUIRE(rb.push(2));
@@ -27,7 +27,7 @@ TEST_CASE("Basic push/pop") {
 }
 
 TEST_CASE("Queue full") {
-    RingBuffer<int> rb(4);
+    MPSCRingBuffer<int> rb(4);
 
     REQUIRE(rb.push(1));
     REQUIRE(rb.push(2));
@@ -37,14 +37,14 @@ TEST_CASE("Queue full") {
 }
 
 TEST_CASE("Queue empty") {
-    RingBuffer<int> rb(8);
+    MPSCRingBuffer<int> rb(8);
 
     int value;
     REQUIRE_FALSE(rb.pop(value));
 }
 
 TEST_CASE("FIFO order single producer") {
-    RingBuffer<int> rb(1024);
+    MPSCRingBuffer<int> rb(1024);
 
     for (int i = 0; i < 1000; ++i) {
         REQUIRE(rb.push(i));
@@ -62,7 +62,7 @@ TEST_CASE("Multiple producers correctness") {
     constexpr int producers = 4;
     constexpr int messages_per_producer = 100000;
 
-    RingBuffer<int> rb(1024);
+    MPSCRingBuffer<int> rb(1024);
 
     std::atomic<int> produced{0};
     std::atomic<int> consumed{0};
@@ -122,7 +122,7 @@ TEST_CASE("Stress test") {
     constexpr int producers = 8;
     constexpr int messages_per_producer = 500000;
 
-    RingBuffer<int> rb(1 << 16);
+    MPSCRingBuffer<int> rb(1 << 16);
 
     std::atomic<int> consumed{0};
 
@@ -191,7 +191,7 @@ TEST_CASE("Stress test") {
 
 TEST_CASE("Small capacity edge case") {
 
-    RingBuffer<int> rb(2);
+    MPSCRingBuffer<int> rb(2);
 
     REQUIRE(rb.push(1));
 

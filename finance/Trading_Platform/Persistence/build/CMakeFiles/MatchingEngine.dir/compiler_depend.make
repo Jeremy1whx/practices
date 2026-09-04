@@ -744,8 +744,14 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
   /usr/include/c++/14/bits/stl_map.h \
   /usr/include/c++/14/bits/stl_multimap.h \
   ../SnapshotService.h \
-  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h
+  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
+  ../EventWriter.h \
+  ../EventSink.h \
+  /usr/include/c++/14/mutex \
+  /usr/include/c++/14/bits/unique_lock.h
 
+
+/usr/include/c++/14/mutex:
 
 /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h:
 
@@ -963,6 +969,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 
 /usr/include/c++/14/system_error:
 
+../EventWriter.h:
+
 /usr/include/c++/14/locale:
 
 /usr/include/c++/14/bits/locale_classes.tcc:
@@ -1152,6 +1160,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
 
 /usr/include/c++/14/cstdlib:
+
+../EventSink.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
@@ -1418,6 +1428,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 /usr/lib/linux/uapi/x86/asm/unistd.h:
 
 /usr/include/c++/14/debug/debug.h:
+
+/usr/include/c++/14/bits/unique_lock.h:
 
 /usr/include/libintl.h:
 

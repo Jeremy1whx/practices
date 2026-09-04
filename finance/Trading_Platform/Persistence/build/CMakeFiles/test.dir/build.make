@@ -94,6 +94,7 @@ test: CMakeFiles/test.dir/test.cpp.o
 test: CMakeFiles/test.dir/build.make
 test: libEventBus.a
 test: libMatchingEngine.a
+test: libEventBus.a
 test: libAsyncLogger.a
 test: CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test"

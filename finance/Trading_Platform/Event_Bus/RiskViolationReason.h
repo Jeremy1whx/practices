@@ -1,7 +1,7 @@
 #pragma once
 
 namespace exchange{
-enum class RiskViolationReason{
+enum class RiskViolationReason : uint16_t{
     PositionLimitExceeded = 1,
     OrderSizeLimitExceeded = 2,
     DailyLossLimitExceeded = 3,

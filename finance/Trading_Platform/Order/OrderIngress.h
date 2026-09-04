@@ -30,5 +30,5 @@ public:
 
 private:
 
-    RingBuffer<Order> queue_;
+    MPSCRingBuffer<Order> queue_;
 };

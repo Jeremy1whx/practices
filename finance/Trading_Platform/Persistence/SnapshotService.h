@@ -2,6 +2,7 @@
 
 #include "../Match_Engine/MatchingEngine.h"
 #include "../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h"
+#include "EventWriter.h"
 
 namespace exchange {    
     struct OrderSnapshot {
@@ -22,7 +23,7 @@ namespace exchange {
 
 class SnapshotService {
 public:
-    SnapshotService(MatchingEngine& engine) : engine_(engine) {
+    SnapshotService(MatchingEngine& engine, EventBinaryWriter& event_writer) : engine_(engine), event_writer_(event_writer) {
         flaga_.batch.orders.reserve(1024 * 1024);
         flagb_.batch.orders.reserve(1024 * 1024);
     }
@@ -50,7 +51,8 @@ public:
         }        
 
         flag.batch.snapshot_time = timestamp;
-        flag.batch.sequence = sequence;
+        flag.batch.sequence = sequence;        
+        event_writer_.request_journal_switch(sequence);
         flag.ready.store(true, std::memory_order_release);
     }
 
@@ -75,6 +77,7 @@ private:
     };
     
     MatchingEngine& engine_;
+    EventBinaryWriter& event_writer_;
 
     SnapshotBatchWithFlag flaga_;
     SnapshotBatchWithFlag flagb_;

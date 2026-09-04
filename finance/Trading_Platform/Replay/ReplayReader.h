@@ -17,13 +17,13 @@ public:
 class TextReader : public ReplayReader{
 public:
     explicit TextReader(const std::filesystem::path& path) {
-        journal_.open(path.string(), std::ios::in);
+        event_journal_.open(path.string(), std::ios::in);
     };
 
     bool next(Event& event) {
         std::string line;
 
-        if(!std::getline(journal_, line)) return false;
+        if(!std::getline(event_journal_, line)) return false;
 
         if(line.starts_with("Trade")) return parse_trade(line,event);
 
@@ -37,7 +37,7 @@ public:
     };
 
 private:
-    std::ifstream journal_;
+    std::ifstream event_journal_;
 
     bool parse_trade(const std::string& line, Event& event) {
         uint64_t timestamp;

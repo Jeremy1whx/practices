@@ -36,6 +36,8 @@ class SPSCRingBuffer {
             tail_.store((tail + 1) & (capacity_ - 1), std::memory_order_release);
             return true;
         }
+
+        const size_t size() {return head_.load(std::memory_order_acquire) - tail_.load(std::memory_order_acquire);}
     private:
         std::vector<T> buffer_;
         size_t capacity_;

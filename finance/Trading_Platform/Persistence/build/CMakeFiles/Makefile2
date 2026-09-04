@@ -136,7 +136,8 @@ CMakeFiles/EventBus.dir/clean:
 # Target rules for target CMakeFiles/MatchingEngine.dir
 
 # All Build rule for target.
-CMakeFiles/MatchingEngine.dir/all:
+CMakeFiles/MatchingEngine.dir/all: CMakeFiles/AsyncLogger.dir/all
+CMakeFiles/MatchingEngine.dir/all: CMakeFiles/EventBus.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MatchingEngine.dir/build.make CMakeFiles/MatchingEngine.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles --progress-num=5,6,7 "Built target MatchingEngine"
@@ -144,7 +145,7 @@ CMakeFiles/MatchingEngine.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MatchingEngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MatchingEngine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/practices/finance/Trading_Platform/Persistence/build/CMakeFiles 0
 .PHONY : CMakeFiles/MatchingEngine.dir/rule

@@ -20,9 +20,9 @@ void EventBus::publish(const Event& event) {
             ++stats_.book_update_events;
             break;
             
-        // case EventType::OrderAccepted:
-        //     ++stats_.order_accepted_events;
-        //     break;
+        case EventType::OrderAccepted:
+            ++stats_.order_accepted_events;
+            break;
         
         case EventType::OrderCancelled:
             ++stats_.order_cancelled_events;

@@ -8,9 +8,9 @@
 #include "CacheAligned.h"
 
 template<typename T>
-class RingBuffer {
+class MPSCRingBuffer {
 public:
-    explicit RingBuffer(size_t capacity) : capacity_(capacity), buffer_(capacity) {
+    explicit MPSCRingBuffer(size_t capacity) : capacity_(capacity), buffer_(capacity) {
         assert((capacity & (capacity - 1)) == 0 && "capacity must be power of 2");
         head_.value.store(0, std::memory_order_relaxed);
         tail_.value.store(0, std::memory_order_relaxed);
@@ -66,6 +66,11 @@ public:
     bool empty() const {
         return head_.value.load(std::memory_order_acquire)
             == tail_.value.load(std::memory_order_acquire);
+    }
+
+    const size_t size() const {
+        return head_.value.load(std::memory_order_acquire)
+             - tail_.value.load(std::memory_order_acquire);
     }
     
 private:

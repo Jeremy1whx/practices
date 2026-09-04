@@ -25,7 +25,7 @@ private:
     void process();
 
 private:
-    RingBuffer<LogMessage> queue_{1024 * 1024};
+    MPSCRingBuffer<LogMessage> queue_{1024 * 1024};
 
     std::thread worker_;
 

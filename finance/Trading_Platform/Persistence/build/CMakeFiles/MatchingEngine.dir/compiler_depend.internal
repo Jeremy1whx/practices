@@ -747,4 +747,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
  /usr/include/c++/14/bits/stl_multimap.h
  /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotService.h
  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h
+ /workspaces/practices/finance/Trading_Platform/Persistence/EventWriter.h
+ /workspaces/practices/finance/Trading_Platform/Persistence/EventSink.h
+ /usr/include/c++/14/mutex
+ /usr/include/c++/14/bits/unique_lock.h
 
