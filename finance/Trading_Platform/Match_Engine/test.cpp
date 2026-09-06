@@ -13,26 +13,35 @@ public:
           publisher_(bus_),
           scheduler_(),
           engine_(publisher_, scheduler_),
-          thread_(engine_,service_, 1024 * 1024),
-          service_(engine_) {
+          event_queue_(1024 * 1024),
+          event_writer_("./test_journal", event_queue_),
+          service_(engine_, event_writer_),
+          thread_(engine_, service_, 1024 * 1024) {
         scheduler_.set_cancel_callback([this](uint64_t order_id, exchange::CancelReason reason) {
             engine_.cancel_order(order_id, reason);
         });
     }
     
+    ~TestEnvironment() {
+        thread_.stop();
+        if (std::filesystem::exists("./test_journal")) {
+            std::filesystem::remove_all("./test_journal");
+        }
+    }
+
     exchange::EventBus& bus() { return bus_; }
     exchange::EventPublisher& publisher() { return publisher_; }
     exchange::ExpiryScheduler& scheduler() { return scheduler_; }
     exchange::MatchingEngine& engine() { return engine_; }
     exchange::MatchingEngineThread& thread() { return thread_; }
+    exchange::SnapshotService& service() { return service_; }
+    exchange::EventBinaryWriter& writer() { return event_writer_; }
     
     void start() {
         thread_.start();
-        // timer_.start();
     }
     
     void stop() {
-        // timer_.stop();
         thread_.stop();
     }
     
@@ -40,10 +49,11 @@ private:
     exchange::EventBus bus_;
     exchange::EventPublisher publisher_;
     exchange::ExpiryScheduler scheduler_;
-    exchange::MatchingEngine engine_{publisher_, scheduler_};
-    exchange::MatchingEngineThread thread_{engine_, service_, 1024 * 1024};
-    exchange::SnapshotService service_{engine_};
-    // exchange::ExpiryTimer timer_{thread_};
+    exchange::MatchingEngine engine_;
+    MPSCRingBuffer<exchange::Event> event_queue_;
+    exchange::EventBinaryWriter event_writer_;
+    exchange::SnapshotService service_;
+    exchange::MatchingEngineThread thread_;
 };
 
 Order make_order(uint64_t id, Side side, double price, uint32_t qty, Type type = Type::GTC) {

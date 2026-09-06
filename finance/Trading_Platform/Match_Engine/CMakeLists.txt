@@ -8,8 +8,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -g -fno-omit-frame-pointer")
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}../Async_Logger
     ${CMAKE_CURRENT_SOURCE_DIR}../Match_Engine
-    ${CMAKE_CURRENT_SOURCE_DIR}../Lock_Free_Ring_Buffer/mpsc
+    ${CMAKE_CURRENT_SOURCE_DIR}../Lock_Free_Ring_Buffer
     ${CMAKE_CURRENT_SOURCE_DIR}../Event_Bus
+    ${CMAKE_CURRENT_SOURCE_DIR}../Persistence
 )
 
 find_package(Threads REQUIRED)

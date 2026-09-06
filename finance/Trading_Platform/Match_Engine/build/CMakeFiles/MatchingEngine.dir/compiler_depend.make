@@ -746,8 +746,18 @@ CMakeFiles/MatchingEngine.dir/MatchingEngineThread.cpp.o: ../MatchingEngineThrea
   /usr/include/c++/14/map \
   /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_map.h \
-  /usr/include/c++/14/bits/stl_multimap.h
+  /usr/include/c++/14/bits/stl_multimap.h \
+  /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotService.h \
+  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
+  /workspaces/practices/finance/Trading_Platform/Persistence/EventWriter.h \
+  /workspaces/practices/finance/Trading_Platform/Persistence/EventSink.h \
+  /usr/include/c++/14/mutex \
+  /usr/include/c++/14/bits/unique_lock.h
 
+
+/usr/include/c++/14/mutex:
+
+/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h:
 
 /usr/include/c++/14/bits/stl_multimap.h:
 
@@ -914,6 +924,8 @@ CMakeFiles/MatchingEngine.dir/MatchingEngineThread.cpp.o: ../MatchingEngineThrea
 /usr/include/c++/14/ext/aligned_buffer.h:
 
 /usr/include/c++/14/bits/allocated_ptr.h:
+
+/workspaces/practices/finance/Trading_Platform/Persistence/SnapshotService.h:
 
 /usr/include/c++/14/optional:
 
@@ -1309,6 +1321,8 @@ CMakeFiles/MatchingEngine.dir/MatchingEngineThread.cpp.o: ../MatchingEngineThrea
 
 /usr/include/sched.h:
 
+/workspaces/practices/finance/Trading_Platform/Persistence/EventSink.h:
+
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
 /usr/include/c++/14/algorithm:
@@ -1433,6 +1447,8 @@ CMakeFiles/MatchingEngine.dir/MatchingEngineThread.cpp.o: ../MatchingEngineThrea
 
 /usr/include/c++/14/debug/debug.h:
 
+/usr/include/c++/14/bits/unique_lock.h:
+
 /usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
@@ -1448,6 +1464,8 @@ CMakeFiles/MatchingEngine.dir/MatchingEngineThread.cpp.o: ../MatchingEngineThrea
 /usr/include/c++/14/pstl/glue_algorithm_defs.h:
 
 /usr/include/c++/14/bits/invoke.h:
+
+/workspaces/practices/finance/Trading_Platform/Persistence/EventWriter.h:
 
 /usr/include/c++/14/cstdio:
 

@@ -300,6 +300,11 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/c++/14/map /usr/include/c++/14/bits/stl_tree.h \
  /usr/include/c++/14/bits/stl_map.h \
  /usr/include/c++/14/bits/stl_multimap.h \
+ /workspaces/practices/finance/Trading_Platform/Match_Engine/../Persistence/SnapshotService.h \
+ /workspaces/practices/finance/Trading_Platform/Match_Engine/../Persistence/../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
+ /workspaces/practices/finance/Trading_Platform/Match_Engine/../Persistence/EventWriter.h \
+ /workspaces/practices/finance/Trading_Platform/Match_Engine/../Persistence/EventSink.h \
+ /usr/include/c++/14/mutex /usr/include/c++/14/bits/unique_lock.h \
  /workspaces/practices/finance/Trading_Platform/Match_Engine/../Lock_Free_Ring_Buffer/mpsc/catch.hpp \
  /usr/include/c++/14/memory \
  /usr/include/c++/14/bits/stl_raw_storage_iter.h \

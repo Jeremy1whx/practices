@@ -45,7 +45,7 @@ typename Container::const_iterator exchange::MatchingEngine::find_price_level(co
 }
 
 template<typename Container, typename Compare>
-void exchange::MatchingEngine::insert_price_level(Container& container, double price, PriceLevel level) {
+void exchange::MatchingEngine::insert_price_level(Container& container, double price, uint32_t avaliable, PriceLevel level) {
     auto it = std::lower_bound(
         container.begin(), 
         container.end(), 
@@ -55,7 +55,7 @@ void exchange::MatchingEngine::insert_price_level(Container& container, double p
         }
     );
     
-    container.insert(it, PriceLevelWithPrice{price, std::move(level)});
+    container.insert(it, PriceLevelWithPrice{price, avaliable, std::move(level)});
 }
 
 template<typename Container, typename Compare>
@@ -151,7 +151,9 @@ bool exchange::MatchingEngine::cancel_order(uint64_t order_id, CancelReason reas
                 if (level_it == bids_.end()){
                     std::cerr << "cancel_order: line " << 144 << " - Order not found: " << order_id << std::endl;
                     return false; 
-                }        
+                }
+                
+                level_it->avaliable -= order->quantity;
 
                 auto& level = level_it->level;
 
@@ -168,6 +170,8 @@ bool exchange::MatchingEngine::cancel_order(uint64_t order_id, CancelReason reas
                     std::cerr << "cancel_order: line " << 158 << " - Order not found: " << order_id << std::endl;
                     return false;
                 } 
+
+                level_it->avaliable -= order->quantity;
 
                 auto& level = level_it->level;
 
@@ -231,7 +235,7 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         trade_count_.fetch_add(1, std::memory_order_relaxed);
 
         BookUpdate update;
-        update.best_bid = bids_.front().price;
+        if (!bids_.empty()) update.best_bid = bids_.front().price;
         update.best_ask = asks_.front().price;
         update.last_trade_price = trade->price;
         update.last_trade_quantity = trade->quantity;
@@ -248,6 +252,7 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         trade_pool_.recycle_oldest();
         order.quantity -= traded;
         resting->quantity -= traded;
+        best_ask.avaliable -= traded;
 
         if (resting->quantity == 0) {
             remove_order(queue, resting);
@@ -272,15 +277,7 @@ bool exchange::MatchingEngine::all_matched_buy(Order& order) {
     if (it->price == order.price) ++it;
 
     for (auto iter = asks_.begin(); iter != it; ++iter) {
-
-        if (iter->level.head == nullptr) continue;
-
-        auto temp = iter->level.head;
-
-        while (temp) {
-            count += temp->quantity;
-            temp = temp->next;
-        }        
+        count += iter->avaliable;
     }
 
     if (count < order.quantity) return false;
@@ -329,7 +326,7 @@ void exchange::MatchingEngine::match_sell(Order& order) {
 
         BookUpdate update;
         update.best_bid = bids_.front().price;
-        update.best_ask = asks_.front().price;
+        if (!asks_.empty()) update.best_ask = asks_.front().price;
         update.last_trade_price = trade->price;
         update.last_trade_quantity = trade->quantity;
         
@@ -345,6 +342,7 @@ void exchange::MatchingEngine::match_sell(Order& order) {
 
         order.quantity -= traded;
         resting->quantity -= traded;
+        best_bid.avaliable -= traded;
 
         if (resting->quantity == 0) {
             remove_order(queue, resting);
@@ -369,15 +367,7 @@ bool exchange::MatchingEngine::all_matched_sell(Order& order) {
     if (it->price == order.price) ++it;
 
     for (auto iter = bids_.begin(); iter != it; ++iter) {
-
-        if (iter->level.head == nullptr) continue;
-
-        auto temp = iter->level.head;
-
-        while (temp) {
-            count += temp->quantity;
-            temp = temp->next;
-        }        
+        count += iter->avaliable;
     }
 
     if (count < order.quantity) return false;
@@ -405,22 +395,30 @@ void exchange::MatchingEngine::add_to_book(Order& order) {
         }
 
         if (it != bids_.end()) {
+            it->avaliable += stored->quantity;
             append_order(it->level, stored);
         } else {
             PriceLevel new_level;
             append_order(new_level, stored);
-            insert_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, stored->price, std::move(new_level));
+            insert_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, stored->price, stored->quantity, std::move(new_level));
         }
     } else {
         // std::cout << "add to ask, id = " << stored->order_id << std::endl;
         auto it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, stored->price);
+
+        if (stored->type == Type::GTD || stored->type == Type::DAY || stored->type == Type::GTT) {
+            if (stored->expire_time != 0) {
+                expiry_scheduler_.add_expiry(*stored);
+            }
+        }
         
         if (it != asks_.end()) {
+            it->avaliable += stored->quantity;
             append_order(it->level, stored);
         } else {
             PriceLevel new_level;
             append_order(new_level, stored);
-            insert_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, stored->price, std::move(new_level));
+            insert_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, stored->price, stored->quantity, std::move(new_level));
         }
     }
     order_lookup_[stored->order_id] = stored;

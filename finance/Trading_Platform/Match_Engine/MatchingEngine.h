@@ -61,6 +61,7 @@ private:
 
     struct PriceLevelWithPrice {
         double price;
+        uint32_t avaliable = 0;
         PriceLevel level;
     };
 
@@ -125,7 +126,7 @@ private:
     typename Container::const_iterator find_price_level(const Container& container, double price) const;
 
     template<typename Container, typename Compare>
-    void insert_price_level(Container& container, double price, PriceLevel level);
+    void insert_price_level(Container& container, double price, uint32_t avaliable, PriceLevel level);
     
     template<typename Container, typename Compare>
     bool remove_price_level(Container& container, double price);
