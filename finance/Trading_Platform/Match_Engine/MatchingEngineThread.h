@@ -4,7 +4,6 @@
 #include "../Persistence/SnapshotService.h"
 #include "../Order/OrderIngress.h"
 
-#include <algorithm>
 #include <thread>
 #include <atomic>
 

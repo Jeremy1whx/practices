@@ -62,10 +62,12 @@ private:
 class SnapshotBinaryWriter {
 public:
 
-    explicit SnapshotBinaryWriter(const std::filesystem::path& directory) : directory_(directory) {}
+    explicit SnapshotBinaryWriter(const std::filesystem::path& directory) : directory_(directory / "snapshot") {
+        std::filesystem::create_directories(directory_);
+    }
 
     void process_snapshot(SnapshotBatch& batch) {
-        const std::filesystem::path path = directory_ / ("snapshot" + std::to_string(batch.sequence) + ".bin");
+        const std::filesystem::path path = directory_  / ("snapshot_" + std::to_string(batch.sequence) + ".bin");
         std::ofstream file(path.string(), std::ios::out | std::ios::binary);
         
         SnapshotHeader header;

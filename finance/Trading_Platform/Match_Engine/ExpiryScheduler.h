@@ -42,6 +42,12 @@ public:
         expiry_lookup_[entry->order_id] = entry;
     }
 
+    void clear_expiry() {
+        days_wheel_.clear();
+        seconds_wheel_.clear();
+        expiry_lookup_.clear();
+    }
+
     bool delete_expiry(uint64_t order_id) {
         auto it = expiry_lookup_.find(order_id);
 

@@ -312,9 +312,11 @@ Results from running on a dedicated CPU core (Linux):
 - Supports Trade, BookUpdate, and Order lifecycle events
 
 ### 3. Persistence & Replay
-- Journal writes all events to disk (human-readable format)
-- Replay engine reconstructs state from journal
-- Integration tests validate write-replay cycle
-- (In progress) Snapshot-based recovery for production use
+- Binary journal (event_journal_<seq>.bin) records every event (Trade, OrderAccepted, OrderCancelled, OrderRejected, BookUpdate) as compact, fixed-size records.
+- Periodic snapshots (snapshot_<seq>.bin) capture full order‑book state (price levels, order metadata) with a header and an array of OrderSnapshot structures.
+- Replay engine first restores the latest snapshot, then replays all subsequent journals in sequence to reconstruct the exact state before a crash.
+- Replay mode suppresses event publishing and matching to avoid side effects and ensure deterministic recovery.
+- Human‑readable text journals (event_journal_<seq>.txt) are also available for debugging and manual inspection.
+- Unit and integration tests validate the full write‑replay cycle
 
 # By Jeremy

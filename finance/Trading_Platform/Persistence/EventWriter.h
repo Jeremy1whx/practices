@@ -146,7 +146,7 @@ class EventBinaryWriter {
 public:
     explicit EventBinaryWriter(const std::filesystem::path& directory, MPSCRingBuffer<Event>& event_queue) 
         : 
-        directory_(directory),
+        directory_(directory / "event_journal"),
         event_queue_(event_queue) 
         {
         std::filesystem::create_directories(directory_);
@@ -184,16 +184,10 @@ private:
     std::mutex mutex_;
     MPSCRingBuffer<Event>& event_queue_;
     std::atomic<bool> switch_requested_{false};
-    std::atomic<uint64_t> pending_sequence_{0};
-    
-    struct EventHeader {
-        uint64_t timestamp; 
-        uint16_t type; 
-        uint16_t size; 
-    };
+    std::atomic<uint64_t> pending_sequence_{0};       
 
     void open_file(uint64_t sequence) {
-        const std::filesystem::path full_path =directory_ / ("event_journal" + std::to_string(sequence) + ".bin");
+        const std::filesystem::path full_path =directory_ / ("event_journal_" + std::to_string(sequence) + ".bin");
         file_.open(full_path.string(), std::ios::out | std::ios::binary | std::ios::app);
     }
 
@@ -275,6 +269,7 @@ private:
             EventType type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            Side side;
             double price;
             uint64_t quantity;
         };
@@ -283,6 +278,7 @@ private:
             event.header.type,
             event.header.timestamp_ns,
             event.order_id,
+            event.side,
             event.price,
             event.quantity
         };

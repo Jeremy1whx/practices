@@ -15,6 +15,7 @@
 #include "../CPU_Affinity/Affinity.h"
 #include "../Event_Bus/EventPublisher.h"
 #include "ExpiryScheduler.h"
+#include "../Persistence/SnapshotService.h"
 
 #include <map>
 #include <vector>
@@ -30,6 +31,10 @@ public:
         Order copy = order;
         return process_order(copy);
     };
+
+    void add_to_book(Order& order);
+
+    void restore(const std::vector<OrderSnapshot>& orders);
 
     const auto& bids() const { return bids_; }
 
@@ -135,7 +140,6 @@ private:
 
     void match_sell(Order& order);
 
-    void add_to_book(Order& order);
 
     void append_order(PriceLevel& level, Order* order);
 

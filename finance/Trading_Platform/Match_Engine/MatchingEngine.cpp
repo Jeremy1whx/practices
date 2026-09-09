@@ -424,6 +424,52 @@ void exchange::MatchingEngine::add_to_book(Order& order) {
     order_lookup_[stored->order_id] = stored;
 }
 
+void exchange::MatchingEngine::restore(const std::vector<OrderSnapshot>& orders) {
+    bids_.clear();
+    asks_.clear();
+    order_lookup_.clear();
+    expiry_scheduler_.clear_expiry();
+
+    for (const auto& os : orders) {
+        Order* order = order_pool_.allocate();
+        order->order_id = os.order_id;
+        order->side = os.side;
+        order->price = os.price;
+        order->quantity = os.quantity;
+        order->sequence = os.sequence;
+        order->type = os.type;
+        order->expire_time = os.expire_time;
+        order->next = order->prev = nullptr;
+        order->ingress_timestamp_ns = 0;
+        order->egress_timestamp_ns = 0;
+
+        expiry_scheduler_.add_expiry(*order);
+
+        if (order->side == Side::Buy) {
+            auto it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, order->price);
+            if (it != bids_.end()) {
+                it->avaliable += order->quantity;
+                append_order(it->level, order);
+            } else {
+                PriceLevel new_level;
+                append_order(new_level, order);
+                insert_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, order->price, order->quantity, std::move(new_level));
+            }
+        } else {
+            auto it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
+            if (it != asks_.end()) {
+                it->avaliable += order->quantity;
+                append_order(it->level, order);
+            } else {
+                PriceLevel new_level;
+                append_order(new_level, order);
+                insert_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price, order->quantity, std::move(new_level));
+            }
+        }
+        order_lookup_[order->order_id] = order;
+    }
+}
+
 void exchange::MatchingEngine::append_order(PriceLevel& level, Order* order) {
 
     order->next = nullptr;

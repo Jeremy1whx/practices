@@ -6,8 +6,8 @@
 #include "Event_Bus/EventBus.h"
 #include "Event_Bus/Subscriber.h"
 #include "Event_Bus/EventPublisher.h"
-#include "Persistence/Writer.h"
-#include "Replay/ReplayEngine.h"
+#include "Persistence/PersistenceThread.h"
+#include "Replayer/ReplayEngine.h"
 
 TEST_CASE("Integration Test") {
     std::filesystem::remove("prs_srv.log");

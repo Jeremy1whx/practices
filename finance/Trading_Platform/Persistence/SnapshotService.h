@@ -52,7 +52,7 @@ public:
 
         flag.batch.snapshot_time = timestamp;
         flag.batch.sequence = sequence;        
-        event_writer_.request_journal_switch(sequence);
+        event_writer_.request_journal_switch(sequence + 1);
         flag.ready.store(true, std::memory_order_release);
     }
 

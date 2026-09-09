@@ -540,11 +540,8 @@ void cleanup_snapshot_files() {
 }
 
 void cleanup_binary_files(const std::filesystem::path& directory) {
-    if (!std::filesystem::exists(directory)) return;
-    for (const auto& entry : std::filesystem::directory_iterator(directory)) {
-        if (entry.path().extension() == ".bin") {
-            std::filesystem::remove(entry.path());
-        }
+    if (std::filesystem::exists(directory)) {
+        std::filesystem::remove_all(directory);
     }
 }
 
@@ -664,7 +661,7 @@ TEST_CASE("SnapshotBinaryWriter Basic Write") {
 
     writer.process_snapshot(batch);
 
-    std::filesystem::path expected = test_dir / "snapshot1.bin";
+    std::filesystem::path expected = test_dir / "snapshot" / "snapshot_1.bin";
     REQUIRE(std::filesystem::exists(expected));
 
     exchange::SnapshotBatch read_batch;
@@ -690,7 +687,7 @@ TEST_CASE("SnapshotBinaryWriter Basic Write") {
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
 
 
@@ -721,8 +718,8 @@ TEST_CASE("SnapshotBinaryWriter Multiple Snapshots") {
         
         writer.process_snapshot(batch);
 
-        std::string filename = "snapshot" + std::to_string(seq) + ".bin";
-        std::filesystem::path expected = test_dir / filename;
+        std::string filename = "snapshot_" + std::to_string(seq) + ".bin";
+        std::filesystem::path expected = test_dir / "snapshot" / filename;
         REQUIRE(std::filesystem::exists(expected));
 
         exchange::SnapshotBatch read_batch;
@@ -733,7 +730,7 @@ TEST_CASE("SnapshotBinaryWriter Multiple Snapshots") {
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
 
 
@@ -772,7 +769,7 @@ TEST_CASE("EventBinaryWriter Basic Write") {
 
     writer.write_events();
 
-    std::filesystem::path expected = test_dir / "event_journal0.bin";
+    std::filesystem::path expected = test_dir / "event_journal" / "event_journal_0.bin";
     REQUIRE(std::filesystem::exists(expected));
 
     auto size = std::filesystem::file_size(expected);
@@ -780,7 +777,7 @@ TEST_CASE("EventBinaryWriter Basic Write") {
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
 
 
@@ -820,15 +817,15 @@ TEST_CASE("EventBinaryWriter Journal Switch") {
     
     writer.write_events();
 
-    std::filesystem::path old_file = test_dir / "event_journal0.bin";
+    std::filesystem::path old_file = test_dir / "event_journal" / "event_journal_0.bin";
     REQUIRE(std::filesystem::exists(old_file));
 
-    std::filesystem::path new_file = test_dir / "event_journal5.bin";
+    std::filesystem::path new_file = test_dir / "event_journal" / "event_journal_5.bin";
     REQUIRE(std::filesystem::exists(new_file));
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
 
 
@@ -881,13 +878,13 @@ TEST_CASE("PersistenceThread Integration with Binary") {
     persistence_thread.stop();
     engine_thread.stop();
 
-    std::filesystem::path snapshot_file = test_dir / "snapshot0.bin";
+    std::filesystem::path snapshot_file = test_dir / "snapshot" / "snapshot_0.bin";
     REQUIRE(std::filesystem::exists(snapshot_file));
 
     bool found_event_file = false;
-    for (const auto& entry : std::filesystem::directory_iterator(test_dir)) {
+    for (const auto& entry : std::filesystem::directory_iterator(test_dir / "event_journal")) {
         if (entry.path().extension() == ".bin" && 
-            entry.path().stem().string().find("event_journal") != std::string::npos) {
+            entry.path().stem().string().find("event_journal_") != std::string::npos) {
             found_event_file = true;
             break;
         }
@@ -901,7 +898,7 @@ TEST_CASE("PersistenceThread Integration with Binary") {
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
 
 
@@ -935,14 +932,14 @@ TEST_CASE("EventBinaryWriter Batch Performance") {
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
     std::cout << "Wrote " << NUM_EVENTS << " events in " << duration.count() << " us" << std::endl;
 
-    std::filesystem::path file = test_dir / "event_journal0.bin";
+    std::filesystem::path file = test_dir / "event_journal" / "event_journal_0.bin";
     REQUIRE(std::filesystem::exists(file));
     auto size = std::filesystem::file_size(file);
     REQUIRE(size > 0);
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
 
 
@@ -958,7 +955,7 @@ TEST_CASE("SnapshotBinaryWriter Empty Snapshot") {
 
     writer.process_snapshot(batch);
 
-    std::filesystem::path expected = test_dir / "snapshot999.bin";
+    std::filesystem::path expected = test_dir / "snapshot" / "snapshot_999.bin";
     REQUIRE(std::filesystem::exists(expected));
 
     exchange::SnapshotBatch read_batch;
@@ -968,5 +965,5 @@ TEST_CASE("SnapshotBinaryWriter Empty Snapshot") {
 
     cleanup_binary_files(test_dir);
     std::filesystem::remove(test_dir);
-    cleanup_snapshot_files();
+    // cleanup_snapshot_files();
 }
