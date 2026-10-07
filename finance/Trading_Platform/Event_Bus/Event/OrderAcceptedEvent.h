@@ -11,7 +11,13 @@ struct OrderAcceptedEvent{
 
     Side side;
 
+    Type type;
+
     double price;
 
     uint32_t quantity;
+    
+    uint64_t sequence;
+
+    uint64_t expire_time = 0;
 };}

@@ -29,16 +29,19 @@ public:
         });
     }
 
-    void publish(const uint64_t order_id, const Side& side, const double price, const uint32_t quantity) {
+    void publish(const Order& info) {
         bus_.publish(OrderAcceptedEvent{
             EventHeader{
                 EventType::OrderAccepted,
                 now_ns()
             },
-            order_id,
-            side,
-            price,
-            quantity            
+            info.order_id,
+            info.side,
+            info.type,
+            info.price,
+            info.quantity,
+            info.sequence,
+            info.expire_time            
         });
     }
 

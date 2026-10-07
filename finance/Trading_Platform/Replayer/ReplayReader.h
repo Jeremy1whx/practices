@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Event_Bus/EventBus.h"
+#include "../Persistence/SnapshotService.h" 
 
 #include <filesystem>
 #include <optional>
@@ -165,22 +166,6 @@ private:
     }
 };
 
-struct OrderSnapshot {
-        uint64_t order_id;
-        Side side;
-        double price;
-        uint64_t quantity;
-        uint64_t sequence;
-        Type type;
-        uint64_t expire_time;
-    };
-
-    struct SnapshotBatch {
-        uint64_t snapshot_time = 0;
-        uint64_t sequence = 0;
-        std::vector<OrderSnapshot> orders;
-    };  
-
 class BinaryReader {
 public:
     explicit BinaryReader(const std::filesystem::path directory) : directory_(directory) {}
@@ -265,7 +250,6 @@ private:
 
     bool parse_trade(Event& event) {
         struct TradeData {
-            EventType type;
             uint64_t timestamp_ns;
             uint64_t buy_order_id;
             uint64_t sell_order_id;
@@ -286,7 +270,6 @@ private:
 
     bool parse_book_update(Event& event) {
         struct BookData {
-            EventType type;
             uint64_t timestamp_ns;
             double best_bid;
             double best_ask;
@@ -307,23 +290,24 @@ private:
     
     bool parse_order(Event& event) {
         struct OrderData {
-            EventType type;
             uint64_t timestamp_ns;
             uint64_t order_id;
             Side side;
+            Type type;
             double price;
-            uint64_t quantity;
+            uint32_t quantity;            
+            uint64_t sequence;
+            uint64_t expire_time;
         };
         OrderData data;
         event_journal_.read(reinterpret_cast<char*>(&data), sizeof(data));        
-        OrderAcceptedEvent ev{ {EventType::OrderAccepted, data.timestamp_ns}, data.order_id, data.side, data.price, data.quantity};
+        OrderAcceptedEvent ev{ {EventType::OrderAccepted, data.timestamp_ns}, data.order_id, data.side, data.type, data.price, data.quantity, data.sequence, data.expire_time};
         event = ev;
         return true;
     }
 
     bool parse_cancel(Event& event) {
         struct CancelData {
-            EventType type;
             uint64_t timestamp_ns;
             uint64_t order_id;
             uint16_t reason;
@@ -337,7 +321,6 @@ private:
 
     bool parse_reject(Event& event) {
         struct RejectData {
-            EventType type;
             uint64_t timestamp_ns;
             uint64_t order_id;
             uint16_t reason;

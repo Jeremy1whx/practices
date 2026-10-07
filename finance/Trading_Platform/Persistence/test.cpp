@@ -526,10 +526,6 @@
 
 void cleanup_snapshot_files() {
     for (const auto& entry : std::filesystem::directory_iterator(".")) {
-        if (entry.path().extension() == ".txt" && 
-            entry.path().stem().string().find("snapshot") == 0) {
-            std::filesystem::remove(entry.path());
-        }
         if (entry.path().extension() == ".bin") {
             auto stem = entry.path().stem().string();
             if (stem.find("snapshot") == 0 || stem.find("event_journal") == 0) {

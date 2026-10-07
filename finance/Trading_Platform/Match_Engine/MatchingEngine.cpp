@@ -129,63 +129,69 @@ void exchange::MatchingEngine::process_order(Order& order) {
 
 //     // market_data_events_.push_back(event);
 // }
+bool exchange::MatchingEngine::cancel_without_publish(uint64_t order_id) {
+
+    auto it = order_lookup_.find(order_id);
+
+    if (it == order_lookup_.end()) {
+        std::cerr << "cancel_order: line " << 134 <<  " - Order not found: " << order_id << std::endl;
+        return false;
+    }
+
+    Order* order = it->second;
+
+    // if(order->expire_time != 0 && remove_schedule) expiry_scheduler_.delete_expiry(order_id);
+
+    if (order->side == Side::Buy) {
+        auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_,order->price);
+
+        if (level_it == bids_.end()){
+            std::cerr << "cancel_order: line " << 144 << " - Order not found: " << order_id << std::endl;
+            return false; 
+        }
+        
+        level_it->avaliable -= order->quantity;
+
+        auto& level = level_it->level;
+
+        remove_order(level, order);
+
+        if (level.head == nullptr) {
+            bids_.erase(level_it);
+        }
+
+    } else {
+        auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
+
+        if (level_it == asks_.end()){
+            std::cerr << "cancel_order: line " << 158 << " - Order not found: " << order_id << std::endl;
+            return false;
+        } 
+
+        level_it->avaliable -= order->quantity;
+
+        auto& level = level_it->level;
+
+        remove_order(level, order);
+
+        if (level.head == nullptr) {
+            asks_.erase(level_it);
+        }
+    }
+
+    order_lookup_.erase(it);
+    order_pool_.deallocate(order);
+    return true;
+}
 
 bool exchange::MatchingEngine::cancel_order(uint64_t order_id, CancelReason reason) {
 
     if (reason != CancelReason::IOCResidual) {
         if (reason != CancelReason::FOKNotFilled) {
-            auto it = order_lookup_.find(order_id);
-
-            if (it == order_lookup_.end()) {
-                std::cerr << "cancel_order: line " << 134 <<  " - Order not found: " << order_id << std::endl;
-                return false;
-            }
-
-            Order* order = it->second;
-
-            if(order->expire_time != 0 && reason != CancelReason::Expired) expiry_scheduler_.delete_expiry(order_id);
-        
-            if (order->side == Side::Buy) {
-                auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_,order->price);
-
-                if (level_it == bids_.end()){
-                    std::cerr << "cancel_order: line " << 144 << " - Order not found: " << order_id << std::endl;
-                    return false; 
-                }
-                
-                level_it->avaliable -= order->quantity;
-
-                auto& level = level_it->level;
-
-                remove_order(level, order);
-
-                if (level.head == nullptr) {
-                    bids_.erase(level_it);
-                }
-
-            } else {
-                auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
-
-                if (level_it == asks_.end()){
-                    std::cerr << "cancel_order: line " << 158 << " - Order not found: " << order_id << std::endl;
-                    return false;
-                } 
-
-                level_it->avaliable -= order->quantity;
-
-                auto& level = level_it->level;
-
-                remove_order(level, order);
-
-                if (level.head == nullptr) {
-                    asks_.erase(level_it);
-                }
-            }
-
-            order_lookup_.erase(it);
-            order_pool_.deallocate(order);
-        }   
-    } 
+            if (!cancel_without_publish(order_id)) return false;
+            if (reason == CancelReason::Expired) expiry_scheduler_.delete_expiry(order_id);
+        }
+    }
 
     publisher_.publish(order_id, reason);    
 
@@ -374,7 +380,7 @@ bool exchange::MatchingEngine::all_matched_sell(Order& order) {
     return true;
 }
 
-void exchange::MatchingEngine::add_to_book(Order& order) {
+void exchange::MatchingEngine::add_to_book(Order& order, bool schedule) {
 
     Order* stored = order_pool_.allocate();    
 
@@ -382,14 +388,14 @@ void exchange::MatchingEngine::add_to_book(Order& order) {
 
     *stored = std::move(order);
     
-    publisher_.publish(stored->order_id, stored->side, stored->price, stored->quantity);
+    if (order.publish) publisher_.publish(*stored);
 
     if (stored->side == Side::Buy) {
         // std::cout << "add to bid, id =" << stored->order_id << std::endl;
         auto it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, stored->price);
         
         if (stored->type == Type::GTD || stored->type == Type::DAY || stored->type == Type::GTT) {
-            if (stored->expire_time != 0) {
+            if (stored->expire_time != 0 && schedule) {
                 expiry_scheduler_.add_expiry(*stored);
             }
         }
@@ -407,7 +413,7 @@ void exchange::MatchingEngine::add_to_book(Order& order) {
         auto it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, stored->price);
 
         if (stored->type == Type::GTD || stored->type == Type::DAY || stored->type == Type::GTT) {
-            if (stored->expire_time != 0) {
+            if (stored->expire_time != 0 && schedule) {
                 expiry_scheduler_.add_expiry(*stored);
             }
         }
@@ -424,7 +430,7 @@ void exchange::MatchingEngine::add_to_book(Order& order) {
     order_lookup_[stored->order_id] = stored;
 }
 
-void exchange::MatchingEngine::restore(const std::vector<OrderSnapshot>& orders) {
+void exchange::MatchingEngine::restore_snapshot(const std::vector<OrderSnapshot>& orders) {
     bids_.clear();
     asks_.clear();
     order_lookup_.clear();
@@ -439,34 +445,61 @@ void exchange::MatchingEngine::restore(const std::vector<OrderSnapshot>& orders)
         order->sequence = os.sequence;
         order->type = os.type;
         order->expire_time = os.expire_time;
+        order->publish = false;
         order->next = order->prev = nullptr;
         order->ingress_timestamp_ns = 0;
         order->egress_timestamp_ns = 0;
 
-        expiry_scheduler_.add_expiry(*order);
+        add_to_book(*order,false);
+    }
+}
 
-        if (order->side == Side::Buy) {
-            auto it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, order->price);
-            if (it != bids_.end()) {
-                it->avaliable += order->quantity;
-                append_order(it->level, order);
-            } else {
-                PriceLevel new_level;
-                append_order(new_level, order);
-                insert_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, order->price, order->quantity, std::move(new_level));
-            }
-        } else {
-            auto it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
-            if (it != asks_.end()) {
-                it->avaliable += order->quantity;
-                append_order(it->level, order);
-            } else {
-                PriceLevel new_level;
-                append_order(new_level, order);
-                insert_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price, order->quantity, std::move(new_level));
-            }
+void exchange::MatchingEngine::restore_events(const Event& event) {
+    switch (get_event_type(event))
+    {
+    case EventType::OrderAccepted: {
+        const auto& e = std::get<OrderAcceptedEvent>(event);
+        Order order;
+        order.order_id = e.order_id;
+        order.side = e.side;
+        order.type = e.type;
+        order.price = e.price;
+        order.quantity = e.quantity;
+        order.sequence = e.sequence;
+        order.expire_time = e.expire_time;
+        order.publish = false;
+        add_to_book(order, false);
+        break;
+    }
+    
+    case EventType::Trade: {
+        const auto& e = std::get<TradeEvent>(event);
+        reduce_quantity_if_exists(e.trade.buy_order_id, e.trade.quantity);
+        reduce_quantity_if_exists(e.trade.sell_order_id, e.trade.quantity);
+        break;
+    }
+
+    case EventType::OrderCancelled: {
+        const auto& e = std::get<OrderCancelledEvent>(event);
+        cancel_without_publish(e.order_id);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void exchange::MatchingEngine::restore_schedule() {
+    expiry_scheduler_.clear_expiry();
+    uint64_t now = now_absolute_ns();
+    for (auto& [id, order] : order_lookup_) {
+        if (order->expire_time != 0 &&
+            order->expire_time > now &&
+            (order->type == Type::GTD ||
+             order->type == Type::DAY ||
+             order->type == Type::GTT)) {
+            expiry_scheduler_.add_expiry(*order);
         }
-        order_lookup_[order->order_id] = order;
     }
 }
 
@@ -508,4 +541,22 @@ void exchange::MatchingEngine::remove_order(PriceLevel& level, Order* order) {
     order->next = nullptr;
 
     order->prev = nullptr;
+}
+
+void exchange::MatchingEngine::reduce_quantity_if_exists(uint64_t order_id, uint32_t qty) {
+    auto it = order_lookup_.find(order_id);
+    if (it == order_lookup_.end()) return; 
+    Order* order = it->second;
+    order->quantity -= qty;
+    if (order->quantity == 0) {
+        cancel_without_publish(order_id);
+    } else {
+        if (order->side == Side::Buy) {
+            auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_, order->price);
+            if (level_it != bids_.end()) level_it->avaliable -= qty;
+        } else {
+            auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
+            if (level_it != bids_.end()) level_it->avaliable -= qty;
+        }
+    }
 }

@@ -266,12 +266,15 @@ private:
     
     void write_event_data(const OrderAcceptedEvent& event) {
         struct OrderData {
-            EventType type;
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
             Side side;
+            Type type;
             double price;
-            uint64_t quantity;
+            uint32_t quantity;            
+            uint64_t sequence;
+            uint64_t expire_time;
         };
         
         OrderData data{
@@ -279,8 +282,11 @@ private:
             event.header.timestamp_ns,
             event.order_id,
             event.side,
+            event.type,
             event.price,
-            event.quantity
+            event.quantity,
+            event.sequence,
+            event.expire_time
         };
         
         file_.write(reinterpret_cast<const char*>(&data), sizeof(data));
@@ -288,7 +294,7 @@ private:
     
     void write_event_data(const OrderCancelledEvent& event) {
         struct CancelData {
-            EventType type;
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
             uint16_t reason;
@@ -306,7 +312,7 @@ private:
     
     void write_event_data(const OrderRejectedEvent& event) {
         struct RejectData {
-            EventType type;
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
             uint16_t reason;

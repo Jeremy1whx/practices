@@ -3,23 +3,9 @@
 #include "../Match_Engine/MatchingEngine.h"
 #include "../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h"
 #include "EventWriter.h"
+#include "SnapshotTool.h"
 
-namespace exchange {    
-    struct OrderSnapshot {
-        uint64_t order_id;
-        Side side;
-        double price;
-        uint64_t quantity;
-        uint64_t sequence;
-        Type type;
-        uint64_t expire_time;
-    };
-
-    struct SnapshotBatch {
-        uint64_t snapshot_time = 0;
-        uint64_t sequence = 0;
-        std::vector<OrderSnapshot> orders;
-    };     
+namespace exchange {           
 
 class SnapshotService {
 public:

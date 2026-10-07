@@ -33,6 +33,8 @@ struct Order {
 
     uint64_t expire_time = 0; // UTC
 
+    bool publish = true;
+
     uint64_t ingress_timestamp_ns = 0;
 
     uint64_t egress_timestamp_ns = 0;

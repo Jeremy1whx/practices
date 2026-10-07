@@ -25,6 +25,12 @@ public:
         
         uint64_t expire_time = (order.expire_time - beginning_) / SECOND_NS;
 
+        if (expire_time == 0) {
+        // std::cerr << "add_expiry: order " << order.order_id 
+        //           << " expire_time already passed or < 1s away, skipping\n";
+        return;
+    }
+
         ExpiryEntry* entry = expiry_pool_.allocate();
         entry->expire_time = order.expire_time;
         entry->order_id = order.order_id;
@@ -40,11 +46,21 @@ public:
         }        
 
         expiry_lookup_[entry->order_id] = entry;
+        // std::cout << "add_expiry order=" << order.order_id
+        //   << " expire=" << order.expire_time
+        //   << " beginning_=" << beginning_
+        //   << " calc_seconds=" << expire_time << "\n";
     }
 
     void clear_expiry() {
-        days_wheel_.clear();
-        seconds_wheel_.clear();
+        for (auto& list : seconds_wheel_) {
+            list.head = nullptr;
+            list.tail = nullptr;
+        }
+        for (auto& list : days_wheel_) {
+            list.head = nullptr;
+            list.tail = nullptr;
+        }
         expiry_lookup_.clear();
     }
 
@@ -233,6 +249,8 @@ private:
         if (!list.head) {
             list.head = entry;
         }
+        // std::cout << "append_to_list: head=" << list.head
+        //       << " tail=" << list.tail << "\n";
     }
 
     void remove_from_list(ExpiryList& list, ExpiryEntry* entry) {

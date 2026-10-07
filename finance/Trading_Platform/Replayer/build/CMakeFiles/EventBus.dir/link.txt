@@ -1,0 +1,2 @@
+/usr/bin/ar qc libEventBus.a CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.o
+/usr/bin/ranlib libEventBus.a

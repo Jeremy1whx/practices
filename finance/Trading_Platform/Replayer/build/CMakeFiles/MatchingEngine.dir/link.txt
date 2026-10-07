@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMatchingEngine.a CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o
+/usr/bin/ranlib libMatchingEngine.a

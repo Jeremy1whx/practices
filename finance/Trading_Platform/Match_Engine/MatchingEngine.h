@@ -15,7 +15,7 @@
 #include "../CPU_Affinity/Affinity.h"
 #include "../Event_Bus/EventPublisher.h"
 #include "ExpiryScheduler.h"
-#include "../Persistence/SnapshotService.h"
+#include "../Persistence/SnapshotTool.h"
 
 #include <map>
 #include <vector>
@@ -32,9 +32,13 @@ public:
         return process_order(copy);
     };
 
-    void add_to_book(Order& order);
+    void add_to_book(Order& order, bool schedule = true);
 
-    void restore(const std::vector<OrderSnapshot>& orders);
+    void restore_snapshot(const std::vector<OrderSnapshot>& orders);
+
+    void restore_events(const Event& event);
+
+    void restore_schedule();
 
     const auto& bids() const { return bids_; }
 
@@ -148,5 +152,9 @@ private:
     bool all_matched_buy(Order& order);
 
     bool all_matched_sell(Order& order);
+
+    bool cancel_without_publish(uint64_t order_id);
+
+    void reduce_quantity_if_exists(uint64_t order_id, uint32_t qty);
 };
 }
