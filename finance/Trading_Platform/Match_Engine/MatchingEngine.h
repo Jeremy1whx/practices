@@ -16,16 +16,18 @@
 #include "../Event_Bus/EventPublisher.h"
 #include "ExpiryScheduler.h"
 #include "../Persistence/SnapshotTool.h"
+#include "../Risk_Engine/RiskEngine.h"
 
 #include <map>
 #include <vector>
 #include <unordered_map>
 #include <iostream>
+#include <unordered_set>
 
 namespace exchange {
 class MatchingEngine {
 public:
-    explicit MatchingEngine(EventPublisher& publisher, ExpiryScheduler& scheduler);
+    explicit MatchingEngine(EventPublisher& publisher, ExpiryScheduler& scheduler, RiskEngine& risk_engine);
     void process_order(Order& order);
     void process_order(const Order& order){
         Order copy = order;
@@ -60,10 +62,17 @@ public:
 
     // void publish_market_data(const Trade& trade);
 
-    bool cancel_order(uint64_t order_id, CancelReason reason);
+    bool cancel_order(uint64_t order_id, uint64_t accout_id, CancelReason reason);
 
     void process_expiry(uint64_t current_time) {
         expiry_scheduler_.proceed_expiry(current_time);
+    }
+
+    void process_liquidation_requests() {
+        uint64_t account_id;
+        while (risk_engine_.pop_liquidation_request(account_id)) {
+            cancel_all_for_account(account_id);
+        }
     }
 
 private:
@@ -124,9 +133,13 @@ private:
 
     std::unordered_map<uint64_t, Order*> order_lookup_;
 
+    std::vector<std::unordered_set<uint64_t>> account_orders_{1024};
+
     std::atomic<uint64_t> trade_count_{0};
 
     ExpiryScheduler& expiry_scheduler_;
+
+    RiskEngine& risk_engine_;
 
     template<typename Container, typename Compare>
     typename Container::iterator find_price_level(Container& container, double price);
@@ -153,8 +166,12 @@ private:
 
     bool all_matched_sell(Order& order);
 
-    bool cancel_without_publish(uint64_t order_id);
+    Order* cancel_without_publish(uint64_t order_id);
 
     void reduce_quantity_if_exists(uint64_t order_id, uint32_t qty);
+
+    bool has_self_order(const Order& order);
+
+    void  cancel_all_for_account(uint64_t account_id);
 };
 }

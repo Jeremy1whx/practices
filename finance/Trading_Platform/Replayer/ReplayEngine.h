@@ -2,11 +2,12 @@
 
 #include "ReplayReader.h"
 #include "../Match_Engine/MatchingEngineThread.h"
+#include "../Risk_Engine/RiskMonitor.h"
 
 namespace exchange {
 class ReplayEngine {
 public:
-    ReplayEngine(BinaryReader& reader, MatchingEngine& engine) : reader_(reader), engine_(engine) {};
+    ReplayEngine(BinaryReader& reader, MatchingEngine& engine, RiskEngine& risk_engine) : reader_(reader), engine_(engine), risk_engine_(risk_engine) {};
 
     void replay() {
 
@@ -25,6 +26,15 @@ public:
             std::cerr << "Failed to read snapshot.\n";
             return;
         }
+        risk_engine_.restore(batch.accounts, batch.last_trade_price);
+        // for (const auto& acc : batch.accounts) {
+        //     std::cout << "RESTORING ACC: id=" << acc.account_id 
+        //               << ", pos=" << acc.position 
+        //               << ", open_buy=" << acc.open_buy_quantity << std::endl;
+        // }
+        // std::cout << "[DEBUG] Read Snapshot: seq=" << batch.sequence 
+        //           << ", orders=" << batch.orders.size() 
+        //           << ", accounts=" << batch.accounts.size() << std::endl;
         engine_.restore_snapshot(batch.orders);
         reader_.close_snapshot();
 
@@ -43,4 +53,5 @@ public:
 private:
     BinaryReader& reader_;
     MatchingEngine& engine_;
+    RiskEngine& risk_engine_;
 };}

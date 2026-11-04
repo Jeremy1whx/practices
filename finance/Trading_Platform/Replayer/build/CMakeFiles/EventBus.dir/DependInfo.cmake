@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp" "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.o" "gcc" "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.o.d"
+  "/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp" "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp.o" "gcc" "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/workspaces/practices/finance/Trading_Platform/Replayer/build/CMakeFiles/AsyncLogger.dir/DependInfo.cmake"
+  "/workspaces/practices/finance/Trading_platform/Replayer/build/CMakeFiles/AsyncLogger.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

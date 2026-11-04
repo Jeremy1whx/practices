@@ -13,6 +13,7 @@ inline std::string format_trade(const Trade& trade) {
     oss << "TRADE "
         << "buy=" << trade.buy_order_id
         << " sell=" << trade.sell_order_id
+        << " account=" << trade.account_id
         << " price=" << trade.price
         << " qty=" << trade.quantity;
 

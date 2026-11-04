@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.o"
-  "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.o.d"
+  "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp.o"
+  "CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp.o.d"
   "libEventBus.a"
   "libEventBus.pdb"
 )

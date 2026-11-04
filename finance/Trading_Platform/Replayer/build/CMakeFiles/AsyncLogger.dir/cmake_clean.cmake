@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o"
-  "CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o.d"
+  "CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.cpp.o"
+  "CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.cpp.o.d"
   "libAsyncLogger.a"
   "libAsyncLogger.pdb"
 )

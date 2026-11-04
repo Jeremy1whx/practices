@@ -36,6 +36,7 @@ public:
                 now_ns()
             },
             info.order_id,
+            info.account_id,
             info.side,
             info.type,
             info.price,
@@ -45,27 +46,40 @@ public:
         });
     }
 
-    void publish(const uint64_t order_id, const CancelReason& reason) {
+    void publish(const uint64_t order_id, const uint64_t account_id, const CancelReason& reason) {
         bus_.publish(OrderCancelledEvent{
             EventHeader{
                 EventType::OrderCancelled,
                 now_ns()
             },
             order_id,
+            account_id,
             reason
         });
     }
 
-    void publish(const uint64_t order_id, const RejectReason& reason) {
+    void publish(const uint64_t order_id, const uint64_t account_id, const RejectReason& reason) {
         bus_.publish(OrderRejectedEvent{
             EventHeader{
                 EventType::OrderRejected,
                 now_ns()
             },
             order_id,
+            account_id,
             reason
         });
     }
+
+    void publish(uint64_t order_id, uint64_t account_id, RejectReason reason,
+             RiskViolationReason risk_reason) {
+    bus_.publish(OrderRejectedEvent{
+        {EventType::OrderRejected, now_ns()},
+        order_id,
+        account_id,
+        reason,
+        risk_reason
+    });
+}
 
     // void publish(const uint64_t order_id, const RiskViolationReason& reason) {
     //     bus_.publish(RiskViolationEvent{

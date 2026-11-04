@@ -10,6 +10,6 @@ struct EventBusStats {
     uint64_t order_accepted_events = 0;
     uint64_t order_cancelled_events = 0;
     uint64_t order_rejected_events = 0;
-    // uint64_t risk_violation_events = 0;
+    uint64_t risk_violation_events = 0;
 };
 }

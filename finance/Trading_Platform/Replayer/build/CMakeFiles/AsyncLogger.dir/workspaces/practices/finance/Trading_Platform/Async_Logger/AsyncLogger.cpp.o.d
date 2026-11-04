@@ -1,8 +1,8 @@
-CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp.o: \
- /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.cpp \
+CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.cpp.o: \
+ /workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.cpp \
  /usr/include/stdc-predef.h \
- /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.h \
- /workspaces/practices/finance/Trading_Platform/Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
+ /workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.h \
+ /workspaces/practices/finance/Trading_platform/Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
  /usr/include/c++/14/atomic /usr/include/c++/14/bits/version.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h \
@@ -137,8 +137,8 @@ CMakeFiles/AsyncLogger.dir/workspaces/practices/finance/Trading_Platform/Async_L
  /usr/include/c++/14/bits/ranges_base.h \
  /usr/include/c++/14/bits/max_size_type.h /usr/include/c++/14/numbers \
  /usr/include/c++/14/cassert /usr/include/assert.h \
- /workspaces/practices/finance/Trading_Platform/Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
- /workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h \
+ /workspaces/practices/finance/Trading_platform/Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
+ /workspaces/practices/finance/Trading_platform/Async_Logger/LogMessage.h \
  /usr/include/c++/14/array /usr/include/c++/14/cstring \
  /usr/include/string.h /usr/include/strings.h /usr/include/c++/14/chrono \
  /usr/include/c++/14/bits/chrono.h /usr/include/c++/14/ratio \

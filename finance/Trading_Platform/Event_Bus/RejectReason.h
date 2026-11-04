@@ -1,12 +1,14 @@
 #pragma once
 
+#include "RiskViolationReason.h"
+
 namespace exchange{
-enum class RejectReason{
+enum class RejectReason : uint8_t{
     InvalidPrice = 1,
     InvalidQuantity = 2,
     DuplicateOrderId = 3,
     MarketClosed = 4,
-    // RiskViolation,
-    InternalError = 5
+    InternalError = 5,
+    RiskViolation = 6
 };
 }

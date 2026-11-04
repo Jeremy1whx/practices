@@ -1,7 +1,7 @@
-CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp.o: \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.cpp \
+CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp.o: \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.cpp \
  /usr/include/stdc-predef.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.h \
  /usr/include/c++/14/vector /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h \
@@ -179,24 +179,24 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
  /usr/include/c++/14/bits/basic_ios.tcc \
  /usr/include/c++/14/bits/ostream.tcc /usr/include/c++/14/istream \
  /usr/include/c++/14/bits/istream.tcc \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Subscriber.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/Event.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Subscriber.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/Event.h \
  /usr/include/c++/14/variant \
  /usr/include/c++/14/bits/enable_special_members.h \
  /usr/include/c++/14/bits/parse_numbers.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/TradeEvent.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventHeader.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/TradeEvent.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventHeader.h \
  /usr/include/c++/14/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventType.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../Trade.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/BookUpdateEvent.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventType.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/../Trade.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/BookUpdateEvent.h \
  /usr/include/c++/14/optional \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../BookUpdate.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderAcceptedEvent.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../../Order/Order.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/../BookUpdate.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderAcceptedEvent.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/../../Order/Order.h \
  /usr/include/c++/14/chrono /usr/include/c++/14/bits/chrono.h \
  /usr/include/c++/14/ratio /usr/include/c++/14/limits \
  /usr/include/c++/14/ctime /usr/include/c++/14/sstream \
@@ -219,17 +219,17 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
  /usr/include/c++/14/array /usr/include/c++/14/charconv \
  /usr/include/c++/14/span /usr/include/c++/14/bits/unicode.h \
  /usr/include/c++/14/bits/unicode-data.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderCancelledEvent.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../CancelReason.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../RejectReason.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/../RiskViolationReason.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/AsyncLogger.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderCancelledEvent.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/../CancelReason.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderRejectedEvent.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/../RejectReason.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/../RiskViolationReason.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/RiskViolationEvent.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/SubscriberStats.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/TradeLogger.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/TradeFormatter.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/../Async_Logger/AsyncLogger.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
  /usr/include/c++/14/atomic /usr/include/c++/14/bits/atomic_base.h \
  /usr/include/c++/14/bits/atomic_lockfree_defines.h \
  /usr/include/c++/14/bits/atomic_wait.h /usr/include/c++/14/climits \
@@ -254,8 +254,8 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
  /usr/include/x86_64-linux-gnu/bits/syscall.h \
  /usr/include/c++/14/bits/std_mutex.h /usr/include/c++/14/cassert \
  /usr/include/assert.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/../Async_Logger/LogMessage.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/../Async_Logger/LogMessage.h \
  /usr/include/c++/14/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/14/thread /usr/include/c++/14/stop_token \
  /usr/include/c++/14/bits/std_thread.h /usr/include/c++/14/semaphore \
@@ -271,6 +271,6 @@ CMakeFiles/EventBus.dir/workspaces/practices/finance/Trading_Platform/Event_Bus/
  /usr/include/c++/14/bits/fs_fwd.h /usr/include/c++/14/bits/fs_path.h \
  /usr/include/c++/14/codecvt /usr/include/c++/14/bits/fs_dir.h \
  /usr/include/c++/14/bits/fs_ops.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/MarketDataService.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventUtils.h \
- /workspaces/practices/finance/Trading_Platform/Event_Bus/EventBusStats.h
+ /workspaces/practices/finance/Trading_platform/Event_Bus/MarketDataService.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventUtils.h \
+ /workspaces/practices/finance/Trading_platform/Event_Bus/EventBusStats.h

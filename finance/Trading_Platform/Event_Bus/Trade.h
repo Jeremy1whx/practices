@@ -9,6 +9,8 @@ struct Trade {
 
     uint64_t sell_order_id;
 
+    uint64_t account_id;
+
     double price;
 
     uint32_t quantity;

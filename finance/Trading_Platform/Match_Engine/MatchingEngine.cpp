@@ -1,11 +1,11 @@
 #include "MatchingEngine.h"
 
-exchange::MatchingEngine::MatchingEngine(EventPublisher& publisher, ExpiryScheduler& scheduler) : publisher_(publisher), expiry_scheduler_(scheduler){
+exchange::MatchingEngine::MatchingEngine(EventPublisher& publisher, ExpiryScheduler& scheduler, RiskEngine& risk_engine) : publisher_(publisher), expiry_scheduler_(scheduler), risk_engine_(risk_engine) {
     bids_.reserve(1024);
     asks_.reserve(1024);
     expiry_scheduler_.set_cancel_callback(
-            [this](uint64_t order_id, CancelReason reason) {
-                this->cancel_order(order_id, reason);
+            [this](uint64_t order_id, uint64_t account_id, CancelReason reason) {
+                this->cancel_order(order_id, account_id, reason);
             }
         );
 }
@@ -69,7 +69,26 @@ bool exchange::MatchingEngine::remove_price_level(Container& container, double p
 }
 
 void exchange::MatchingEngine::process_order(Order& order) {
-    
+
+    uint64_t now = now_ns();
+
+    if (risk_engine_.is_circuit_broken(order.account_id)) {
+        publisher_.publish(order.order_id, order.account_id, RejectReason::RiskViolation);
+        return;
+    }
+
+    auto result = risk_engine_.pre_trade_check(order, now);
+    if (!result.passed) [[unlikely]] {
+        publisher_.publish(order.order_id, order.account_id, RejectReason::RiskViolation, result.reason);
+        return;
+    }
+
+    if (has_self_order(order)) {
+        publisher_.publish(order.order_id, order.account_id, RejectReason::RiskViolation, RiskViolationReason::SelfTradeDetected);
+        risk_engine_.release_reservation(order);
+        return;
+    }    
+
     switch (order.type)
     {
     case Type::GTD:
@@ -94,20 +113,23 @@ void exchange::MatchingEngine::process_order(Order& order) {
             match_sell(order);
         }
 
-        if (order.quantity > 0) cancel_order(order.order_id, CancelReason::IOCResidual);
+        if (order.quantity > 0) cancel_order(order.order_id, order.account_id, CancelReason::IOCResidual);
         break;
     
     case Type::FOk:
         if (order.side == Side::Buy) {
             if (all_matched_buy(order)) {
                 match_buy(order);
-            } else cancel_order(order.order_id, CancelReason::FOKNotFilled);
+            } else cancel_order(order.order_id, order.account_id, CancelReason::FOKNotFilled);
         } else {
             if (all_matched_sell(order)) {
                 match_sell(order);
-            } else cancel_order(order.order_id, CancelReason::FOKNotFilled);
+            } else cancel_order(order.order_id, order.account_id, CancelReason::FOKNotFilled);
         }
         break;
+    }
+    if (order.quantity == 0) {
+        risk_engine_.on_order_fully_filled(order.order_id);
     }
 }
 
@@ -129,16 +151,20 @@ void exchange::MatchingEngine::process_order(Order& order) {
 
 //     // market_data_events_.push_back(event);
 // }
-bool exchange::MatchingEngine::cancel_without_publish(uint64_t order_id) {
+Order* exchange::MatchingEngine::cancel_without_publish(uint64_t order_id) {
 
     auto it = order_lookup_.find(order_id);
 
     if (it == order_lookup_.end()) {
         std::cerr << "cancel_order: line " << 134 <<  " - Order not found: " << order_id << std::endl;
-        return false;
+        return nullptr;
     }
 
     Order* order = it->second;
+
+    account_orders_[order->account_id].erase(order->order_id);
+
+    risk_engine_.on_order_removed(order_id, order->quantity, order->side);
 
     // if(order->expire_time != 0 && remove_schedule) expiry_scheduler_.delete_expiry(order_id);
 
@@ -146,8 +172,8 @@ bool exchange::MatchingEngine::cancel_without_publish(uint64_t order_id) {
         auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, BidCompare>(bids_,order->price);
 
         if (level_it == bids_.end()){
-            std::cerr << "cancel_order: line " << 144 << " - Order not found: " << order_id << std::endl;
-            return false; 
+            std::cerr << "cancel_order: line " << 149 << " - Order not found: " << order_id << std::endl;
+            return nullptr; 
         }
         
         level_it->avaliable -= order->quantity;
@@ -164,8 +190,8 @@ bool exchange::MatchingEngine::cancel_without_publish(uint64_t order_id) {
         auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
 
         if (level_it == asks_.end()){
-            std::cerr << "cancel_order: line " << 158 << " - Order not found: " << order_id << std::endl;
-            return false;
+            std::cerr << "cancel_order: line " << 167 << " - Order not found: " << order_id << std::endl;
+            return nullptr;
         } 
 
         level_it->avaliable -= order->quantity;
@@ -180,22 +206,52 @@ bool exchange::MatchingEngine::cancel_without_publish(uint64_t order_id) {
     }
 
     order_lookup_.erase(it);
-    order_pool_.deallocate(order);
-    return true;
+    return order;
 }
 
-bool exchange::MatchingEngine::cancel_order(uint64_t order_id, CancelReason reason) {
-
+bool exchange::MatchingEngine::cancel_order(uint64_t order_id, uint64_t account_id, CancelReason reason) {
+    
     if (reason != CancelReason::IOCResidual) {
         if (reason != CancelReason::FOKNotFilled) {
-            if (!cancel_without_publish(order_id)) return false;
-            if (reason == CancelReason::Expired) expiry_scheduler_.delete_expiry(order_id);
+            Order* order = cancel_without_publish(order_id);
+            if (!order) return false;           
+            if (reason != CancelReason::Expired) expiry_scheduler_.delete_expiry(order_id);  
+            risk_engine_.on_order_removed(order_id, order->quantity, order->side);          
+            order_pool_.deallocate(order);
         }
     }
 
-    publisher_.publish(order_id, reason);    
+    publisher_.publish(order_id, account_id, reason);    
 
     return true;
+}
+
+bool exchange::MatchingEngine::has_self_order(const Order& order) {
+    if (order.side == Side::Buy) {
+        for (const auto& level : asks_) {
+            if (level.price > order.price) break;
+            for (auto* o = level.level.head; o; o = o->next) {
+                if (o->account_id == order.account_id) return true;
+            }
+        }
+    } else {
+        for (const auto& level : bids_) {
+            if (level.price < order.price) break;
+            for (auto* o = level.level.head; o; o = o->next) {
+                if (o->account_id == order.account_id) return true;
+            }
+        }
+    }
+    return false;
+}
+
+void exchange::MatchingEngine::cancel_all_for_account(uint64_t account_id) {    
+    if (account_id >= account_orders_.size()) return;
+
+    std::vector<uint64_t> to_cancel(account_orders_[account_id].begin(), account_orders_[account_id].end());
+    for (uint64_t id : to_cancel) {
+        cancel_order(id, account_id, CancelReason::RiskLiquidation);
+    }
 }
 
 void exchange::MatchingEngine::match_buy(Order& order) {
@@ -221,6 +277,8 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         trade->buy_order_id = order.order_id;
 
         trade->sell_order_id = resting->order_id;
+
+        trade->account_id = order.account_id;
 
         trade->price = resting->price;
 
@@ -253,6 +311,7 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         
 
         // listener_->on_trade(*trade);
+        risk_engine_.on_trade(*trade, current_ns);
         publisher_.publish(*trade);
         publisher_.publish(update);
         trade_pool_.recycle_oldest();
@@ -263,6 +322,8 @@ void exchange::MatchingEngine::match_buy(Order& order) {
         if (resting->quantity == 0) {
             remove_order(queue, resting);
             order_lookup_.erase(resting->order_id);
+            account_orders_[resting->account_id].erase(resting->order_id);
+            risk_engine_.on_order_fully_filled(resting->order_id);
             order_pool_.deallocate(resting);
 
             if (queue.head == nullptr) {
@@ -310,7 +371,9 @@ void exchange::MatchingEngine::match_sell(Order& order) {
 
         trade->buy_order_id = resting->order_id;            
 
-        trade->sell_order_id =order.order_id;           
+        trade->sell_order_id =order.order_id; 
+        
+        trade->account_id = order.account_id;
 
         trade->price = resting->price;
 
@@ -342,6 +405,7 @@ void exchange::MatchingEngine::match_sell(Order& order) {
         // } else {
 
         // listener_->on_trade(*trade);
+        risk_engine_.on_trade(*trade, current_ns);
         publisher_.publish(*trade);
         publisher_.publish(update);
         trade_pool_.recycle_oldest();
@@ -353,6 +417,8 @@ void exchange::MatchingEngine::match_sell(Order& order) {
         if (resting->quantity == 0) {
             remove_order(queue, resting);
             order_lookup_.erase(resting->order_id);
+            account_orders_[resting->account_id].erase(resting->order_id);
+            risk_engine_.on_order_fully_filled(resting->order_id);
             order_pool_.deallocate(resting);
 
             if (queue.head == nullptr) {
@@ -385,10 +451,12 @@ void exchange::MatchingEngine::add_to_book(Order& order, bool schedule) {
     Order* stored = order_pool_.allocate();    
 
     assert(stored != nullptr);
-
-    *stored = std::move(order);
     
     if (order.publish) publisher_.publish(*stored);
+
+    account_orders_[order.account_id].insert(order.order_id);
+
+    *stored = std::move(order);
 
     if (stored->side == Side::Buy) {
         // std::cout << "add to bid, id =" << stored->order_id << std::endl;
@@ -434,33 +502,38 @@ void exchange::MatchingEngine::restore_snapshot(const std::vector<OrderSnapshot>
     bids_.clear();
     asks_.clear();
     order_lookup_.clear();
+    account_orders_.clear(); 
     expiry_scheduler_.clear_expiry();
 
     for (const auto& os : orders) {
-        Order* order = order_pool_.allocate();
-        order->order_id = os.order_id;
-        order->side = os.side;
-        order->price = os.price;
-        order->quantity = os.quantity;
-        order->sequence = os.sequence;
-        order->type = os.type;
-        order->expire_time = os.expire_time;
-        order->publish = false;
-        order->next = order->prev = nullptr;
-        order->ingress_timestamp_ns = 0;
-        order->egress_timestamp_ns = 0;
+        Order order;
+        order.order_id = os.order_id;
+        order.account_id = os.account_id;
+        order.side = os.side;
+        order.price = os.price;
+        order.quantity = os.quantity;
+        order.sequence = os.sequence;
+        order.type = os.type;
+        order.expire_time = os.expire_time;
+        order.publish = false;
+        order.next = order.prev = nullptr;
+        order.ingress_timestamp_ns = 0;
+        order.egress_timestamp_ns = 0;
 
-        add_to_book(*order,false);
+        add_to_book(order,false);
+        risk_engine_.register_replay_order(order);
     }
 }
 
 void exchange::MatchingEngine::restore_events(const Event& event) {
+    uint64_t now = now_ns();
     switch (get_event_type(event))
     {
     case EventType::OrderAccepted: {
         const auto& e = std::get<OrderAcceptedEvent>(event);
         Order order;
         order.order_id = e.order_id;
+        order.account_id = e.account_id;
         order.side = e.side;
         order.type = e.type;
         order.price = e.price;
@@ -469,11 +542,13 @@ void exchange::MatchingEngine::restore_events(const Event& event) {
         order.expire_time = e.expire_time;
         order.publish = false;
         add_to_book(order, false);
+        risk_engine_.apply_replay_accepted(order, now);
         break;
     }
     
     case EventType::Trade: {
         const auto& e = std::get<TradeEvent>(event);
+        risk_engine_.apply_replay_trade(e.trade, now);
         reduce_quantity_if_exists(e.trade.buy_order_id, e.trade.quantity);
         reduce_quantity_if_exists(e.trade.sell_order_id, e.trade.quantity);
         break;
@@ -481,7 +556,11 @@ void exchange::MatchingEngine::restore_events(const Event& event) {
 
     case EventType::OrderCancelled: {
         const auto& e = std::get<OrderCancelledEvent>(event);
-        cancel_without_publish(e.order_id);
+        Order* order = cancel_without_publish(e.order_id);
+        if (order) {
+            risk_engine_.on_order_removed(order->order_id, order->quantity, order->side);
+            order_pool_.deallocate(order); 
+        }
         break;
     }
     default:
@@ -556,7 +635,7 @@ void exchange::MatchingEngine::reduce_quantity_if_exists(uint64_t order_id, uint
             if (level_it != bids_.end()) level_it->avaliable -= qty;
         } else {
             auto level_it = find_price_level<std::vector<PriceLevelWithPrice>, AskCompare>(asks_, order->price);
-            if (level_it != bids_.end()) level_it->avaliable -= qty;
+            if (level_it != asks_.end()) level_it->avaliable -= qty;
         }
     }
 }

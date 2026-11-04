@@ -348,8 +348,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
   /workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
@@ -367,10 +367,18 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
   /usr/include/c++/14/bits/std_function.h \
   /workspaces/practices/finance/Trading_Platform/Order/OrderIngress.h \
   /workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h \
+  ../SnapshotTool.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskEngine.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/AccountState.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/TokenBucket.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskLimits.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/OrderLookupTable.h \
   /usr/include/c++/14/map \
   /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_map.h \
-  /usr/include/c++/14/bits/stl_multimap.h
+  /usr/include/c++/14/bits/stl_multimap.h \
+  /usr/include/c++/14/unordered_set \
+  /usr/include/c++/14/bits/unordered_set.h
 
 CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o: /workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp \
   /usr/include/stdc-predef.h \
@@ -720,8 +728,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
   /workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
@@ -739,10 +747,18 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
   /usr/include/c++/14/bits/std_function.h \
   /workspaces/practices/finance/Trading_Platform/Order/OrderIngress.h \
   /workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h \
+  ../SnapshotTool.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskEngine.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/AccountState.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/TokenBucket.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskLimits.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/OrderLookupTable.h \
   /usr/include/c++/14/map \
   /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_map.h \
   /usr/include/c++/14/bits/stl_multimap.h \
+  /usr/include/c++/14/unordered_set \
+  /usr/include/c++/14/bits/unordered_set.h \
   ../SnapshotService.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
   ../EventWriter.h \
@@ -760,6 +776,16 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 /usr/include/c++/14/bits/stl_multimap.h:
 
 /usr/include/c++/14/map:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskLimits.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/TokenBucket.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/AccountState.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskEngine.h:
+
+../SnapshotTool.h:
 
 /workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h:
 
@@ -876,6 +902,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 /usr/include/c++/14/stack:
 
 /workspaces/practices/finance/Trading_Platform/Memory_Pool/MemoryPool.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/OrderLookupTable.h:
 
 /workspaces/practices/finance/Trading_Platform/Order/Order.h:
 
@@ -1221,6 +1249,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+/usr/include/c++/14/unordered_set:
+
 /usr/include/x86_64-linux-gnu/c++/14/bits/gthr-default.h:
 
 /usr/include/c++/14/cwchar:
@@ -1340,6 +1370,8 @@ CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Matc
 /usr/include/c++/14/ext/atomicity.h:
 
 /usr/include/asm-generic/posix_types.h:
+
+/usr/include/c++/14/bits/unordered_set.h:
 
 /usr/include/c++/14/bits/locale_facets.h:
 

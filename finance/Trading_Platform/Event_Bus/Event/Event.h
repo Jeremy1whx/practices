@@ -15,7 +15,7 @@ using Event = std::variant<
                         BookUpdateEvent, 
                         OrderAcceptedEvent, 
                         OrderCancelledEvent, 
-                        OrderRejectedEvent 
+                        OrderRejectedEvent
                         // RiskViolationEvent
                         >;
 }

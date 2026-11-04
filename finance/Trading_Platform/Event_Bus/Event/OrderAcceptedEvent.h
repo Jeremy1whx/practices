@@ -9,6 +9,8 @@ struct OrderAcceptedEvent{
 
     uint64_t order_id;
 
+    uint64_t account_id;
+
     Side side;
 
     Type type;

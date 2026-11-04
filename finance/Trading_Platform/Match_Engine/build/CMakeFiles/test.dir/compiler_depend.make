@@ -351,8 +351,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h \
+  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
   /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
@@ -370,10 +370,18 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /usr/include/c++/14/bits/std_function.h \
   /workspaces/practices/finance/Trading_Platform/Order/OrderIngress.h \
   /workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h \
+  /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotTool.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskEngine.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/AccountState.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/TokenBucket.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskLimits.h \
+  /workspaces/practices/finance/Trading_Platform/Risk_Engine/OrderLookupTable.h \
   /usr/include/c++/14/map \
   /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_map.h \
   /usr/include/c++/14/bits/stl_multimap.h \
+  /usr/include/c++/14/unordered_set \
+  /usr/include/c++/14/bits/unordered_set.h \
   /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotService.h \
   /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
   /workspaces/practices/finance/Trading_Platform/Persistence/EventWriter.h \
@@ -518,6 +526,14 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/tr1/legendre_function.tcc:
 
+/usr/include/c++/14/tr1/exp_integral.tcc:
+
+/usr/include/c++/14/tr1/bessel_function.tcc:
+
+/usr/include/c++/14/tr1/special_function_util.h:
+
+/usr/include/c++/14/tr1/gamma.tcc:
+
 /workspaces/practices/finance/Trading_Platform/Event_Bus/MarketDataService.h:
 
 /usr/include/c++/14/bits/erase_if.h:
@@ -618,8 +634,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/streambuf_iterator.h:
 
-/usr/include/c++/14/tr1/bessel_function.tcc:
-
 /usr/include/c++/14/bits/regex_executor.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
@@ -662,6 +676,12 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/functional:
 
+/usr/include/c++/14/tr1/ell_integral.tcc:
+
+/usr/include/asm-generic/int-ll64.h:
+
+/usr/include/linux/sched/types.h:
+
 /usr/include/c++/14/tr1/poly_hermite.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
@@ -685,6 +705,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/cstring:
 
 /usr/include/c++/14/cwchar:
+
+/usr/include/c++/14/unordered_set:
 
 /usr/include/x86_64-linux-gnu/bits/sigstksz.h:
 
@@ -762,10 +784,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/stdint.h:
 
-/usr/include/c++/14/bits/stream_iterator.h:
-
-/usr/include/x86_64-linux-gnu/sys/time.h:
-
 /usr/include/c++/14/bits/atomic_lockfree_defines.h:
 
 /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/Event.h:
@@ -803,10 +821,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/c++/14/bits/invoke.h:
-
-/usr/include/c++/14/numbers:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -873,8 +887,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/unordered_map.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/usr/include/c++/14/pstl/pstl_config.h:
 
 /usr/include/c++/14/regex:
 
@@ -974,12 +986,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/enable_special_members.h:
 
-/usr/include/c++/14/ios:
-
-/usr/include/c++/14/bits/stringfwd.h:
-
-/usr/include/c++/14/bits/unicode.h:
-
 /usr/include/wchar.h:
 
 /usr/include/c++/14/bits/concept_check.h:
@@ -1059,6 +1065,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/basic_ios.h:
 
 /usr/include/wctype.h:
+
+/usr/include/c++/14/bits/specfun.h:
+
+/workspaces/practices/finance/Trading_Platform/Memory_Pool/LRU.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
@@ -1161,6 +1171,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/pstl/execution_defs.h:
 
 /workspaces/practices/finance/Trading_Platform/Order/Order.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/OrderLookupTable.h:
 
 /workspaces/practices/finance/Trading_Platform/Memory_Pool/MemoryPool.h:
 
@@ -1296,6 +1308,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/iostream:
 
+/usr/include/c++/14/bits/unordered_set.h:
+
 /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventHeader.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
@@ -1338,6 +1352,32 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h:
 
+/usr/include/c++/14/bits/stream_iterator.h:
+
+/usr/include/x86_64-linux-gnu/sys/time.h:
+
+/workspaces/practices/finance/Trading_Platform/Persistence/SnapshotTool.h:
+
+/usr/include/c++/14/bits/invoke.h:
+
+/usr/include/c++/14/numbers:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskEngine.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/AccountState.h:
+
+/usr/include/c++/14/pstl/pstl_config.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/TokenBucket.h:
+
+/usr/include/c++/14/ios:
+
+/usr/include/c++/14/bits/stringfwd.h:
+
+/usr/include/c++/14/bits/unicode.h:
+
+/workspaces/practices/finance/Trading_Platform/Risk_Engine/RiskLimits.h:
+
 /usr/include/c++/14/map:
 
 /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventType.h:
@@ -1375,19 +1415,3 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/regex_scanner.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/workspaces/practices/finance/Trading_Platform/Memory_Pool/LRU.h:
-
-/usr/include/c++/14/bits/specfun.h:
-
-/usr/include/c++/14/tr1/gamma.tcc:
-
-/usr/include/c++/14/tr1/special_function_util.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/include/linux/sched/types.h:
-
-/usr/include/c++/14/tr1/ell_integral.tcc:
-
-/usr/include/c++/14/tr1/exp_integral.tcc:

@@ -8,163 +8,163 @@
 
 namespace exchange{
 
-class TextReader{
-public:
-    explicit TextReader(const std::filesystem::path& path) {
-        event_journal_.open(path.string(), std::ios::in);
-    };
+// class TextReader{
+// public:
+//     explicit TextReader(const std::filesystem::path& path) {
+//         event_journal_.open(path.string(), std::ios::in);
+//     };
 
-    bool next(Event& event) {
-        std::string line;
+//     bool next(Event& event) {
+//         std::string line;
 
-        if(!std::getline(event_journal_, line)) return false;
+//         if(!std::getline(event_journal_, line)) return false;
 
-        if(line.starts_with("Trade")) return parse_trade(line,event);
+//         if(line.starts_with("Trade")) return parse_trade(line,event);
 
-        if(line.starts_with("BookUpdate")) return parse_book_update(line,event);
+//         if(line.starts_with("BookUpdate")) return parse_book_update(line,event);
 
-        if(line.starts_with("OrderCancelled")) return parse_order_cancelled(line,event);
+//         if(line.starts_with("OrderCancelled")) return parse_order_cancelled(line,event);
 
-        if(line.starts_with("OrderRejected")) return parse_order_rejected(line,event);
+//         if(line.starts_with("OrderRejected")) return parse_order_rejected(line,event);
 
-        return false;
-    };
+//         return false;
+//     };
 
-private:
-    std::ifstream event_journal_;
+// private:
+//     std::ifstream event_journal_;
 
-    bool parse_trade(const std::string& line, Event& event) {
-        uint64_t timestamp;
-        uint64_t buy;
-        uint64_t sell;
-        double price;
-        uint32_t qty;
+//     bool parse_trade(const std::string& line, Event& event) {
+//         uint64_t timestamp;
+//         uint64_t buy;
+//         uint64_t sell;
+//         double price;
+//         uint32_t qty;
 
-        sscanf(
-            line.c_str(),
-            "Trade timestamp=%lu buy=%lu sell=%lu price=%lf qty=%u",
-            &timestamp,
-            &buy,
-            &sell,
-            &price,
-            &qty
-        );
-
-
-        Trade trade;
-
-        trade.buy_order_id = buy;
-        trade.sell_order_id = sell;
-        trade.price = price;
-        trade.quantity = qty;
-
-        event = TradeEvent{
-            EventHeader{
-                EventType::Trade,
-                timestamp
-            },
-            trade
-        };
-
-        return true;
-    };
+//         sscanf(
+//             line.c_str(),
+//             "Trade timestamp=%lu buy=%lu sell=%lu price=%lf qty=%u",
+//             &timestamp,
+//             &buy,
+//             &sell,
+//             &price,
+//             &qty
+//         );
 
 
-    bool parse_book_update(const std::string& line, Event& event) {
-        uint64_t timestamp;
-        double best_bid;
-        double best_ask;
-        double last_trade_price;
-        uint32_t last_trade_qty;
+//         Trade trade;
 
-        int match = sscanf(
-            line.c_str(),
-            "BookUpdate timestamp=%lu best_bid=%lf best_ask=%lf last_trade_price=%lf last_trade_qty=%u",
-            &timestamp,
-            &best_bid,
-            &best_ask,
-            &last_trade_price,
-            &last_trade_qty
-        );
+//         trade.buy_order_id = buy;
+//         trade.sell_order_id = sell;
+//         trade.price = price;
+//         trade.quantity = qty;
 
-        if (match != 5) {
-            std::cout << "didn't match" << std::endl;
-            return false;
-        }
+//         event = TradeEvent{
+//             EventHeader{
+//                 EventType::Trade,
+//                 timestamp
+//             },
+//             trade
+//         };
 
-        BookUpdate update;
+//         return true;
+//     };
 
-        update.best_bid = best_bid;
-        update.best_ask = best_ask;
-        update.last_trade_price = last_trade_price;
-        update.last_trade_quantity = last_trade_qty;
 
-        event = BookUpdateEvent{
-            EventHeader{
-                EventType::BookUpdate,
-                timestamp
-            },
-            update
-        };
+//     bool parse_book_update(const std::string& line, Event& event) {
+//         uint64_t timestamp;
+//         double best_bid;
+//         double best_ask;
+//         double last_trade_price;
+//         uint32_t last_trade_qty;
 
-        return true;
-    };
+//         int match = sscanf(
+//             line.c_str(),
+//             "BookUpdate timestamp=%lu best_bid=%lf best_ask=%lf last_trade_price=%lf last_trade_qty=%u",
+//             &timestamp,
+//             &best_bid,
+//             &best_ask,
+//             &last_trade_price,
+//             &last_trade_qty
+//         );
+
+//         if (match != 5) {
+//             std::cout << "didn't match" << std::endl;
+//             return false;
+//         }
+
+//         BookUpdate update;
+
+//         update.best_bid = best_bid;
+//         update.best_ask = best_ask;
+//         update.last_trade_price = last_trade_price;
+//         update.last_trade_quantity = last_trade_qty;
+
+//         event = BookUpdateEvent{
+//             EventHeader{
+//                 EventType::BookUpdate,
+//                 timestamp
+//             },
+//             update
+//         };
+
+//         return true;
+//     };
     
 
-    bool parse_order_cancelled(const std::string& line, Event event) {
-        uint64_t timestamp;
-        uint64_t order_id;
-        int r;
+//     bool parse_order_cancelled(const std::string& line, Event event) {
+//         uint64_t timestamp;
+//         uint64_t order_id;
+//         int r;
 
-        sscanf(
-            line.c_str(),
-            "OrderCancelled timestamp=%lu order_id=%lu cancel_reason=%d",
-            &timestamp,
-            &order_id,
-            &r
-        );
+//         sscanf(
+//             line.c_str(),
+//             "OrderCancelled timestamp=%lu order_id=%lu cancel_reason=%d",
+//             &timestamp,
+//             &order_id,
+//             &r
+//         );
 
-        CancelReason reason = static_cast<CancelReason>(r);
+//         CancelReason reason = static_cast<CancelReason>(r);
 
-        event = OrderCancelledEvent{
-            EventHeader{
-                EventType::OrderCancelled,
-                timestamp
-            },
-            order_id,
-            reason
-        };
+//         event = OrderCancelledEvent{
+//             EventHeader{
+//                 EventType::OrderCancelled,
+//                 timestamp
+//             },
+//             order_id,
+//             reason
+//         };
 
-        return true;
-    }
+//         return true;
+//     }
 
-    bool parse_order_rejected(const std::string& line, Event event){
-        uint64_t timestamp;
-        uint64_t order_id;
-        int r;
+//     bool parse_order_rejected(const std::string& line, Event event){
+//         uint64_t timestamp;
+//         uint64_t order_id;
+//         int r;
 
-        sscanf(
-            line.c_str(),
-            "OrderRejected timestamp=%lu order_id=%lu reject_reason=%d",
-            &timestamp,
-            &order_id,
-            &r
-        );
+//         sscanf(
+//             line.c_str(),
+//             "OrderRejected timestamp=%lu order_id=%lu reject_reason=%d",
+//             &timestamp,
+//             &order_id,
+//             &r
+//         );
 
-        RejectReason reason = static_cast<RejectReason>(r);
+//         RejectReason reason = static_cast<RejectReason>(r);
 
-        event = OrderRejectedEvent{
-            EventHeader{
-                EventType::OrderRejected,
-                timestamp
-            },
-            order_id,
-            reason
-        };
+//         event = OrderRejectedEvent{
+//             EventHeader{
+//                 EventType::OrderRejected,
+//                 timestamp
+//             },
+//             order_id,
+//             reason
+//         };
 
-        return true;
-    }
-};
+//         return true;
+//     }
+// };
 
 class BinaryReader {
 public:
@@ -215,22 +215,18 @@ public:
     }
 
     bool read_snapshot(SnapshotBatch& batch) {
-        struct SnapshotHeader {
-            uint32_t magic;
-            uint32_t version;
-            uint64_t timestamp;
-            uint64_t sequence;
-            uint64_t order_count;
-            uint64_t reserved;
-        };
         SnapshotHeader header;
         if (!snapshot_.read(reinterpret_cast<char*>(&header), sizeof(header))) return false;
         if (header.magic != 0x534E5053 || header.version != 1) return false;
         batch.snapshot_time = header.timestamp;
         batch.sequence = header.sequence;
+        batch.last_trade_price = header.last_trade_price;
         batch.orders.resize(header.order_count);
         if (!snapshot_.read(reinterpret_cast<char*>(batch.orders.data()),
                             header.order_count * sizeof(OrderSnapshot))) return false;
+        batch.accounts.resize(header.account_count);
+        if (!snapshot_.read(reinterpret_cast<char*>(batch.accounts.data()),
+                            header.account_count * sizeof(AccountSnapshot))) return false;
         return true;
     }
 
@@ -250,9 +246,11 @@ private:
 
     bool parse_trade(Event& event) {
         struct TradeData {
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t buy_order_id;
             uint64_t sell_order_id;
+            uint64_t account_id;
             double price;
             uint64_t quantity;
         };
@@ -261,6 +259,7 @@ private:
         Trade trade;
         trade.buy_order_id = data.buy_order_id;
         trade.sell_order_id = data.sell_order_id;
+        trade.account_id = data.account_id;
         trade.price = data.price;
         trade.quantity = data.quantity;
         TradeEvent ev{ {EventType::Trade, data.timestamp_ns}, trade };
@@ -270,6 +269,7 @@ private:
 
     bool parse_book_update(Event& event) {
         struct BookData {
+            EventType event_type;
             uint64_t timestamp_ns;
             double best_bid;
             double best_ask;
@@ -290,8 +290,10 @@ private:
     
     bool parse_order(Event& event) {
         struct OrderData {
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            uint64_t account_id;
             Side side;
             Type type;
             double price;
@@ -301,33 +303,59 @@ private:
         };
         OrderData data;
         event_journal_.read(reinterpret_cast<char*>(&data), sizeof(data));        
-        OrderAcceptedEvent ev{ {EventType::OrderAccepted, data.timestamp_ns}, data.order_id, data.side, data.type, data.price, data.quantity, data.sequence, data.expire_time};
+        OrderAcceptedEvent ev{ 
+            {EventType::OrderAccepted, data.timestamp_ns}, 
+            data.order_id, 
+            data.account_id, 
+            data.side, 
+            data.type, 
+            data.price, 
+            data.quantity, 
+            data.sequence, 
+            data.expire_time
+        };
         event = ev;
         return true;
     }
 
     bool parse_cancel(Event& event) {
         struct CancelData {
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            uint64_t account_id;
             uint16_t reason;
         };
         CancelData data;
         event_journal_.read(reinterpret_cast<char*>(&data), sizeof(data));        
-        OrderCancelledEvent ev{ {EventType::OrderCancelled, data.timestamp_ns}, data.order_id, static_cast<CancelReason>(data.reason)};
+        OrderCancelledEvent ev{ 
+            {EventType::OrderCancelled, data.timestamp_ns}, 
+            data.order_id, 
+            data.account_id,
+            static_cast<CancelReason>(data.reason)
+        };
         event = ev;
         return true;
     }
 
     bool parse_reject(Event& event) {
         struct RejectData {
+            EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            uint64_t account_id;
             uint16_t reason;
+            uint16_t risk_reason;
         };
         RejectData data;
         event_journal_.read(reinterpret_cast<char*>(&data), sizeof(data));        
-        OrderRejectedEvent ev{ {EventType::OrderRejected, data.timestamp_ns}, data.order_id, static_cast<RejectReason>(data.reason)};
+        OrderRejectedEvent ev{ 
+            {EventType::OrderRejected, data.timestamp_ns}, 
+            data.order_id, 
+            data.account_id,
+            static_cast<RejectReason>(data.reason),
+            static_cast<RiskViolationReason>(data.risk_reason)
+        };
         event = ev;
         return true;
     }

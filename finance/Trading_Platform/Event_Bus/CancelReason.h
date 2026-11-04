@@ -1,7 +1,7 @@
 #pragma once
 
 namespace exchange{
-enum class CancelReason{
+enum class CancelReason : uint8_t{
     UserRequest = 1,
     IOCResidual = 2,
     FOKNotFilled = 3,

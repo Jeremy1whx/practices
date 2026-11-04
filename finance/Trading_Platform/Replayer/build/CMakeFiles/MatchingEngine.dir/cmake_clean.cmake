@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o"
-  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.cpp.o.d"
-  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o"
-  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.cpp.o.d"
+  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngine.cpp.o"
+  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngine.cpp.o.d"
+  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngineThread.cpp.o"
+  "CMakeFiles/MatchingEngine.dir/workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngineThread.cpp.o.d"
   "libMatchingEngine.a"
   "libMatchingEngine.pdb"
 )

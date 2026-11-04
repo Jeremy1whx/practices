@@ -65,82 +65,82 @@ inline std::string_view to_string(RejectReason reason) {
         return "Unknown";
     }
 }
-class EventTextWriter {
-public:
+// class EventTextWriter {
+// public:
 
-    explicit EventTextWriter(const std::filesystem::path& path, MPSCRingBuffer<Event>& event_queue) : event_queue_(event_queue){
-        journal_.open(path.string(), std::ios::out | std::ios::app);
-    }
+//     explicit EventTextWriter(const std::filesystem::path& path, MPSCRingBuffer<Event>& event_queue) : event_queue_(event_queue){
+//         journal_.open(path.string(), std::ios::out | std::ios::app);
+//     }
 
-    void write_events() {
-            Event event;
-            while (event_queue_.pop(event)) {
-                std::lock_guard<std::mutex> lock(journal_mutex_);
-                std::visit([this](const auto& e) {
-                    write(e);
-                }, event);
-            }
-    }
+//     void write_events() {
+//             Event event;
+//             while (event_queue_.pop(event)) {
+//                 std::lock_guard<std::mutex> lock(journal_mutex_);
+//                 std::visit([this](const auto& e) {
+//                     write(e);
+//                 }, event);
+//             }
+//     }
 
-    void set_event_journal(uint64_t sequence) {
-        std::lock_guard<std::mutex> lock(journal_mutex_);
-        if (journal_.is_open()) {
-            journal_.flush();
-            journal_.close();
-        } 
-        const std::filesystem::path path = "event_journal" + std::to_string(sequence) + ".txt";
-        journal_.open(path.string(), std::ios::out | std::ios::app);
-    }
+//     void set_event_journal(uint64_t sequence) {
+//         std::lock_guard<std::mutex> lock(journal_mutex_);
+//         if (journal_.is_open()) {
+//             journal_.flush();
+//             journal_.close();
+//         } 
+//         const std::filesystem::path path = "event_journal" + std::to_string(sequence) + ".txt";
+//         journal_.open(path.string(), std::ios::out | std::ios::app);
+//     }
 
-private:
-    std::ofstream journal_;
+// private:
+//     std::ofstream journal_;
 
-    std::mutex journal_mutex_;
+//     std::mutex journal_mutex_;
 
-    MPSCRingBuffer<Event>& event_queue_;
+//     MPSCRingBuffer<Event>& event_queue_;
 
-    void write(const TradeEvent& event) {
-        journal_ << "Trade "
-            << "timestamp=" << event.header.timestamp_ns 
-            << " buy=" << event.trade.buy_order_id
-            << " sell=" << event.trade.sell_order_id
-            << " price=" << event.trade.price
-            << " qty=" << event.trade.quantity << '\n';
-    }
+//     void write(const TradeEvent& event) {
+//         journal_ << "Trade "
+//             << "timestamp=" << event.header.timestamp_ns 
+//             << " buy=" << event.trade.buy_order_id
+//             << " sell=" << event.trade.sell_order_id
+//             << " price=" << event.trade.price
+//             << " qty=" << event.trade.quantity << '\n';
+//     }
 
-    void write(const BookUpdateEvent& event) {
-        journal_ << "BookUpdate "
-            << "timestamp=" << event.header.timestamp_ns 
-            << " best_bid=" << event.update.best_bid
-            << " best_ask=" << event.update.best_ask
-            << " last_trade_price=" << event.update.last_trade_price
-            << " last_trade_qty=" << event.update.last_trade_quantity << '\n';
-    }
+//     void write(const BookUpdateEvent& event) {
+//         journal_ << "BookUpdate "
+//             << "timestamp=" << event.header.timestamp_ns 
+//             << " best_bid=" << event.update.best_bid
+//             << " best_ask=" << event.update.best_ask
+//             << " last_trade_price=" << event.update.last_trade_price
+//             << " last_trade_qty=" << event.update.last_trade_quantity << '\n';
+//     }
     
-    void write(const OrderAcceptedEvent& event) {
-        journal_ << "OrderAccepted "
-            << "timestamp=" << event.header.timestamp_ns
-            << " order_id=" << event.order_id
-            << " order_price=" << event.price
-            << " order_quantity=" << event.quantity << '\n';
-    };
+//     void write(const OrderAcceptedEvent& event) {
+//         journal_ << "OrderAccepted "
+//             << "timestamp=" << event.header.timestamp_ns
+//             << " order_id=" << event.order_id
+//             << " order_price=" << event.price
+//             << " order_quantity=" << event.quantity << '\n';
+//     };
 
-    void write(const OrderCancelledEvent& event) {
-        journal_ << "OrderCanCelled "
-            << "timestamp=" << event.header.timestamp_ns
-            << " order_id=" << event.order_id
-            << " cancel_reason=" << static_cast<int>(event.reason) << '\n';
-    }
+//     void write(const OrderCancelledEvent& event) {
+//         journal_ << "OrderCanCelled "
+//             << "timestamp=" << event.header.timestamp_ns
+//             << " order_id=" << event.order_id
+//             << " cancel_reason=" << static_cast<int>(event.reason) << '\n';
+//     }
 
-    void write(const OrderRejectedEvent& event) {
-        journal_ << "OrderRejceted "
-            << "timestamp= " << event.header.timestamp_ns
-            << " order_id=" << event.order_id
-            << " reject_reason=" << static_cast<int>(event.reason) << '\n';
-    }
+//     void write(const OrderRejectedEvent& event) {
+//         journal_ << "OrderRejceted "
+//             << "timestamp= " << event.header.timestamp_ns
+//             << " order_id=" << event.order_id
+//             << " reject_reason=" << static_cast<int>(event.reason) << '\n';
+//     }
 
-    // void write(const RiskViolationEvent& event) {};
-};
+//     // void write(const RiskViolationEvent& event) {};
+// };
 
 class EventBinaryWriter {
 public:
@@ -226,6 +226,7 @@ private:
             uint64_t timestamp_ns;
             uint64_t buy_order_id;
             uint64_t sell_order_id;
+            uint64_t account_id;
             double price;
             uint64_t quantity;
         };
@@ -235,6 +236,7 @@ private:
             event.header.timestamp_ns,
             event.trade.buy_order_id,
             event.trade.sell_order_id,
+            event.trade.account_id,
             event.trade.price,
             event.trade.quantity
         };
@@ -269,6 +271,7 @@ private:
             EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            uint64_t account_id;
             Side side;
             Type type;
             double price;
@@ -281,6 +284,7 @@ private:
             event.header.type,
             event.header.timestamp_ns,
             event.order_id,
+            event.account_id,
             event.side,
             event.type,
             event.price,
@@ -297,6 +301,7 @@ private:
             EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            uint64_t account_id;
             uint16_t reason;
         };
         
@@ -304,6 +309,7 @@ private:
             event.header.type,
             event.header.timestamp_ns,
             event.order_id,
+            event.account_id,
             static_cast<uint16_t>(event.reason)
         };
         
@@ -315,17 +321,39 @@ private:
             EventType event_type;
             uint64_t timestamp_ns;
             uint64_t order_id;
+            uint64_t account_id;
             uint16_t reason;
+            uint16_t risk_reason;
         };
         
         RejectData data{
             event.header.type,
             event.header.timestamp_ns,
             event.order_id,
-            static_cast<uint16_t>(event.reason)
+            event.account_id,
+            static_cast<uint16_t>(event.reason),
+            static_cast<uint16_t>(event.risk_reason)
         };
         
         file_.write(reinterpret_cast<const char*>(&data), sizeof(data));
     }
+
+    // void write_event_data(const RiskViolationEvent& event) {
+    //     struct ViolationData {
+    //         EventType event_type;
+    //         uint64_t timestamp_ns;
+    //         uint64_t account_id;
+    //         uint16_t reason;
+    //     };
+        
+    //     ViolationData data{
+    //         event.header.type,
+    //         event.header.timestamp_ns,
+    //         event.account_id,
+    //         static_cast<uint16_t>(event.reason)
+    //     };
+        
+    //     file_.write(reinterpret_cast<const char*>(&data), sizeof(data));
+    // }
 };
 }

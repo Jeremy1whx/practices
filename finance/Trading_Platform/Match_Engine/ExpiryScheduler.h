@@ -15,7 +15,7 @@ public:
 
     ExpiryScheduler() : beginning_(today_start_ns_utc()), last_processed_time_(beginning_) {}
 
-    using CancelCallback = std::function<void(uint64_t, CancelReason)>;
+    using CancelCallback = std::function<void(uint64_t, uint64_t, CancelReason)>;
 
     void set_cancel_callback(CancelCallback cb) {
         cancel_callback_ = std::move(cb);
@@ -68,7 +68,7 @@ public:
         auto it = expiry_lookup_.find(order_id);
 
         if (it == expiry_lookup_.end()) {
-            std::cerr << "delete_order: line " << 49 << " - Order not found:" << order_id << std::endl;
+            std::cerr << "delete_order: line " << 71 << " - Order not found:" << order_id << std::endl;
             return false;
         }
 
@@ -129,8 +129,9 @@ public:
         while (it) {
             auto* next = it->next;
             uint64_t order_id = it->order_id;
+            uint64_t account_id = it->account_id;
             delete_expiry(order_id);
-            cancel_callback_(order_id, CancelReason::Expired);
+            cancel_callback_(order_id, account_id, CancelReason::Expired);
             it = next;  
         } 
 
@@ -214,6 +215,7 @@ private:
     struct ExpiryEntry{
         uint64_t expire_time;
         uint64_t order_id;
+        uint64_t account_id;
         ExpiryEntry* prev = nullptr;
         ExpiryEntry* next = nullptr;
     };
@@ -278,12 +280,13 @@ private:
             auto* next = it->next;
             if (it->expire_time <= current_time) {
                 uint64_t order_id = it->order_id;
+                uint64_t account_id = it->account_id;
                 auto expiry = expiry_lookup_.find(order_id);
                 assert(expiry != expiry_lookup_.end());
                 remove_from_list(days_wheel_[day_offset_], it);
                 expiry_lookup_.erase(expiry);
                 expiry_pool_.deallocate(it);
-                cancel_callback_(order_id, CancelReason::Expired);
+                cancel_callback_(order_id, account_id, CancelReason::Expired);
 
             } else {
                 remove_from_list(days_wheel_[day_offset_], it);
@@ -308,8 +311,9 @@ private:
             while (it) {
                 auto* next = it->next;
                 uint64_t order_id = it->order_id;
+                uint64_t account_id = it->account_id;
                 delete_expiry(order_id);
-                cancel_callback_(order_id, CancelReason::Expired);
+                cancel_callback_(order_id, account_id, CancelReason::Expired);
                 it = next;
             }
         }

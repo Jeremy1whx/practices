@@ -1,5 +1,5 @@
 CMakeFiles/test.dir/test.cpp.o: \
- /workspaces/practices/finance/Trading_Platform/Replayer/test.cpp \
+ /workspaces/practices/finance/Trading_platform/Replayer/test.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/14/chrono \
  /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h \
@@ -240,51 +240,51 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
  /usr/include/c++/14/bits/fstream.tcc \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/MatchingEngine.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Latency/Clock.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Latency/LatencyCollector.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/MatchingEngine.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Latency/Clock.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Latency/LatencyCollector.h \
  /usr/include/c++/14/algorithm /usr/include/c++/14/bits/ranges_algo.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Order/PriceLevel.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Order/Order.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Memory_Pool/LRU.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Memory_Pool/MemoryPool.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Order/PriceLevel.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Order/Order.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Memory_Pool/LRU.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Memory_Pool/MemoryPool.h \
  /usr/include/c++/14/stack /usr/include/c++/14/deque \
  /usr/include/c++/14/bits/stl_deque.h /usr/include/c++/14/bits/deque.tcc \
  /usr/include/c++/14/bits/stl_stack.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Async_Logger/AsyncLogger.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Async_Logger/AsyncLogger.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
  /usr/include/c++/14/cassert /usr/include/assert.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Async_Logger/LogMessage.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Async_Logger/../Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Async_Logger/LogMessage.h \
  /usr/include/c++/14/cstring /usr/include/string.h /usr/include/strings.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../CPU_Affinity/Affinity.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/EventPublisher.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Trade.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/EventBus.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../CPU_Affinity/Affinity.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/EventPublisher.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Trade.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/EventBus.h \
  /usr/include/c++/14/iostream \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Subscriber.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/Event.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/TradeEvent.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/EventHeader.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/EventType.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/BookUpdateEvent.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/../BookUpdate.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/OrderAcceptedEvent.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/OrderCancelledEvent.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/../CancelReason.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/OrderRejectedEvent.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/../RejectReason.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/RiskViolationEvent.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/../RiskViolationReason.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/SubscriberStats.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/TradeLogger.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/TradeFormatter.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/MarketDataService.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/Event/EventUtils.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Event_Bus/EventBusStats.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/ExpiryScheduler.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Subscriber.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/Event.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/TradeEvent.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/EventHeader.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/EventType.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/BookUpdateEvent.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/../BookUpdate.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/OrderAcceptedEvent.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/OrderCancelledEvent.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/../CancelReason.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/OrderRejectedEvent.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/../RejectReason.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/../RiskViolationReason.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/RiskViolationEvent.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/SubscriberStats.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/TradeLogger.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/TradeFormatter.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/MarketDataService.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/Event/EventUtils.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Event_Bus/EventBusStats.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/ExpiryScheduler.h \
  /usr/include/c++/14/unordered_map \
  /usr/include/c++/14/bits/unordered_map.h \
  /usr/include/c++/14/bits/hashtable.h \
@@ -292,22 +292,30 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/erase_if.h /usr/include/c++/14/functional \
  /usr/include/c++/14/bits/std_function.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Order/OrderIngress.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Order/MPSCQueue.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Persistence/SnapshotTool.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Order/OrderIngress.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Order/MPSCQueue.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Persistence/SnapshotTool.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Risk_Engine/RiskEngine.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Risk_Engine/AccountState.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Risk_Engine/TokenBucket.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Risk_Engine/RiskLimits.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Risk_Engine/OrderLookupTable.h \
  /usr/include/c++/14/map /usr/include/c++/14/bits/stl_tree.h \
  /usr/include/c++/14/bits/stl_map.h \
  /usr/include/c++/14/bits/stl_multimap.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/MatchingEngineThread.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Persistence/SnapshotService.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Persistence/../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Persistence/EventWriter.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Match_Engine/../Persistence/EventSink.h \
+ /usr/include/c++/14/unordered_set \
+ /usr/include/c++/14/bits/unordered_set.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/MatchingEngineThread.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Persistence/SnapshotService.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Persistence/../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Persistence/EventWriter.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Match_Engine/../Persistence/EventSink.h \
  /usr/include/c++/14/mutex /usr/include/c++/14/bits/unique_lock.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Persistence/SnapshotWriter.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/ReplayReader.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/ReplayEngine.h \
- /workspaces/practices/finance/Trading_Platform/Replayer/../Lock_Free_Ring_Buffer/mpsc/catch.hpp \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Persistence/SnapshotWriter.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/ReplayReader.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/ReplayEngine.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Risk_Engine/RiskMonitor.h \
+ /workspaces/practices/finance/Trading_platform/Replayer/../Lock_Free_Ring_Buffer/mpsc/catch.hpp \
  /usr/include/c++/14/memory \
  /usr/include/c++/14/bits/stl_raw_storage_iter.h \
  /usr/include/c++/14/bits/shared_ptr_atomic.h \

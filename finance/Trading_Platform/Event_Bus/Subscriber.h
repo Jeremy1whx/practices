@@ -116,21 +116,21 @@ public:
     }
 };
 
-// class RiskViolationSubscriber : public Subscriber {
-// public:
+class RiskViolationSubscriber : public Subscriber {
+public:
 
-//     std::size_t count = 0;
+    std::size_t count = 0;
 
-//     void on_event(const Event&) override {
-//         ++count;
-//     }
+    void on_event(const Event&) override {
+        ++count;
+    }
 
-//     bool interested_in(EventType type) const override {
-//         return type == EventType::RiskViolation;
-//     }
+    bool interested_in(EventType type) const override {
+        return type == EventType::RiskViolation;
+    }
 
-//     const char* name() const override {
-//         return "RiskViolationSubscriber";
-//     }
-// };
+    const char* name() const override {
+        return "RiskViolationSubscriber";
+    }
+};
 }

@@ -1,4 +1,4 @@
-# Install script for directory: /workspaces/practices/finance/Trading_Platform/Replayer
+# Install script for directory: /workspaces/practices/finance/Trading_platform/Replayer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/workspaces/practices/finance/Trading_Platform/Replayer/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/workspaces/practices/finance/Trading_platform/Replayer/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

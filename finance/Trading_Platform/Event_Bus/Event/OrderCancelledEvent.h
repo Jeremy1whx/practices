@@ -9,5 +9,7 @@ struct OrderCancelledEvent{
 
     uint64_t order_id;
 
+    uint64_t account_id;
+
     CancelReason reason;
 };}

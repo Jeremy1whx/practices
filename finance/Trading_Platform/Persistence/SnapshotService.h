@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Match_Engine/MatchingEngine.h"
+#include "../Risk_Engine/RiskEngine.h"
 #include "../Lock_Free_Ring_Buffer/spsc/Ringbuffer.h"
 #include "EventWriter.h"
 #include "SnapshotTool.h"
@@ -9,7 +10,7 @@ namespace exchange {
 
 class SnapshotService {
 public:
-    SnapshotService(MatchingEngine& engine, EventBinaryWriter& event_writer) : engine_(engine), event_writer_(event_writer) {
+    SnapshotService(MatchingEngine& engine, EventBinaryWriter& event_writer, RiskEngine& risk_engine) : engine_(engine), event_writer_(event_writer), risk_engine_(risk_engine) {
         flaga_.batch.orders.reserve(1024 * 1024);
         flagb_.batch.orders.reserve(1024 * 1024);
     }
@@ -17,6 +18,8 @@ public:
     void append_snapshot(uint64_t sequence, uint64_t timestamp) {
 
         SnapshotBatchWithFlag& flag = choose_batch(sequence);
+
+        flag.batch.orders.reserve(engine_.bids().size() + engine_.asks().size());
 
         for (const auto& price_level : engine_.bids()) {
             Order* order = price_level.level.head;
@@ -36,6 +39,9 @@ public:
             }
         }        
 
+        risk_engine_.export_accounts(flag.batch.accounts);
+        flag.batch.last_trade_price = risk_engine_.last_trade_price();
+
         flag.batch.snapshot_time = timestamp;
         flag.batch.sequence = sequence;        
         event_writer_.request_journal_switch(sequence + 1);
@@ -48,6 +54,7 @@ public:
         
         flag.batch.orders.clear();
         flag.batch.orders.reserve(1024 * 1024);
+        flag.batch.accounts.clear();
         flag.batch.sequence = 0;
         flag.batch.snapshot_time = 0;
         flag.ready.store(false, std::memory_order_release);
@@ -64,6 +71,7 @@ private:
     
     MatchingEngine& engine_;
     EventBinaryWriter& event_writer_;
+    RiskEngine& risk_engine_;
 
     SnapshotBatchWithFlag flaga_;
     SnapshotBatchWithFlag flagb_;
@@ -71,6 +79,7 @@ private:
     OrderSnapshot create_snapshot(Order* order) {
         OrderSnapshot snapshot;
         snapshot.order_id = order->order_id;
+        snapshot.account_id = order->account_id;
         snapshot.expire_time = order->expire_time;
         snapshot.price = order->price;
         snapshot.quantity = order->quantity;

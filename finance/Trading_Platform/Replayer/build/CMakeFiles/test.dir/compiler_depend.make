@@ -306,57 +306,57 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h \
   /usr/include/c++/14/bits/fstream.tcc \
-  /workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.h \
-  /workspaces/practices/finance/Trading_Platform/Latency/Clock.h \
-  /workspaces/practices/finance/Trading_Platform/Latency/LatencyCollector.h \
+  /workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngine.h \
+  /workspaces/practices/finance/Trading_platform/Latency/Clock.h \
+  /workspaces/practices/finance/Trading_platform/Latency/LatencyCollector.h \
   /usr/include/c++/14/algorithm \
   /usr/include/c++/14/bits/ranges_algo.h \
   /usr/include/c++/14/pstl/glue_algorithm_defs.h \
   /usr/include/c++/14/pstl/execution_defs.h \
-  /workspaces/practices/finance/Trading_Platform/Order/PriceLevel.h \
-  /workspaces/practices/finance/Trading_Platform/Order/Order.h \
-  /workspaces/practices/finance/Trading_Platform/Memory_Pool/LRU.h \
-  /workspaces/practices/finance/Trading_Platform/Memory_Pool/MemoryPool.h \
+  /workspaces/practices/finance/Trading_platform/Order/PriceLevel.h \
+  /workspaces/practices/finance/Trading_platform/Order/Order.h \
+  /workspaces/practices/finance/Trading_platform/Memory_Pool/LRU.h \
+  /workspaces/practices/finance/Trading_platform/Memory_Pool/MemoryPool.h \
   /usr/include/c++/14/stack \
   /usr/include/c++/14/deque \
   /usr/include/c++/14/bits/stl_deque.h \
   /usr/include/c++/14/bits/deque.tcc \
   /usr/include/c++/14/bits/stl_stack.h \
-  /workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.h \
-  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
+  /workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.h \
+  /workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h \
   /usr/include/c++/14/cassert \
   /usr/include/assert.h \
-  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
-  /workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h \
+  /workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h \
+  /workspaces/practices/finance/Trading_platform/Async_Logger/LogMessage.h \
   /usr/include/c++/14/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /workspaces/practices/finance/Trading_Platform/CPU_Affinity/Affinity.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/EventPublisher.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Trade.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.h \
+  /workspaces/practices/finance/Trading_platform/CPU_Affinity/Affinity.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/EventPublisher.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Trade.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.h \
   /usr/include/c++/14/iostream \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Subscriber.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/Event.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/TradeEvent.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventHeader.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventType.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/BookUpdateEvent.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/BookUpdate.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderAcceptedEvent.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderCancelledEvent.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/MarketDataService.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventUtils.h \
-  /workspaces/practices/finance/Trading_Platform/Event_Bus/EventBusStats.h \
-  /workspaces/practices/finance/Trading_Platform/Match_Engine/ExpiryScheduler.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Subscriber.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/Event.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/TradeEvent.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventHeader.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventType.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/BookUpdateEvent.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/BookUpdate.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderAcceptedEvent.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderCancelledEvent.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/CancelReason.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderRejectedEvent.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/RejectReason.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/RiskViolationReason.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/RiskViolationEvent.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/SubscriberStats.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/TradeLogger.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/TradeFormatter.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/MarketDataService.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventUtils.h \
+  /workspaces/practices/finance/Trading_platform/Event_Bus/EventBusStats.h \
+  /workspaces/practices/finance/Trading_platform/Match_Engine/ExpiryScheduler.h \
   /usr/include/c++/14/unordered_map \
   /usr/include/c++/14/bits/unordered_map.h \
   /usr/include/c++/14/bits/hashtable.h \
@@ -365,24 +365,32 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
   /usr/include/c++/14/bits/erase_if.h \
   /usr/include/c++/14/functional \
   /usr/include/c++/14/bits/std_function.h \
-  /workspaces/practices/finance/Trading_Platform/Order/OrderIngress.h \
-  /workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h \
-  /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotTool.h \
+  /workspaces/practices/finance/Trading_platform/Order/OrderIngress.h \
+  /workspaces/practices/finance/Trading_platform/Order/MPSCQueue.h \
+  /workspaces/practices/finance/Trading_platform/Persistence/SnapshotTool.h \
+  /workspaces/practices/finance/Trading_platform/Risk_Engine/RiskEngine.h \
+  /workspaces/practices/finance/Trading_platform/Risk_Engine/AccountState.h \
+  /workspaces/practices/finance/Trading_platform/Risk_Engine/TokenBucket.h \
+  /workspaces/practices/finance/Trading_platform/Risk_Engine/RiskLimits.h \
+  /workspaces/practices/finance/Trading_platform/Risk_Engine/OrderLookupTable.h \
   /usr/include/c++/14/map \
   /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_map.h \
   /usr/include/c++/14/bits/stl_multimap.h \
-  /workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.h \
-  /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotService.h \
-  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
-  /workspaces/practices/finance/Trading_Platform/Persistence/EventWriter.h \
-  /workspaces/practices/finance/Trading_Platform/Persistence/EventSink.h \
+  /usr/include/c++/14/unordered_set \
+  /usr/include/c++/14/bits/unordered_set.h \
+  /workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngineThread.h \
+  /workspaces/practices/finance/Trading_platform/Persistence/SnapshotService.h \
+  /workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h \
+  /workspaces/practices/finance/Trading_platform/Persistence/EventWriter.h \
+  /workspaces/practices/finance/Trading_platform/Persistence/EventSink.h \
   /usr/include/c++/14/mutex \
   /usr/include/c++/14/bits/unique_lock.h \
-  /workspaces/practices/finance/Trading_Platform/Persistence/SnapshotWriter.h \
+  /workspaces/practices/finance/Trading_platform/Persistence/SnapshotWriter.h \
   ../ReplayReader.h \
   ../ReplayEngine.h \
-  /workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/catch.hpp \
+  /workspaces/practices/finance/Trading_platform/Risk_Engine/RiskMonitor.h \
+  /workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/mpsc/catch.hpp \
   /usr/include/c++/14/memory \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
   /usr/include/c++/14/bits/shared_ptr_atomic.h \
@@ -482,6 +490,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
@@ -522,6 +534,14 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/tr1/exp_integral.tcc:
 
+/usr/include/c++/14/tr1/bessel_function.tcc:
+
+/usr/include/c++/14/tr1/special_function_util.h:
+
+/usr/include/c++/14/tr1/gamma.tcc:
+
+/usr/include/c++/14/bits/specfun.h:
+
 /usr/include/c++/14/bits/uses_allocator.h:
 
 /usr/include/c++/14/bits/regex_automaton.h:
@@ -538,10 +558,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/MarketDataService.h:
-
-/usr/include/c++/14/bits/erase_if.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
@@ -550,11 +566,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/TradeEvent.h:
+
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/ctype_base.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/EventBus.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Trade.h:
+/usr/include/x86_64-linux-gnu/c++/14/bits/ctype_base.h:
 
 /usr/include/c++/14/bits/alloc_traits.h:
 
@@ -563,6 +581,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/14/bits/basic_string.h:
+
+/workspaces/practices/finance/Trading_platform/Risk_Engine/AccountState.h:
 
 /usr/include/c++/14/initializer_list:
 
@@ -581,6 +601,14 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/unique_lock.h:
 
 /usr/include/c++/14/debug/debug.h:
+
+/usr/include/c++/14/string_view:
+
+/usr/include/c++/14/bits/stl_algobase.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/EventPublisher.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventType.h:
 
 /usr/include/c++/14/bits/align.h:
 
@@ -602,13 +630,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/range_access.h:
 
+/workspaces/practices/finance/Trading_platform/Risk_Engine/RiskLimits.h:
+
 /usr/include/c++/14/bits/functexcept.h:
 
 /usr/include/errno.h:
 
 /usr/lib/linux/uapi/x86/asm/posix_types.h:
-
-/usr/include/c++/14/bits/allocator.h:
 
 /usr/include/c++/14/bits/max_size_type.h:
 
@@ -626,8 +654,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/CancelReason.h:
-
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
@@ -638,19 +664,21 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/streambuf_iterator.h:
 
-/usr/include/c++/14/tr1/bessel_function.tcc:
-
 /usr/include/c++/14/bits/regex_executor.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
 /usr/include/c++/14/bits/locale_facets.h:
+
+/usr/include/c++/14/bits/unordered_set.h:
 
 /usr/include/asm-generic/posix_types.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/c++/14/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/14/bits/ranges_base.h:
 
 /usr/lib/linux/uapi/x86/asm/posix_types_64.h:
 
@@ -667,8 +695,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/ext/string_conversions.h:
 
 /usr/include/c++/14/bits/ranges_algo.h:
-
-/workspaces/practices/finance/Trading_Platform/Latency/Clock.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
@@ -702,11 +728,19 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/locale.h:
 
+/workspaces/practices/finance/Trading_platform/Event_Bus/MarketDataService.h:
+
 /usr/include/pthread.h:
+
+/workspaces/practices/finance/Trading_platform/Order/PriceLevel.h:
 
 /usr/include/c++/14/cstring:
 
 /usr/include/c++/14/cwchar:
+
+/usr/include/c++/14/unordered_set:
+
+/workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigstksz.h:
 
@@ -720,15 +754,15 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/ptr_traits.h:
 
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/workspaces/practices/finance/Trading_platform/Order/Order.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/c++/14/bits/basic_ios.tcc:
-
-/usr/include/c++/14/string_view:
-
-/usr/include/c++/14/bits/stl_algobase.h:
-
-/workspaces/practices/finance/Trading_Platform/Event_Bus/RiskViolationReason.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
@@ -754,8 +788,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/atomic_timed_wait.h:
 
-/workspaces/practices/finance/Trading_Platform/Match_Engine/ExpiryScheduler.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h:
 
 /usr/include/c++/14/bits/requires_hosted.h:
@@ -765,6 +797,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/unique_ptr.h:
 
 /usr/include/linux/posix_types.h:
+
+/usr/include/c++/14/random:
 
 /usr/lib/linux/uapi/x86/asm/bitsperlong.h:
 
@@ -778,6 +812,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
+/usr/include/features-time64.h:
+
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/include/c++/14/new:
@@ -786,23 +822,27 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/c++/14/bits/stl_tree.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/workspaces/practices/finance/Trading_Platform/Persistence/EventSink.h:
-
-/usr/include/c++/14/bits/stl_vector.h:
-
 /usr/include/stdint.h:
+
+/usr/include/c++/14/bits/stream_iterator.h:
+
+/usr/include/x86_64-linux-gnu/sys/time.h:
+
+/workspaces/practices/finance/Trading_platform/Order/MPSCQueue.h:
 
 /usr/include/c++/14/bits/invoke.h:
 
 /usr/include/c++/14/numbers:
+
+/usr/include/c++/14/bits/uses_allocator_args.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -817,6 +857,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/workspaces/practices/finance/Trading_platform/Latency/Clock.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
@@ -846,6 +888,10 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
+/usr/include/c++/14/bits/allocator.h:
+
+/workspaces/practices/finance/Trading_platform/Latency/LatencyCollector.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/c++/14/compare:
@@ -856,21 +902,11 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
-/usr/include/c++/14/tr1/poly_laguerre.tcc:
-
-/usr/include/c++/14/bits/ranges_base.h:
-
-/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngine.h:
-
 /usr/include/c++/14/iterator:
 
 /usr/include/c++/14/cstdlib:
 
 /usr/include/c++/14/bits/hash_bytes.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/workspaces/practices/finance/Trading_Platform/Order/PriceLevel.h:
 
 /usr/include/x86_64-linux-gnu/sys/syscall.h:
 
@@ -886,6 +922,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h:
 
+/workspaces/practices/finance/Trading_platform/Match_Engine/ExpiryScheduler.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
 
 /usr/include/c++/14/bits/stl_pair.h:
@@ -896,13 +934,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
+/workspaces/practices/finance/Trading_platform/Memory_Pool/MemoryPool.h:
+
 /usr/include/c++/14/bits/atomic_lockfree_defines.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/Event.h:
+/usr/include/c++/14/bits/exception.h:
 
 /usr/include/c++/14/chrono:
-
-/workspaces/practices/finance/Trading_Platform/Event_Bus/RejectReason.h:
 
 /usr/include/c++/14/tr1/beta_function.tcc:
 
@@ -911,6 +949,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/unordered_map.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/Subscriber.h:
 
 /usr/include/c++/14/pstl/pstl_config.h:
 
@@ -926,8 +966,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/stdexcept:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/EventPublisher.h:
-
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /usr/include/c++/14/bits/std_abs.h:
@@ -935,10 +973,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h:
 
 /usr/include/c++/14/bits/move.h:
-
-/usr/include/c++/14/bits/stl_tree.h:
-
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/RiskViolationEvent.h:
 
 /usr/include/c++/14/sstream:
 
@@ -958,8 +992,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/array:
 
-/usr/include/c++/14/span:
-
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/c++/14/iosfwd:
@@ -978,15 +1010,7 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/postypes.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderAcceptedEvent.h:
-
 /usr/include/endian.h:
-
-/usr/include/c++/14/ext/atomicity.h:
-
-/usr/lib/linux/uapi/x86/asm/unistd_64.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/gthr-default.h:
 
@@ -1003,10 +1027,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/concept_check.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/c++/14/bits/exception_ptr.h:
 
 /usr/include/c++/14/bits/regex_scanner.tcc:
 
@@ -1058,13 +1078,15 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/wctype.h:
 
+/workspaces/practices/finance/Trading_platform/Order/OrderIngress.h:
+
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
-/workspaces/practices/finance/Trading_Platform/Async_Logger/AsyncLogger.h:
+/workspaces/practices/finance/Trading_platform/Async_Logger/AsyncLogger.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBus.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/RiskViolationReason.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/ctype_inline.h:
 
@@ -1072,7 +1094,15 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/vector:
 
+/workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/mpsc/catch.hpp:
+
 /usr/include/c++/14/bits/locale_facets.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/c++/14/bits/stl_vector.h:
+
+/workspaces/practices/finance/Trading_platform/Persistence/SnapshotService.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h:
 
@@ -1080,11 +1110,11 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/sstream.tcc:
 
+/workspaces/practices/finance/Trading_platform/Memory_Pool/LRU.h:
+
 /usr/include/c++/14/bits/ios_base.h:
 
 /usr/include/c++/14/bits/stl_uninitialized.h:
-
-/usr/include/c++/14/pstl/glue_memory_defs.h:
 
 /usr/include/c++/14/bits/stl_bvector.h:
 
@@ -1100,8 +1130,6 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/stl_heap.h:
 
-/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h:
-
 /usr/include/c++/14/bits/stl_stack.h:
 
 /usr/include/c++/14/bits/stl_tempbuf.h:
@@ -1110,13 +1138,7 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/shared_ptr.h:
 
-/workspaces/practices/finance/Trading_Platform/Match_Engine/MatchingEngineThread.h:
-
 /usr/include/c++/14/optional:
-
-/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
-
-/workspaces/practices/finance/Trading_Platform/Persistence/SnapshotService.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/error_constants.h:
 
@@ -1128,31 +1150,29 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/ext/concurrence.h:
 
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/RiskViolationEvent.h:
+
 /usr/include/c++/14/bits/chrono_io.h:
 
 /usr/include/c++/14/bits/locale_facets_nonio.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/TradeEvent.h:
+/workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngine.h:
 
 /usr/include/c++/14/bits/locale_facets_nonio.tcc:
 
 /usr/include/c++/14/bits/locale_conv.h:
 
-/workspaces/practices/finance/Trading_Platform/Order/OrderIngress.h:
-
 /usr/include/c++/14/bits/quoted_string.h:
-
-/usr/include/c++/14/bits/atomic_wait.h:
-
-/usr/include/c++/14/format:
 
 /usr/include/c++/14/charconv:
 
 /usr/include/c++/14/bits/ranges_algobase.h:
 
 /usr/include/c++/14/bits/unicode-data.h:
+
+/workspaces/practices/finance/Trading_platform/Risk_Engine/RiskEngine.h:
 
 /usr/include/c++/14/backward/binders.h:
 
@@ -1166,11 +1186,11 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/climits:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/BookUpdate.h:
-
 /usr/include/c++/14/iomanip:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/Trade.h:
 
 /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
 
@@ -1178,9 +1198,9 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h:
 
-/usr/include/limits.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderCancelledEvent.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Subscriber.h:
+/usr/include/limits.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
@@ -1189,6 +1209,8 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 /usr/include/c++/14/bits/stl_raw_storage_iter.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderRejectedEvent.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
@@ -1202,19 +1224,17 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/syscall.h:
 
-/workspaces/practices/finance/Trading_Platform/Persistence/EventWriter.h:
-
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
 /usr/include/c++/14/bits/std_mutex.h:
+
+/workspaces/practices/finance/Trading_platform/Risk_Engine/TokenBucket.h:
 
 /usr/include/c++/14/utility:
 
 /usr/include/c++/14/bits/std_thread.h:
 
 /usr/include/c++/14/semaphore:
-
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/BookUpdateEvent.h:
 
 /usr/include/c++/14/bits/semaphore_base.h:
 
@@ -1244,23 +1264,21 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/fstream:
 
+/usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
+
 /usr/include/c++/14/bits/codecvt.h:
 
 /usr/include/syscall.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h:
 
+/workspaces/practices/finance/Trading_platform/CPU_Affinity/Affinity.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/Event.h:
+
 /usr/include/c++/14/bits/fstream.tcc:
 
-/usr/include/features-time64.h:
-
-/workspaces/practices/finance/Trading_Platform/Latency/LatencyCollector.h:
-
 /usr/include/c++/14/pstl/execution_defs.h:
-
-/workspaces/practices/finance/Trading_Platform/Order/Order.h:
-
-/workspaces/practices/finance/Trading_Platform/Memory_Pool/MemoryPool.h:
 
 /usr/include/c++/14/stack:
 
@@ -1268,11 +1286,7 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/deque:
 
-/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h:
-
-/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/mpsc/catch.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+/workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/mpsc/Ringbuffer.h:
 
 /usr/include/c++/14/cassert:
 
@@ -1280,9 +1294,13 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/assert.h:
 
-/usr/include/c++/14/bits/uses_allocator_args.h:
+/workspaces/practices/finance/Trading_platform/Lock_Free_Ring_Buffer/mpsc/CacheAligned.h:
 
-/workspaces/practices/finance/Trading_Platform/Async_Logger/LogMessage.h:
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/workspaces/practices/finance/Trading_platform/Async_Logger/LogMessage.h:
+
+/usr/include/c++/14/cmath:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/c++allocator.h:
 
@@ -1296,35 +1314,59 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/math.h:
 
-/usr/include/c++/14/random:
-
-/workspaces/practices/finance/Trading_Platform/CPU_Affinity/Affinity.h:
-
 /usr/include/c++/14/iostream:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventHeader.h:
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventHeader.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderCancelledEvent.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/BookUpdateEvent.h:
 
-/usr/include/c++/14/bits/exception.h:
+/usr/include/c++/14/span:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/OrderRejectedEvent.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/BookUpdate.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/SubscriberStats.h:
+/usr/include/c++/14/ext/atomicity.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/TradeLogger.h:
+/usr/lib/linux/uapi/x86/asm/unistd_64.h:
 
-/usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/OrderAcceptedEvent.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/TradeFormatter.h:
+/workspaces/practices/finance/Trading_platform/Event_Bus/CancelReason.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventUtils.h:
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
-/workspaces/practices/finance/Trading_Platform/Event_Bus/EventBusStats.h:
+/usr/include/c++/14/bits/exception_ptr.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/RejectReason.h:
+
+/usr/include/c++/14/bits/atomic_wait.h:
+
+/usr/include/c++/14/format:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/TradeFormatter.h:
+
+/usr/include/c++/14/map:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/Event/EventUtils.h:
+
+/usr/include/c++/14/bits/regex_scanner.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/EventBusStats.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/14/codecvt:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
 /usr/include/c++/14/ext/type_traits.h:
+
+/workspaces/practices/finance/Trading_platform/Event_Bus/SubscriberStats.h:
 
 /usr/include/c++/14/unordered_map:
 
@@ -1338,31 +1380,31 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/bits/std_function.h:
 
-/workspaces/practices/finance/Trading_Platform/Order/MPSCQueue.h:
+/usr/include/c++/14/bits/erase_if.h:
 
-/usr/include/c++/14/bits/stream_iterator.h:
+/workspaces/practices/finance/Trading_platform/Persistence/SnapshotTool.h:
 
-/usr/include/x86_64-linux-gnu/sys/time.h:
-
-/workspaces/practices/finance/Trading_Platform/Persistence/SnapshotTool.h:
-
-/usr/include/c++/14/map:
-
-/workspaces/practices/finance/Trading_Platform/Event_Bus/Event/EventType.h:
+/workspaces/practices/finance/Trading_platform/Risk_Engine/OrderLookupTable.h:
 
 /usr/include/c++/14/bits/stl_multimap.h:
 
-/workspaces/practices/finance/Trading_Platform/Lock_Free_Ring_Buffer/spsc/Ringbuffer.h:
+/workspaces/practices/finance/Trading_platform/Match_Engine/MatchingEngineThread.h:
+
+/workspaces/practices/finance/Trading_platform/Persistence/EventWriter.h:
+
+/workspaces/practices/finance/Trading_platform/Persistence/EventSink.h:
 
 /usr/include/c++/14/concepts:
 
 /usr/include/c++/14/mutex:
 
-/usr/include/x86_64-linux-gnu/bits/endian.h:
+/usr/include/c++/14/pstl/glue_memory_defs.h:
 
-/workspaces/practices/finance/Trading_Platform/Persistence/SnapshotWriter.h:
+/workspaces/practices/finance/Trading_platform/Persistence/SnapshotWriter.h:
 
 ../ReplayEngine.h:
+
+/workspaces/practices/finance/Trading_platform/Risk_Engine/RiskMonitor.h:
 
 /usr/include/c++/14/tr1/hypergeometric.tcc:
 
@@ -1370,30 +1412,12 @@ CMakeFiles/test.dir/test.cpp.o: ../test.cpp \
 
 /usr/include/c++/14/memory:
 
+/workspaces/practices/finance/Trading_platform/Event_Bus/TradeLogger.h:
+
 /usr/include/c++/14/bits/shared_ptr_atomic.h:
 
 /usr/include/c++/14/bits/ranges_uninitialized.h:
 
 /usr/include/c++/14/bits/stl_relops.h:
 
-/usr/include/c++/14/cmath:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/c++/14/codecvt:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
-
-/usr/include/c++/14/bits/regex_scanner.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/workspaces/practices/finance/Trading_Platform/Memory_Pool/LRU.h:
-
-/usr/include/c++/14/bits/specfun.h:
-
-/usr/include/c++/14/tr1/gamma.tcc:
-
-/usr/include/c++/14/tr1/special_function_util.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h:
