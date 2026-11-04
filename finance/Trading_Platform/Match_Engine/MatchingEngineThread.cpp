@@ -79,7 +79,7 @@ void exchange::MatchingEngineThread::run() {
 }
 
 void exchange::MatchingEngineThread::expiry_loop() {
-    auto next_expiry = std::chrono::system_clock::now() + std::chrono::seconds(1);
+    auto next_expiry = std::chrono::system_clock::now() + std::chrono::seconds(60);
 
     while (running_) {
         auto now = std::chrono::system_clock::now();
@@ -88,7 +88,7 @@ void exchange::MatchingEngineThread::expiry_loop() {
             expiry_requested_.store(true, std::memory_order_relaxed);
             
             do {
-                next_expiry += std::chrono::seconds(1);
+                next_expiry += std::chrono::seconds(60);
             } while (next_expiry <= now);
             continue;
         }
